@@ -1,33 +1,37 @@
 
 body {
- background: #73001e;
- color: #73001e;
- font-family: Verdana, serif;
+  background: #73001e;
+  color: #73001e;
+  font-family: Verdana, serif;
+  margin-right:0px;
+  margin-left:0px;
+  margin-bottom:0px;
+
 }
 
 
 a:link {
-   color: #73001e;
-   font-weight: bold;
-   text-decoration: none;
+  color: #73001e;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 a:visited {
-   color: #73001e;
-   font-weight: bold;
-   text-decoration: none;
+  color: #73001e;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 a:hover {
-   color: #73001e;
-   font-weight: bold;
-   text-decoration: underline;
+  color: #73001e;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 a:active {
-   color: #73001e;
-   font-weight: bold;
-   text-decoration: underline;
+  color: #73001e;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .page-heading,
@@ -40,7 +44,21 @@ a.main_link {
 }
 
 .main {
-  color: #fff;
-  width: 600px;
-  margin:0 auto;
+  background-color: #fff;
+  background-image: url('./img/noherzkleindeko.gif');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  width:70%;
+  padding: 10px;
+  padding-bottom: 40px;
+}
+
+.navi {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.navi li {
+  display: inline-block;
+  margin-right: 10px;
 }
