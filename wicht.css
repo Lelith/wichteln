@@ -1,0 +1,46 @@
+
+body {
+ background: #73001e;
+ color: #73001e;
+ font-family: Verdana, serif;
+}
+
+
+a:link {
+   color: #73001e;
+   font-weight: bold;
+   text-decoration: none;
+}
+
+a:visited {
+   color: #73001e;
+   font-weight: bold;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #73001e;
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+a:active {
+   color: #73001e;
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+.page-heading,
+a.main_link {
+  color: #fff;
+}
+
+.head {
+  text-align: center;
+}
+
+.main {
+  color: #fff;
+  width: 600px;
+  margin:0 auto;
+}
