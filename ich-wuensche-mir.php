@@ -38,27 +38,37 @@ $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
   die("Datebank verbindung schlug fehl: ". mysql_error());
 } else{
-
     mysql_select_db($dbname);
     $query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
-    while ($erg =@ mysql_fetch_array($query)) { $blacklist = $erg["blacklist_id"]; }
+    while ($erg =@ mysql_fetch_array($query)) {
+      $blacklist = $erg["blacklist_id"];
+    }
+
+    $query = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
+    while ($erg =@ mysql_fetch_array($query)) {
+      $wunsch = $erg["wichtel"];
+    }
     mysql_close();
 }
 
-#Pruefe ob der User schon Wuensche in der DB hat
-// mysql_connect($dbsrv,$dbuser,$dbpasswd);
-// mysql_select_db($dbname);
-// $query = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
-// while ($erg =@ mysql_fetch_array($query)) { $wunsch = $erg["wichtel"]; }
-// mysql_close();
 
 #ueberpruefe Rechte
 
-// if ( !$user->data['is_registered'] ) { header("Location: was-ist-denn-hier-los.php?Grund=nicht_eingeloggt"); }
-// elseif ( $user_posts < $user_min_posts ) { header("Location: was-ist-denn-hier-los.php?Grund=zu_wenig_posts"); }
-// elseif ( ($today < $eintragen_start) || ($today > $eintragen_ende) ) { header("Location: was-ist-denn-hier-los.php?Grund=zeit_eintragen"); }
-// elseif ( ($blacklist != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=blacklist"); }
-// elseif ( ($wunsch != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=schon_wunsche"); }
+ if ( !$user->data['is_registered'] ) {
+   header("Location: was-ist-denn-hier-los.php?Grund=nicht_eingeloggt");
+ }
+  elseif ( $user_posts < $user_min_posts ) {
+    header("Location: was-ist-denn-hier-los.php?Grund=zu_wenig_posts");
+  }
+ elseif ( ($today < $eintragen_start) || ($today > $eintragen_ende) ) {
+   header("Location: was-ist-denn-hier-los.php?Grund=zeit_eintragen");
+ }
+ elseif ( ($blacklist != NULL) ) {
+   header("Location: was-ist-denn-hier-los.php?Grund=blacklist");
+ }
+ elseif ( ($wunsch != NULL) ) {
+    header("Location: was-ist-denn-hier-los.php?Grund=schon_wunsche");
+  }
 
 ?>
 
