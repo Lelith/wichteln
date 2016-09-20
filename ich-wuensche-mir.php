@@ -5,17 +5,7 @@ session_start();
 $post=$_POST;
 date_default_timezone_set('Europe/Berlin');
 
-$td=getdate();
-if ($td["mday"]<10)
-	$td["mday"]="0".$td["mday"];
-if ($td["mon"]<10)
-	$td["mon"]="0".$td["mon"];
-if ($td["hours"]<10)
-	$td["hours"]="0".$td["hours"];
-if ($td["minutes"]<10)
-	$td["minutes"]="0".$td["minutes"];
-
-$today=$td["year"].$td["mon"].$td["mday"].$td["hours"].$td["minutes"];
+$today=date(YmdHi); //$today="201611081200";
 
 //$today="201511081200";
 
