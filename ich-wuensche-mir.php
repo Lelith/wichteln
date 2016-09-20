@@ -11,7 +11,8 @@ $today=date(YmdHi); //$today="201611081200";
 
 
 include("cfg.php");
-// Ben�tigte Dateien und Variablen von phpBB3
+include('static.php');
+// Benoetigte Dateien und Variablen von phpBB3
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../forum/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -33,26 +34,31 @@ if ($un=="Anonymous")
 	$user_id=0;
 
 #Pruefe auf Blacklist
-mysql_connect("localhost",$dbuser,$dbpasswd);
-mysql_select_db($dbname);
-$query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
-while ($erg =@ mysql_fetch_array($query)) { $blacklist = $erg["blacklist_id"]; }
-mysql_close();
+$db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+if (!$db) {
+  die("Datebank verbindung schlug fehl: ". mysql_error());
+} else{
 
-#Pr�fe ob der User schon W�nsche in der DB hat
-mysql_connect("localhost",$dbuser,$dbpasswd);
-mysql_select_db($dbname);
-$query = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
-while ($erg =@ mysql_fetch_array($query)) { $wunsch = $erg["wichtel"]; }
-mysql_close();
+    mysql_select_db($dbname);
+    $query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
+    while ($erg =@ mysql_fetch_array($query)) { $blacklist = $erg["blacklist_id"]; }
+    mysql_close();
+}
 
-#�berpr�fe Rechte
-include('static.php');
-if ( !$user->data['is_registered'] ) { header("Location: was-ist-denn-hier-los.php?Grund=nicht_eingeloggt"); }
-elseif ( $user_posts < $user_min_posts ) { header("Location: was-ist-denn-hier-los.php?Grund=zu_wenig_posts"); }
-elseif ( ($today < $eintragen_start) || ($today > $eintragen_ende) ) { header("Location: was-ist-denn-hier-los.php?Grund=zeit_eintragen"); }
-elseif ( ($blacklist != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=blacklist"); }
-elseif ( ($wunsch != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=schon_wunsche"); }
+#Pruefe ob der User schon Wuensche in der DB hat
+// mysql_connect($dbsrv,$dbuser,$dbpasswd);
+// mysql_select_db($dbname);
+// $query = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
+// while ($erg =@ mysql_fetch_array($query)) { $wunsch = $erg["wichtel"]; }
+// mysql_close();
+
+#ueberpruefe Rechte
+
+// if ( !$user->data['is_registered'] ) { header("Location: was-ist-denn-hier-los.php?Grund=nicht_eingeloggt"); }
+// elseif ( $user_posts < $user_min_posts ) { header("Location: was-ist-denn-hier-los.php?Grund=zu_wenig_posts"); }
+// elseif ( ($today < $eintragen_start) || ($today > $eintragen_ende) ) { header("Location: was-ist-denn-hier-los.php?Grund=zeit_eintragen"); }
+// elseif ( ($blacklist != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=blacklist"); }
+// elseif ( ($wunsch != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=schon_wunsche"); }
 
 ?>
 
@@ -64,7 +70,7 @@ elseif ( ($wunsch != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund
 <meta charset="UTF-8">
 <title>Das N&auml;hkromanten Weihnachtswichteln</title>
 <base target=_self>
-<link href="wicht.css" rel="stylesheet" type="text/css">
+<link href="./wicht.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 function chkFormular () {
@@ -127,7 +133,7 @@ function chkFormular () {
 <div style="width:100%; background: #fff; border-radius: 18px;"><br><br>
 <div align="center">
 <br>
-<img src="nostern.gif" width="261" height="261" border="0" alt="*">
+<img src="./img/nostern.gif" width="261" height="261" border="0" alt="*">
 <h2>Ich w&uuml;nsche mir...</h2>
 <br><br>
 <table width="60%" ><tr><td>
