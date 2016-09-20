@@ -145,6 +145,7 @@ function chkFormular () {
     <?php
     include("static.php");
     include("nav.php");
+    include("lanq.php");
     ?>
     <div class="main">
 
@@ -158,21 +159,22 @@ elseif(isset($post['check'])) check();
 elseif(isset($post['senden'])) senden();
 else info();
 
-#Funktionen ausf�hren
+#Funktionen ausfuehren
 function info ()
 {
-        global $user;
+  global $user;
 
-        include('lanq.php');
+  include('lanq.php');
 
-        #Infoseite anzeigen
-        echo "<div><p><h3>Hallo ".$user->data['username']."!</h3></p>";
-        echo $eintragen_info;
-        #Best�tigungsformular anzeigen
-        echo <<<FORMULAR
-        <form action="$PHP_SELF" method="post">
-                <p><input type="checkbox" name="eintrag" value="select">&nbsp;&nbsp;Ich habe alles gelesen und bin einverstanden&nbsp;&nbsp;<input type="submit" name="absenden" value="OK"></p>
-        </form>
+  #Infoseite anzeigen
+  echo "<div><p><h3>Hallo ".$user->data['username']."!</h3></p>";
+  echo $eintragen_info;
+
+  #Bestaetigungsformular anzeigen
+  echo <<<FORMULAR
+    <form action="$PHP_SELF" method="post">
+      <p><input type="checkbox" name="eintrag" value="select">&nbsp;&nbsp;Ich habe alles gelesen und bin einverstanden&nbsp;&nbsp;<input type="submit" name="absenden" value="OK"></p>
+    </form>
 FORMULAR;
 
 } //function info()
@@ -180,35 +182,29 @@ FORMULAR;
 
 function eintrag()
 {
+  global $user;
+  #Variablen vorbereiten
+  $datenein = $_SESSION["datenein"];
+  $datenein[0] = $user->data['username'];
+  if (!$datenein[1]) { $datenein[1] = $user->data['user_email']; }
+  if (!$datenein[9]) { $datenein[9] = "Bitte ausw&auml;hlen"; }
+  if (!$datenein[10]) { $datenein[10] = "Bitte ausw&auml;hlen"; }
+  if (!$datenein[12]) { $datenein[12] = "Bitte ausw&auml;hlen"; }
+  if (!$datenein[13]) { $datenein[13] = "Bitte ausw&auml;hlen"; }
+  if (!$datenein[15]) { $datenein[15] = "Bitte ausw&auml;hlen"; }
+  if (!$datenein[16]) { $datenein[16] = "Bitte ausw&auml;hlen"; }
 
-         global $user;
-        include('lanq.php');
+  #Infotext anzeigen
+  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
+  echo $eintragen_hinweis;
 
-        #Variablen vorbereiten
-        $datenein = $_SESSION["datenein"];
-        $datenein[0] = $user->data['username'];
-        if (!$datenein[1]) { $datenein[1] = $user->data['user_email']; }
-        if (!$datenein[9]) { $datenein[9] = "Bitte ausw&auml;hlen"; }
-        if (!$datenein[10]) { $datenein[10] = "Bitte ausw&auml;hlen"; }
-        if (!$datenein[12]) { $datenein[12] = "Bitte ausw&auml;hlen"; }
-        if (!$datenein[13]) { $datenein[13] = "Bitte ausw&auml;hlen"; }
-        if (!$datenein[15]) { $datenein[15] = "Bitte ausw&auml;hlen"; }
-        if (!$datenein[16]) { $datenein[16] = "Bitte ausw&auml;hlen"; }
-
-        #Infotext anzeigen
-        echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-        echo $eintragen_hinweis;
-
-        #dateneinformular anzeigen
-        echo <<<EINTRAG
+    #dateneinformular anzeigen
+    echo <<<EINTRAG
 
         <form action="$PHP_SELF" method="post" onsubmit="return chkFormular()" name="Eintrag">
+        <fieldset>
+        <legend> Teil 1, deine persönlichen Daten </legend>
         <table border="0">
-        <tr>
-                <td colspan="2">
-                        <div align="center"><b>Teil 1: Deine pers&ouml;nlichen Daten</b></div>
-                </td>
-        </tr>
         <tr>
                 <td>
                         Dein Nickname im Forum:
@@ -277,10 +273,15 @@ function eintrag()
                 <td colspan="2">
                         <br>
                         Wenn du eine alternative Adresse angeben willst die dein Wichtel zB nach einem bestimmten Zeitpunkt verwenden soll, dann schreib die bitte <b>nicht</b> noch zus&auml;tzlich in die Adressfelder sondern in das Notizfeld (s.u.). Wenn du unsicher bist ob deine Adressangaben verst&auml;ndlich/machbar sind, kontaktiere bitte vor dem Eintragen die Weihnachtshexe.<br>
+                </td>
+                </tr>
+                </table>
+                </fieldset>
+                <table>
                         <div align="center">
                         <br><b>Teil 2: Deine 3 W&uuml;nsche</b></div>
-                </td>
-        </tr>
+
+
         <tr>
                 <td>
                         Dein Wichtelwunsch Nummer 1
