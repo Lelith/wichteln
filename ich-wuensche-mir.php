@@ -201,82 +201,69 @@ function eintrag()
     #dateneinformular anzeigen
     echo <<<EINTRAG
 
-        <form action="$PHP_SELF" method="post" onsubmit="return chkFormular()" name="Eintrag">
-        <fieldset>
-        <legend> Teil 1, deine persönlichen Daten </legend>
-        <table border="0">
-        <tr>
-                <td>
-                        Dein Nickname im Forum:
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[0]" readonly>
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Deine eMail-Adresse:
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[1]">
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Dein echter Vor- und Nachname:
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[2]">
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Deine Stra&szlig;e und Hausnummer:
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[3]">
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        * Zus&auml;tzliches Adressfeld ("Bei Schulze" o&Auml;) :
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[4]">
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Deine Postleitzahl:
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[5]">
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Dein Wohnort:
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[6]">
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Das Land in dem Du wohnst (=Staat, nicht Bundesland):
-                </td>
-                <td>
-                        <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[7]">
-                </td>
-        </tr>
-        <tr>
-                <td colspan="2">
-                        <br>
-                        Wenn du eine alternative Adresse angeben willst die dein Wichtel zB nach einem bestimmten Zeitpunkt verwenden soll, dann schreib die bitte <b>nicht</b> noch zus&auml;tzlich in die Adressfelder sondern in das Notizfeld (s.u.). Wenn du unsicher bist ob deine Adressangaben verst&auml;ndlich/machbar sind, kontaktiere bitte vor dem Eintragen die Weihnachtshexe.<br>
-                </td>
-                </tr>
-                </table>
-                </fieldset>
+      <form action="$PHP_SELF" method="post" onsubmit="return chkFormular()" name="Eintrag">
+      <fieldset>
+      <legend> Teil 1, deine persönlichen Daten </legend>
+        <ul class="flex-outer">
+        <li>
+          <label>
+            Dein Nickname im Forum:
+          </label>
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[0]" readonly>
+        </li>
+        <li>
+          <label>
+            Deine eMail-Adresse:
+          </label>
+
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[1]">
+        </li>
+        <li>
+          <label>
+            Dein echter Vor- und Nachname:
+          </label>
+
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[2]">
+        </li>
+        <li>
+          <label>
+            Deine Stra&szlig;e und Hausnummer:
+          </label>
+
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[3]">
+        </li>
+        <li>
+          <label>
+            * Zus&auml;tzliches Adressfeld ("Bei Schulze" o&Auml;) :
+          </label>
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[4]">
+        </li>
+        <li>
+          <label>
+            Deine Postleitzahl:
+          </label>
+
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[5]">
+        </li>
+        <li>
+          <label>
+            Dein Wohnort:
+          </label>
+
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[6]">
+        </li>
+        <li>
+          <label>
+            Das Land in dem Du wohnst (=Staat, nicht Bundesland):
+          </label>
+          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[7]">
+        </li>
+        </ul>
+      </fieldset>
+      <div>
+        Wenn du eine alternative Adresse angeben willst die dein Wichtel zB nach einem bestimmten Zeitpunkt verwenden soll, dann schreib die bitte <b>nicht</b> noch zus&auml;tzlich in die Adressfelder sondern in das Notizfeld (s.u.). Wenn du unsicher bist ob deine Adressangaben verst&auml;ndlich/machbar sind, kontaktiere bitte vor dem Eintragen die Weihnachtshexe.<br>
+      </div>
+
                 <table>
                         <div align="center">
                         <br><b>Teil 2: Deine 3 W&uuml;nsche</b></div>
