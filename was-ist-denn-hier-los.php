@@ -41,35 +41,35 @@ include('static.php');
 switch($Grund) {
 
         case 'nicht_eingeloggt':
-                echo "<p style=\"color: #fff;\"><b>Hallo Gast!</b><br><br>F&uuml;r diesen Dienst musst Du im Forum angemeldet sein.<br>Klicke <a href=\"https://www.naehkromanten.net/forum/ucp.php?mode=login\" target=\"_blank\"><font color=\"#FFFFFF\">hier</font></a> um das nachzuholen und versuche es anschlie&szlig;end <a href=\"index.php\"><font color=\"#FFFFFF\">erneut</font></a>.</p>";
+                echo "<p ><b>Hallo Gast!</b><br><br>F&uuml;r diesen Dienst musst Du im Forum angemeldet sein.<br>Klicke <a href=\"https://www.naehkromanten.net/forum/ucp.php?mode=login\" target=\"_blank\"><font color=\"#FFFFFF\">hier</font></a> um das nachzuholen und versuche es anschlie&szlig;end <a href=\"index.php\"><font color=\"#FFFFFF\">erneut</font></a>.</p>";
                 break;
 
         case 'zu_wenig_posts':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>F&uuml;r diesen Dienst musst Du mindestens ".$user_min_posts." Posts auf Deinem Userkonto haben. Leider hast Du aktuell nur ".$user->data['user_posts'].".<br>Viel Gl&uuml;ck beim n&auml;chsten Mal.</p>";
+                echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>F&uuml;r diesen Dienst musst Du mindestens ".$user_min_posts." Posts auf Deinem Userkonto haben. Leider hast Du aktuell nur ".$user->data['user_posts'].".<br>Viel Gl&uuml;ck beim n&auml;chsten Mal.</p>";
                 break;
 
         case 'zu_wenig_buerge_posts':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>F&uuml;r diesen Dienst musst Du mindestens ".$buerge_min_posts." Posts auf Deinem Userkonto haben. Leider hast Du aktuell nur ".$user->data['user_posts'].".<br>Viel Gl&uuml;ck beim n&auml;chsten Mal.</p>";
+                echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>F&uuml;r diesen Dienst musst Du mindestens ".$buerge_min_posts." Posts auf Deinem Userkonto haben. Leider hast Du aktuell nur ".$user->data['user_posts'].".<br>Viel Gl&uuml;ck beim n&auml;chsten Mal.</p>";
                 break;
 
         case 'zeit_eintragen':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 08.11.2015 bis zum 22.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+                echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 08.11.2015 bis zum 22.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
                 break;
 
         case 'zeit_anfragen':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 29.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+                echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 29.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
                 break;
 
         case 'zeit_senden':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 13.12.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+                echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 13.12.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
                 break;
 
         case 'zeit_empfangen':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 20.12.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+                echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 20.12.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
                 break;
 
         case 'zeit_buergen':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 29.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+                echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 29.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
                 break;
 
         case 'blacklist':
@@ -87,20 +87,20 @@ switch($Grund) {
                 break;
 
         case 'schon_wunsche':
-               echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Es sind bereits W&uuml;nsche von Dir in der Datenbank vorhanden. Wenn Du meinst, dass es sich hier um einen Fehler handelt, dann kontaktiere bitte die Weihnachtshexe.</p>";
+               echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Es sind bereits W&uuml;nsche von Dir in der Datenbank vorhanden. Wenn Du meinst, dass es sich hier um einen Fehler handelt, dann kontaktiere bitte die Weihnachtshexe.</p>";
                break;
 
         case 'nur_ein_geschenk':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Du hast bereits ein Geschenk ausgew&uuml;hlt. Bevor du ein weiteres aussuchen kannst musst du das andere erst verschickt haben.</p>";
+                echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du hast bereits ein Geschenk ausgew&uuml;hlt. Bevor du ein weiteres aussuchen kannst musst du das andere erst verschickt haben.</p>";
                 break;
 
         case 'kein_admin':
-                echo "<p style=\"color: #fff;\"><b>Hallo ".$user->data['username']."!</b><br><br>Du bist leider weder der Admin, noch der Weihnachtshexe. Daher hast Du hier leider keinen Zutritt.</p>";
+                echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist leider weder der Admin, noch der Weihnachtshexe. Daher hast Du hier leider keinen Zutritt.</p>";
                 break;
 
         default:
                 //Konnte keinen Fehler finden
-                echo "<p style=\"color: #fff;\">Wir konnten leider keinen bestimmten Fehler finden. Am besten probierst Du es einfach noch einmal. <a href=\"index.php\"><font class=\"main_link\">Hier gehts zum Start zur&uuml;ck.</font></a></p>";
+                echo "<p>Wir konnten leider keinen bestimmten Fehler finden. Am besten probierst Du es einfach noch einmal. <a href=\"index.php\"><font class=\"main_link\">Hier gehts zum Start zur&uuml;ck.</font></a></p>";
                 break;
 } //switch($Grund)
 
