@@ -1,7 +1,7 @@
 
 body {
   background: #73001e;
-  color: #73001e;
+  color: #fff;
   font-family: Verdana, serif;
   margin-right:0px;
   margin-left:0px;
@@ -48,9 +48,12 @@ a.main_link {
   background-image: url('./img/noherzkleindeko.gif');
   background-repeat: repeat-x;
   background-position: bottom;
-  width:70%;
+  color: #73001e;
+  margin-bottom: 50px;
+  margin-top: 10px;
   padding: 10px;
   padding-bottom: 40px;
+  width:70%;
 }
 
 .navi {
