@@ -7,7 +7,7 @@
 
   </head>
   <body>
-    <div align="center">
+    <div class="container">
       <img src="./img/wichteln.png" border="0" alt="">
       <?php
       include("static.php");
