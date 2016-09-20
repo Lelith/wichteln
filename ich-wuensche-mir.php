@@ -130,13 +130,13 @@ function chkFormular () {
 </head>
 
 <body>
-<div style="width:100%; background: #fff; border-radius: 18px;"><br><br>
-<div align="center">
-<br>
-<img src="./img/nostern.gif" width="261" height="261" border="0" alt="*">
-<h2>Ich w&uuml;nsche mir...</h2>
-<br><br>
-<table width="60%" ><tr><td>
+  <div class="container">
+    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    <?php
+    include("static.php");
+    include("nav.php");
+    ?>
+    <div class="main">
 
 <?php
 
@@ -557,7 +557,6 @@ function senden() {
 ?>
 
 <p><a href="index.php" class="main_link">Zur&uuml;ck zur Startseite</a></p>
-</td></tr></table><br><br>
 </div>
 </body>
 </html>
