@@ -3,7 +3,7 @@
     <title>Nähkromanten-Wichteln</title>
     <meta charset="UTF-8">
     <meta name="author" content="Systemhexe">
-    <link href="wicht.css" rel="stylesheet" type="text/css">
+    <link href="./wicht.css" rel="stylesheet" type="text/css">
 
   </head>
   <body>
