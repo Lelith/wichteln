@@ -31,7 +31,7 @@ $user_posts = $user->data['user_posts'];
 
 $un=$user->data['username'];
 if ($un=="Anonymous")
-	$user_id=0;
+  $user_id=0;
 
 #Pruefe auf Blacklist
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
@@ -80,58 +80,78 @@ if (!$db) {
 <meta charset="UTF-8">
 <title>Das N&auml;hkromanten Weihnachtswichteln</title>
 <base target=_self>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link href="./wicht.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript">
 function chkFormular () {
-  if (document.Eintrag.elements[1].value == "") {
+  var nameReg = /^[A-Za-z]+$/;
+  var numberReg =  /^[0-9]+$/;
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+  var email = $('#emailaddr').val();
+  var name = $('#name').val();
+  var addr1 = $('#addr1').val();
+  var plz = $('#plz').val();
+  var ort = $('#ort').val();
+  var country = $('#country').val();
+  var wish1 = $('#wish1').val();
+  var wish2 = $('#wish2').val();
+  var wish3 = $('#wish3').val();
+
+
+  if (email == "") {
     alert("Du hast leider keine eMail-Adresse eingegeben!");
-    document.Eintrag.elements[1].focus();
+    $('#email').focus();
     return false;
-  }
-  if (document.Eintrag.elements[1].value.indexOf("@") == -1) {
+  } else if (!emailReg.test(email)) {
     alert("Du hast eine falsche eMail-Adresse eingegeben!");
-    document.Eintrag.elements[1].focus();
+    $('#email').focus();
     return false;
   }
-  if (document.Eintrag.elements[2].value == "") {
+
+
+  if (name == "") {
     alert("Du hast leider keinen Namen eingegeben!");
-    document.Eintrag.elements[2].focus();
+    $('#name').focus();
     return false;
   }
-  if (document.Eintrag.elements[3].value == "") {
+
+  if (addr1 == "") {
     alert("Du hast leider keine Strasse eingegeben!");
-    document.Eintrag.elements[3].focus();
+    $('#addr1').focus();
     return false;
   }
-  if (document.Eintrag.elements[5].value == "") {
+
+  if (plz == "") {
     alert("Du hast leider keine Postleitzahl eingegeben!");
-    document.Eintrag.elements[4].focus();
+    $('#plz').focus();
     return false;
   }
-  if (document.Eintrag.elements[6].value == "") {
+
+  if (ort == "") {
     alert("Du hast leider keinen Ort eingegeben!");
-    document.Eintrag.elements[6].focus();
+    $('#ort').focus();
     return false;
   }
-  if (document.Eintrag.elements[7].value == "") {
+  if (country == "") {
     alert("Du hast leider kein Land eingegeben!");
-    document.Eintrag.elements[7].focus();
+    $('#country').focus();
     return false;
   }
-  if (document.Eintrag.elements[8].value == "") {
+  if (wish1 == "") {
     alert("Du hast leider keinen Wunsch 1 eingegeben!");
-    document.Eintrag.elements[8].focus();
+    $('#wish1').focus();
     return false;
   }
-  if (document.Eintrag.elements[11].value == "") {
+  if (wish2 == "") {
     alert("Du hast leider keinen Wunsch 2 eingegeben!");
-    document.Eintrag.elements[11].focus();
+    $('#wish2').focus();
     return false;
   }
-  if (document.Eintrag.elements[14].value == "") {
+  if (wish3 == "") {
     alert("Du hast leider keinen Wunsch 3 eingegeben");
-    document.Eintrag.elements[14].focus();
+    $('#wish3').focus();
     return false;
   }
 }
@@ -173,7 +193,9 @@ function info ()
   #Bestaetigungsformular anzeigen
   echo <<<FORMULAR
     <form action="$PHP_SELF" method="post">
-      <p><input type="checkbox" name="eintrag" value="select">&nbsp;&nbsp;Ich habe alles gelesen und bin einverstanden&nbsp;&nbsp;<input type="submit" name="absenden" value="OK"></p>
+      <p><input type="checkbox" name="eintrag" value="select" id="gewissen">
+      <label for="gewissen">Ich habe alles gelesen und bin einverstanden</label>
+      <input type="submit" name="absenden" value="OK"></p>
     </form>
 FORMULAR;
 
@@ -209,54 +231,49 @@ function eintrag()
           <label>
             Dein Nickname im Forum:
           </label>
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[0]" readonly>
+          <input id='nick' type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[0]" readonly>
         </li>
         <li>
-          <label>
+          <label for="emailaddr">
             Deine eMail-Adresse:
           </label>
-
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[1]">
+          <input id="emailaddr" type="email" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[1]">
         </li>
         <li>
-          <label>
+          <label for="name">
             Dein echter Vor- und Nachname:
           </label>
-
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[2]">
+          <input id="name" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[2]">
         </li>
         <li>
-          <label>
+          <label for="addr1">
             Deine Stra&szlig;e und Hausnummer:
           </label>
-
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[3]">
+          <input id="addr1" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[3]">
         </li>
         <li>
-          <label>
+          <label for="addr2">
             * Zus&auml;tzliches Adressfeld ("Bei Schulze" o&Auml;) :
           </label>
           <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[4]">
         </li>
         <li>
-          <label>
+          <label for="plz">
             Deine Postleitzahl:
           </label>
-
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[5]">
+          <input id="plz" type="number" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[5]">
         </li>
         <li>
-          <label>
+          <label for="ort">
             Dein Wohnort:
           </label>
-
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[6]">
+          <input id="ort" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[6]">
         </li>
         <li>
-          <label>
+          <label for="country">
             Das Land in dem Du wohnst (=Staat, nicht Bundesland):
           </label>
-          <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[7]">
+          <input id="country" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[7]">
         </li>
         </ul>
       </fieldset>
@@ -264,177 +281,169 @@ function eintrag()
         Wenn du eine alternative Adresse angeben willst die dein Wichtel zB nach einem bestimmten Zeitpunkt verwenden soll, dann schreib die bitte <b>nicht</b> noch zus&auml;tzlich in die Adressfelder sondern in das Notizfeld (s.u.). Wenn du unsicher bist ob deine Adressangaben verst&auml;ndlich/machbar sind, kontaktiere bitte vor dem Eintragen die Weihnachtshexe.<br>
       </div>
 
-                <table>
-                        <div align="center">
-                        <br><b>Teil 2: Deine 3 W&uuml;nsche</b></div>
+      <fieldset>
+        <legend>Teil 2: Deine 3 W&uuml;nsche</legend>
+        <ul class="flex-outer">
+          <li>
+            <label for="wish1"> Dein Wichtelwunsch Nummer 1</label>
+            <textarea name="datenein[]" id="wish1" rows="10" cols="35">$datenein[8]</textarea>
+          </li>
+        </ul>
+        <p>Und zwei optionale Zusatzinfos:</p>
+        <ul class="flex-outer">
+          <li>
+            <label>* Schwierigkeitsgrad:</label>
+            <select name="datenein[]" size="1">
+             <option>$datenein[9]</option>
+             <option>Egal</option>
+             <option>Kleinigkeit</option>
+             <option>Mittel</option>
+             <option>Anspruchsvoll</option>
+            </select>
+          </li>
+          <li>
+            <label>* Kategorie:</label>
+              <select name="datenein[]" size="1">
+                <option>$datenein[10]</option>
+                <option>Egal</option>
+                <option>Kleidung</option>
+                <option>Tasche/Maeppchen</option>
+                <option>Strick/Haekelsachen</option>
+                <option>Haarschmuck/Muetze</option>
+                <option>Schmuck</option>
+                <option>Accessoires</option>
+                <option>Schachtel/Box/Aufbewahrung</option>
+                <option>Wohnungsdeko/Plueschtier/Kissen</option>
+                <option>Kladde/Papierwaren/Kalender</option>
+                <option>Kuechenaccessoires</option>
+                <option>Kosmetik/Badezimmer</option>
+              </select>
+            </li>
+          </ul>
+          <ul class="flex-outer">
+            <li>
+              <label>Dein Wichtelwunsch Nummer 2</label>
+              <textarea id="wish2" name="datenein[]" rows="10" cols="35">$datenein[11]</textarea>
+            </li>
+          </ul>
+          <p>Und zwei optionale Zusatzinfos:</p>
+          <ul class="flex-outer">
+            <li>
+              <label>* Schwierigkeitsgrad:</label>
+              <select name="datenein[]" size="1">
+                <option>$datenein[12]</option>
+                <option>Egal</option>
+                <option>Kleinigkeit</option>
+                 <option>Mittel</option>
+                <option>Anspruchsvoll</option>
+              </select>
+            </li>
+            <li>
+              <label>* Kategorie:</label>
+              <select name="datenein[]" size="1">
+                <option>$datenein[13]</option>
+                <option>Egal</option>
+                <option>Kleidung</option>
+                <option>Tasche/Maeppchen</option>
+                <option>Strick/Haekelsachen</option>
+                <option>Haarschmuck/Muetze</option>
+                <option>Schmuck</option>
+                <option>Accessoires</option>
+                <option>Schachtel/Box/Aufbewahrung</option>
+                <option>Wohnungsdeko/Plueschtier/Kissen</option>
+                <option>Kladde/Papierwaren/Kalender</option>
+                <option>Kuechenaccessoires</option>
+                <option>Kosmetik/Badezimmer</option>
+              </select>
+            </li>
+          </ul>
+          <ul class="flex-outer">
+            <li>
+              <label>Dein Wichtelwunsch Nummer 3</label>
+              <textarea id="wish3" name="datenein[]" rows="10" cols="35">$datenein[14]</textarea>
+            </li>
+          </ul>
+          <ul class="flex-outer">
+            <li>
+              <label>* Schwierigkeitsgrad:&nbsp;</label>
+              <select name="datenein[]" size="1">
+              <option>$datenein[15]</option>
+              <option>Egal</option>
+              <option>Kleinigkeit</option>
+              <option>Mittel</option>
+              <option>Anspruchsvoll</option>
+              </select>
+            </li>
+            <li>
+              <label>* Kategorie:&nbsp;</label>
+              <select name="datenein[]" size="1">
+                <option>$datenein[16]</option>
+                <option>Egal</option>
+                <option>Kleidung</option>
+                <option>Tasche/Maeppchen</option>
+                <option>Strick/Haekelsachen</option>
+                <option>Haarschmuck/Muetze</option>
+                <option>Schmuck</option>
+                <option>Accessoires</option>
+                <option>Schachtel/Box/Aufbewahrung</option>
+                <option>Wohnungsdeko/Plueschtier/Kissen</option>
+                <option>Kladde/Papierwaren/Kalender</option>
+                <option>Kuechenaccessoires</option>
+                <option>Kosmetik/Badezimmer</option>
+              </select>
+            </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Teil 3: Ein paar letzte Infos</legend>
+        <p>
+          Hier ist noch ein Feld in dem du allgemeine Notizen für Deinen Wichtel hinterlassen kannst. Schreib bitte deinen Nick oder Namen nicht in dieses Feld, da er sonst dem potentiellen Wichtel zu fr&uuml;h verraten wird.<br>
+          Die Infos aus diesem Feld werden zu allen deinen W&uml;nschen angezeigt, schreib hier also nur Allgemeines &uuml;ber dich und deine Vorlieben rein. Spezielle Infos zu den einzelnen W&uuml;nschen geh&ouml;ren in die oberen Felder. Hier kannst du erw&auml;hnen was deine generellen Stilvorlieben sind, wie du eingerichtet bist, was du f&uuml;r Hobbies hast, welche Musik du magst, also alles was deinem Wichtel helfen k&ouml;nnte dich und deine W&uuml;nsche besser einzusch&auml;tzen. Au&szlig;erdem deine Ma&szlig;e, Kleidergr&ouml;&szlig;e, Schuhgr&ouml;&szlig;e, Kopfumfang (sofern nicht bereits oben angegeben). <br>
+          Wenn du Allergien hast gegen Materialien die dein Wichtel eventuell verwenden k&ouml;nnte oder gegen Haustiere oder &auml;hnliches, dann erw&auml;hne das hier bitte auf jeden Fall! Ebenso wenn es besondere Hinweise zu Adressierung oder Versand des Geschenkes gibt oder andere Dinge die dein Wichtel beachten sollte.<br>
+          Wir k&ouml;nnen im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein was wichtig ist.
+        </p>
+        <ul class="flex-outer">
+          <li>
+            <textarea name="datenein[]" rows="10" cols="35">$datenein[17]</textarea>
+          </li>
+        </ul>
+      </fieldset>
 
-
-        <tr>
-                <td>
-                        Dein Wichtelwunsch Nummer 1
-                </td>
-                <td>
-                        <textarea name="datenein[]" rows="10" cols="35">$datenein[8]</textarea>
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Und zwei optionale Zusatzinfos:
-                </td>
-                <td>
-                        * Schwierigkeitsgrad:&nbsp;
-                        <select name="datenein[]" size="1">
-                                 <option>$datenein[9]</option>
-                                 <option>Egal</option>
-                                 <option>Kleinigkeit</option>
-                                 <option>Mittel</option>
-                                 <option>Anspruchsvoll</option>
-                        </select><br>
-                        * Kategorie:&nbsp;
-                        <select name="datenein[]" size="1">
-                                <option>$datenein[10]</option>
-                                <option>Egal</option>
-                                <option>Kleidung</option>
-                                <option>Tasche/Maeppchen</option>
-                                <option>Strick/Haekelsachen</option>
-                                <option>Haarschmuck/Muetze</option>
-                                <option>Schmuck</option>
-                                <option>Accessoires</option>
-                                <option>Schachtel/Box/Aufbewahrung</option>
-                                <option>Wohnungsdeko/Plueschtier/Kissen</option>
-                                <option>Kladde/Papierwaren/Kalender</option>
-                                <option>Kuechenaccessoires</option>
-                                <option>Kosmetik/Badezimmer</option>
-                        </select>
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Dein Wichtelwunsch Nummer 2
-                </td>
-                <td>
-                        <textarea name="datenein[]" rows="10" cols="35">$datenein[11]</textarea>
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Und zwei optionale Zusatzinfos:
-                </td>
-                <td>
-                        * Schwierigkeitsgrad:&nbsp;
-                        <select name="datenein[]" size="1">
-                                 <option>$datenein[12]</option>
-                                 <option>Egal</option>
-                                 <option>Kleinigkeit</option>
-                                 <option>Mittel</option>
-                                 <option>Anspruchsvoll</option>
-                        </select>&nbsp;&nbsp;<br>
-                        * Kategorie:&nbsp;
-                        <select name="datenein[]" size="1">
-                                <option>$datenein[13]</option>
-                                <option>Egal</option>
-                                <option>Kleidung</option>
-                                <option>Tasche/Maeppchen</option>
-                                <option>Strick/Haekelsachen</option>
-                                <option>Haarschmuck/Muetze</option>
-                                <option>Schmuck</option>
-                                <option>Accessoires</option>
-                                <option>Schachtel/Box/Aufbewahrung</option>
-                                <option>Wohnungsdeko/Plueschtier/Kissen</option>
-                                <option>Kladde/Papierwaren/Kalender</option>
-                                <option>Kuechenaccessoires</option>
-                                <option>Kosmetik/Badezimmer</option>
-                        </select>
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Dein Wichtelwunsch Nummer 3
-                </td>
-                <td>
-                        <textarea name="datenein[]" rows="10" cols="35">$datenein[14]</textarea>
-                </td>
-        </tr>
-        <tr>
-                <td>
-                        Und zwei optionale Zusatzinfos:
-                </td>
-                <td>
-                        * Schwierigkeitsgrad:&nbsp;
-                        <select name="datenein[]" size="1">
-                                 <option>$datenein[15]</option>
-                                 <option>Egal</option>
-                                 <option>Kleinigkeit</option>
-                                 <option>Mittel</option>
-                                 <option>Anspruchsvoll</option>
-                        </select>&nbsp;&nbsp;<br>
-                        * Kategorie:&nbsp;
-                        <select name="datenein[]" size="1">
-                                <option>$datenein[16]</option>
-                                <option>Egal</option>
-                                <option>Kleidung</option>
-                                <option>Tasche/Maeppchen</option>
-                                <option>Strick/Haekelsachen</option>
-                                <option>Haarschmuck/Muetze</option>
-                                <option>Schmuck</option>
-                                <option>Accessoires</option>
-                                <option>Schachtel/Box/Aufbewahrung</option>
-                                <option>Wohnungsdeko/Plueschtier/Kissen</option>
-                                <option>Kladde/Papierwaren/Kalender</option>
-                                <option>Kuechenaccessoires</option>
-                                <option>Kosmetik/Badezimmer</option>
-                        </select>
-                </td>
-        </tr>
-        <tr>
-                <td colspan="2">
-                        <div align="center"><b><br>Teil 3: Ein paar letzte Infos</b></div>
-                </td>
-        </tr>
-        <tr>
-                <td>
-Hier ist noch ein Feld in dem du allgemeine Notizen f&uml;r Deinen Wichtel hinterlassen kannst. Schreib bitte deinen Nick oder Namen nicht in dieses Feld, da er sonst dem potentiellen Wichtel zu fr&uuml;h verraten wird.<br>
-Die Infos aus diesem Feld werden zu allen deinen W&uml;nschen angezeigt, schreib hier also nur Allgemeines &uuml;ber dich und deine Vorlieben rein. Spezielle Infos zu den einzelnen W&uuml;nschen geh&ouml;ren in die oberen Felder. Hier kannst du erw&auml;hnen was deine generellen Stilvorlieben sind, wie du eingerichtet bist, was du f&uuml;r Hobbies hast, welche Musik du magst, also alles was deinem Wichtel helfen k&ouml;nnte dich und deine W&uuml;nsche besser einzusch&auml;tzen. Au&szlig;erdem deine Ma&szlig;e, Kleidergr&ouml;&szlig;e, Schuhgr&ouml;&szlig;e, Kopfumfang (sofern nicht bereits oben angegeben). <br>
-Wenn du Allergien hast gegen Materialien die dein Wichtel eventuell verwenden k&ouml;nnte oder gegen Haustiere oder &auml;hnliches, dann erw&auml;hne das hier bitte auf jeden Fall! Ebenso wenn es besondere Hinweise zu Adressierung oder Versand des Geschenkes gibt oder andere Dinge die dein Wichtel beachten sollte.<br>
-Wir k&ouml;nnen im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein was wichtig ist.
-                </td>
-                <td>
-                        <textarea name="datenein[]" rows="10" cols="35">$datenein[17]</textarea>
-                </td>
-        </tr>
-        <tr>
-                <td colspan="2">
-                        <div align="center"><br><b>Und wenn Du mit allem fertig bist: Ab daf&uuml;r!</b><br><input type="submit" name="check" value="Eintragen">&nbsp;&nbsp;&nbsp;<input type="reset" value=" L&ouml;schen "></div>
-                </td>
-        </tr>
-        </table>
-        </form><br><br></div>
+      <div>
+        <p><b>Und wenn Du mit allem fertig bist: Ab daf&uuml;r!</b></p>
+        <ul class="flex-outer">
+          <li>
+            <input type="submit" name="check" value="Eintragen">
+            <input type="reset" value=" L&ouml;schen ">
+          </li>
+        </ul>
+        </form>
+    </div>
 EINTRAG;
 
 } //function eintrag()
 
 function check()
 {
-        $datenein = $_SESSION["datenein"];
-        global $user;
-        include('lanq.php');
+  $datenein = $_SESSION["datenein"];
+  global $user;
 
-        #Infoseite anzeigen
-        echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-        echo $eintragen_check;
+  #Infoseite anzeigen
+  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
+  echo $eintragen_check;
 
-        $datenein[8] = str_replace("\r\n","<br>",$datenein[8]);
-        $datenein[11] = str_replace("\r\n","<br>",$datenein[11]);
-        $datenein[14] = str_replace("\r\n","<br>",$datenein[14]);
-        $datenein[17] = str_replace("\r\n","<br>",$datenein[17]);
-        if ($datenein[9] == "Bitte ausw&auml;hlen") $view9="Egal"; else $view9=$datenein[9];
-        if ($datenein[10] == "Bitte ausw&auml;hlen") $view10="Egal"; else $view10=$datenein[10];
-        if ($datenein[12] == "Bitte ausw&auml;hlen") $view12="Egal"; else $view12=$datenein[12];
-        if ($datenein[13] == "Bitte ausw&auml;hlen") $view13="Egal"; else $view13=$datenein[13];
-        if ($datenein[15] == "Bitte ausw&auml;hlen") $view15="Egal"; else $view15=$datenein[15];
-        if ($datenein[16] == "Bitte ausw&auml;hlen") $view16="Egal"; else $view16=$datenein[16];
+  $datenein[8] = str_replace("\r\n","<br>",$datenein[8]);
+  $datenein[11] = str_replace("\r\n","<br>",$datenein[11]);
+  $datenein[14] = str_replace("\r\n","<br>",$datenein[14]);
+  $datenein[17] = str_replace("\r\n","<br>",$datenein[17]);
+  if ($datenein[9] == "Bitte ausw&auml;hlen") $view9="Egal"; else $view9=$datenein[9];
+  if ($datenein[10] == "Bitte ausw&auml;hlen") $view10="Egal"; else $view10=$datenein[10];
+  if ($datenein[12] == "Bitte ausw&auml;hlen") $view12="Egal"; else $view12=$datenein[12];
+  if ($datenein[13] == "Bitte ausw&auml;hlen") $view13="Egal"; else $view13=$datenein[13];
+  if ($datenein[15] == "Bitte ausw&auml;hlen") $view15="Egal"; else $view15=$datenein[15];
+  if ($datenein[16] == "Bitte ausw&auml;hlen") $view16="Egal"; else $view16=$datenein[16];
 
-        #datenein zum �berpr�fen ausgeben
+        #datenein zum ueberpruefen ausgeben
         echo <<<EINTRAG
         <form action="$PHP_SELF" method="post" name="Eintrag">
         <table border="0">
@@ -474,7 +483,6 @@ EINTRAG;
 function senden() {
   $datenein = $_SESSION["datenein"];
   global $user;
-  include('lanq.php');
 
   #Eingabedaten aus Array ziehen
   $nick = $datenein[0];
@@ -502,11 +510,17 @@ function senden() {
   #Daten speichern
   #ueberpruefe, ob Wichtel schon angemeldet
   $wichtel_id = 0;
-  $forum_id     = $user->data['user_id'];
+  $forum_id   = $user->data['user_id'];
   include("cfg.php");
-  mysql_connect("localhost",$dbuser,$dbpasswd);
+  $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+  if (!$db) {
+    die("Datebank verbindung schlug fehl: ". mysql_error());
+    exit();
+  }
+
   mysql_select_db($dbname);
-  $query = mysql_query("SELECT wichtel_id,plz FROM wi_wichtel WHERE forum_id = '$forum_id'");
+
+  $query = mysql_query("SELECT wichtel_id, plz FROM wi_wichtel WHERE forum_id = '$forum_id'");
   while ($erg =@ mysql_fetch_array($query)) {
     $wichtel_id = $erg["wichtel_id"];
     $test = $erg["plz"];
@@ -514,31 +528,55 @@ function senden() {
 
   #Daten in DB-Schreiben
   if ($wichtel_id == 0) {
+    #Schreibe User-Daten fuer neuen Wichtel
+    $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '$name', '$adresse', '$adrzusatz', '$plz', '$ort', '$land', '$notizen')");
 
-          #Schreibe User-Daten fuer neuen Wichtel
-          $query = mysql_query("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '$name', '$adresse', '$adrzusatz', '$plz', '$ort', '$land', '$notizen')");
-          #Hole neue User-ID
-          $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
-          while ($erg =@ mysql_fetch_array($query)) {
-            $wichtel_id = $erg["wichtel_id"];
-          }
+    #Hole neue User-ID
+    $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
+    while ($erg =@ mysql_fetch_array($query)) {
+      $wichtel_id = $erg["wichtel_id"];
+    }
   } //if (!$wichtel_id)
   else {
           #Schreibe User-Daten fuer bekannten Wichtel
           $query = mysql_query("UPDATE wi_wichtel SET name = '$name', adresse = '$adresse', adrzusatz = '$adrzusatz', plz = '$plz', ort = '$ort', land = '$land', notizen = '$notizen' WHERE wichtel_id = '$wichtel_id'");
   } //else
   // Bloddy Workaround gegen anonyme Wichtel
+
   if ($wichtel_id != 0) {
       #Schreibe alle 3 Geschenke
-      $query = mysql_query("INSERT INTO wi_geschenk (wichtel_id, beschreibung, level, art) VALUES ('$wichtel_id', '$wunsch1', '$level1', '$art1')");
-      $query = mysql_query("INSERT INTO wi_geschenk (wichtel_id, beschreibung, level, art) VALUES ('$wichtel_id', '$wunsch2', '$level2', '$art2')");
-      $query = mysql_query("INSERT INTO wi_geschenk (wichtel_id, beschreibung, level, art) VALUES ('$wichtel_id', '$wunsch3', '$level3', '$art3')");
+      echo "trying to insert wishes ".$wichtel_id;
+      $wuensche = array (
+                1 => array('id' => $wichtel_id, 'wish' => $wunsch1, 'lvl' => $level1, 'art' => $art1),
+                2 => array('id' => $wichtel_id, 'wish' => $wunsch2, 'lvl' => $level2, 'art' => $art2),
+                3 => array('id' => $wichtel_id, 'wish' => $wunsch3, 'lvl' => $level3, 'art' => $art3)
+              );
+
+      foreach ($wuensche as $wunsch ){
+        // Führe Abfrage aus
+        $query = sprintf("INSERT INTO wi_geschenk (wichtel_id, beschreibung, level, art) VALUES (\"$wichtel_id\", '%s','%s', '%s');", mysql_real_escape_string($wunsch['wish']),
+        mysql_real_escape_string($wunsch['lvl']),
+        mysql_real_escape_string($wunsch['art'])
+      );
+        $result = mysql_query($query);
+
+        // Prüfe Ergebnis
+        // Dies zeigt die tatsächliche Abfrage, die an MySQL gesandt wurde und den
+        // Fehler. Nützlich bei der Fehlersuche
+        if (!$result) {
+            $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+            $message .= 'Gesamte Abfrage: ' . $query;
+            die($message);
+        }
+      }
+
       mysql_close();
+
       #User-Mail senden
       $mailto = $mail;
       $subject = "Hallo Wichtel".$mail;
-      $mail2="ischtar@computerleidenschaft.de";
-      $header = "From: Weihnachtshexe <dieverschleierte@web.de>";
+      $mail2="captain@naehkromanten.net";
+      $header = "From: Weihnachtshexe <captain@naehkromanten.net>";
       $eintragen_mail = str_replace ("_USERNAME_", $user->data['username'], $eintragen_mail);
       mail($mailto,$subject,$eintragen_mail,$header);
       mail($mail2,$subject,$eintragen_mail,$header);
@@ -547,8 +585,8 @@ function senden() {
       echo $eintragen_ende;
     }
     else {
-		    echo $fehler_eintragen;
-		}
+      echo $fehler_eintragen;
+    }
 
 } //function senden()
 
