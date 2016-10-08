@@ -36,7 +36,7 @@ if ($un=="Anonymous")
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
   die("Datebank verbindung schlug fehl: ". mysql_error());
-} else{
+} else {
     mysql_select_db($dbname);
     $query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
     while ($erg =@ mysql_fetch_array($query)) {
