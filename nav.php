@@ -1,5 +1,5 @@
 <ul class="navi">
-  <li><a href="und-so-gehts.html"> Regel </a></li>
+  <li><a href="und-so-gehts.php"> Regel </a></li>
   <li><a href="ich-wuensche-mir.php"> Wunsch eintrage </a></li>
   <li><a href="ich-will-was-basteln.php"> Wunsch anfrage </a></li>
   <li><a href="lass-mich-buergen.php"> Bürge </a></li>

@@ -1,30 +1,22 @@
 <html>
 <head>
 <title>Wichteln - Regeln und Hilfe</title>
+<meta charset="UTF-8">
 <meta name="author" content="Systemhexe">
-<link href="wicht.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-<!--
-body {
-     background: url(nobortemini.gif) top repeat-x;
-}
--->
-</style>
+<link href="./wicht.css" rel="stylesheet" type="text/css">
 </head>
-<body text="#ac6039" bgcolor="#000000" link="#339933" alink="#339933" vlink="#339933">
-<br>
-
-
-<div align="center">
-<br>
-<img src="nostern.gif" width="261" height="261" border="0" alt=""><br><br><br>
+<body>
+  <div class="container">
+    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    <?php
+    include("static.php");
+    include("nav.php");
+    ?>
+    <div class="main">
 <h1>Regel, Hilfe, F.A.Q.</h1>
-<table width="60%" ><tr> <td>
-<div align="center"><font size="-1">
-<a href="#ablauf">Ablauf</a> - <a href="#zeitplan">Zeitplan</a> - <a href="#teilnahme">Beschr&auml;nkungen zur Teilnahme</a> - <a href="#burgen">B&uuml;rgen</a> - <a href="#wunsche">W&uuml;nsche</a> - <a href="#wunschanfragen">Wunschanfragen</a> - <a href="#verschicken">Verschicken</a> - <a href="#paket">Was in und auf das Paket soll</a> - <a href="#faq">FAQ</a></font>
-</div>
-<br><br>
-<br>
+<p>
+  <a href="#ablauf">Ablauf</a> - <a href="#zeitplan">Zeitplan</a> - <a href="#teilnahme">Beschr&auml;nkungen zur Teilnahme</a> - <a href="#burgen">B&uuml;rgen</a> - <a href="#wunsche">W&uuml;nsche</a> - <a href="#wunschanfragen">Wunschanfragen</a> - <a href="#verschicken">Verschicken</a> - <a href="#paket">Was in und auf das Paket soll</a> - <a href="#faq">FAQ</a>
+  </p>
 
 
 
@@ -42,7 +34,7 @@ Wenn ihr dann ein Geschenk verschickt oder erhalten habt, dann best&auml;tigt di
 Ihr seht, jeder kann sich was w&uuml;nschen, aber niemand kann darauf bestehen etwas zu bekommen. Es ist keine Pflicht f&uuml;r die, die sich etwas w&uuml;nschen auch etwas zu geben. Alles ist freiwillig. Wer Spa&szlig; am Schenken und Basteln hat, vielleicht sogar mehr als am Geschenke bekommen ist hier also genau richtig aufgehoben.<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 
 <a name="zeitplan"><h2>Zeitplan</h2></a>
@@ -53,21 +45,21 @@ Beginn des Wichteln ist am Freitag, den 08.11.2015. Ab diesem Tag k&ouml;nnt ihr
 Alle angegebenen Tage sind inklusive, wenn da also steht "W&uuml;nsche eintragen bis 22.11.2015" dann k&ouml;nnt ihr den letzten Wunsch am 22.11.2015 um 23:59 Uhr eintragen.<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="teilnahme"><h2>Beschr&auml;nkungen zur Teilnahme</h2></a>
 Teilnehmen kann jeder registrierte User des Forums mit <b>mindestens 100 Posts</b>. Egal ob jemand sich ein Geschenk w&uuml;nscht oder nur den Wunsch eines anderen erf&uuml;llen m&ouml;chte ohne sich selber etwas zu w&uuml;nschen, die Grenze sind immer 100 Posts. Wir machen die einzige Ausnahme von dieser Regel wenn es einen <a href="#burgen">B&uuml;rgen</a> gibt.<br>
 Wer im Forum im Suche&Biete oder Aktivit&auml;ten-Bereich gesperrt ist kann auch nicht am Wichteln teilnehmen. Ebenso sind einige noch vom letzten Jahr gesperrt (wegen Verpassen der Deadline).<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="burgen"><h2>B&uuml;rgen</h2></a>
 User mit weniger als 100 Posts k&ouml;nnen als Wichtel teilnehmen wenn sie einen B&uuml;rgen haben. Sie k&ouml;nnen dann selber immer noch keine W&uuml;nsche &auml;u&szlig;ern, aber sie k&ouml;nnen W&uuml;nsche von anderen erf&uuml;llen. Der B&uuml;rge ist dabei daf&uuml;r verantwortlich dass der Wichtel sein Geschenk rechtzeitig verschickt und sich an die Regeln h&auml;lt. Wenn etwas schief geht wird der B&uuml;rge zur Verantwortung gezogen. B&uuml;rgen m&uuml;ssen mindestens 500 Posts haben. In Einzelf&auml;llen ist es auch m&ouml;glich Personen die nicht im Forum registriert sind durch einen B&uuml;rgen teilnehmen zu lassen, wenn zB jemand eine Schwester oder einen Freund hat der gerne einen Wunsch erf&uuml;llen m&ouml;chte, ohne im Forum registriert zu sein dann kann dieser User sich als B&uuml;rge bereit erkl&auml;ren, vorausgesetzt er hat mindestens 500 Posts. In so einem Fall kontaktiert bitte die Weihnachtshexe, da das technisch nicht vorgesehen ist.<br>
 B&uuml;rgen funktioniert so, dass der B&uuml;rge sich &uuml;ber das Skript meldet und den Namen des Users angibt f&uuml;r den er b&uuml;rgen m&ouml;chte. Dadurch wird dieser User quasi "freigeschaltet" und kann am Wichteln teilnehmen.<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="wunsche"><h2>W&uuml;nsche</h2></a>
 Wenn ihr euch entscheidet, am Wichteln teilzunehmen k&ouml;nnt ihr als allererstes eure drei W&uuml;nsche ver&ouml;ffentlichen. Dazu gibt es ein Formular in dem ihr die entsprechenden Felder ausf&uuml;llt, eure Kontaktdaten und drei W&uuml;nsche. Ihr m&uuml;sst <b>genau drei</b> W&uuml;nsche angeben. Mit einem oder zwei kann man nicht teilnehmen. Ihr k&ouml;nnt eure W&uuml;nsche im Nachhinein nicht editieren, also gebt Acht was ihr schreibt!<br>
@@ -103,7 +95,7 @@ Und weil wir aus Fehlern lernen gibt es hier noch eine kleine Liste mit weiteren
 Alle W&uuml;nsche werden von der Weihnachtshexe durchgelesen. Wenn sie etwas f&uuml;r unangemessen h&auml;lt wird sie euch kontaktieren und euch den Wunsch zur &Uuml;berarbeitung zur&uuml;ckgeben.<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="wunschanfragen"><h2>Wunschanfragen</h2></a>
 Wenn ihr einen Wunsch erf&uuml;llen wollt startet ihr eine Wunschanfrage. Ihr braucht keine W&uuml;nsche eingetragen haben um eine Wunschanfrage zu stellen.<br>
@@ -117,7 +109,7 @@ Damit habt ihr euch verpflichtet, diesen Wunsch zu erf&uuml;llen und er wird aus
 Es ist nat&uuml;rlich m&ouml;glich mehrere W&uuml;nsche zu erf&uuml;llen, allerdings handhaben wir das so, dass jeder erst dann einen weiteren Wunsch aussuchen kann wenn er den anderen als abgeschickt best&auml;tigt hat.<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="verschicken"><h2>Verschicken</h2></a>
 Es gibt eine Deadline f&uuml;r das Verschicken der Geschenke und die wird nicht verschoben. Wer bis zu diesem Datum sein Paket nicht auf die Post gebracht hat, bekommt keine Gnadenfrist. Zwei wichtige Dinge sind beim Verschicken zu beachten: <br>
@@ -128,7 +120,7 @@ Wenn ihr das Paket verschickt habt, dann <b>best&auml;tigt</b> dies auf jeden Fa
 Bei der Best&auml;tigung gebt ihr die Geschenk-ID und Trackingnummer an, das ist unbedingt n&ouml;tig! Nur so kann euer Partner ein eventuell verschollenes Paket ausfindig machen lassen.<br>
 <br>
 
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="paket"><h2>Was in und auf das Paket soll</h2></a>
 Dies sind Vorschl&auml;ge, die ihr nicht befolgen m&uuml;sst aber die das Geschenk vielleicht noch einen Tick pers&ouml;nlicher und sch&ouml;ner machen k&ouml;nnen:<br>
@@ -140,7 +132,7 @@ Dies sind Vorschl&auml;ge, die ihr nicht befolgen m&uuml;sst aber die das Gesche
 <li>Und noch etwas das wichtig werden kann: Schreibt auf das Paket euren Absender, so wird dem Empf&auml;nger vielleicht schon ein Teil der &Uuml;berraschung genommen, aber das Paket geht nicht verloren wenn in der Adresse ein Fehler ist.</li>
 </ul>
 <br>
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 
 <a name="faq"><font size="+2"><b>FAQ</b></font></a>
@@ -260,19 +252,14 @@ Ja, daf&uuml;r gibt es keine Beschr&auml;nkung. Sei dir aber bitte der mehrfache
 
 <h3>Was passiert wenn der f&uuml;r den ich b&uuml;rge seine Pflicht nicht erf&uuml;llt?</h3>
 Wenn das Geschenk nicht oder nicht rechtzeitig abgeschickt wird dann &uuml;bertr&auml;gt sich die "Strafe" daf&uuml;r auf dich. F&uuml;r versp&auml;tetes Absenden wird man in der Regel f&uuml;r das kommende Jahr Wichteln gesperrt. Bei Komplettausfall des Geschenks wird man komplett f&uuml;r das Wichteln gesperrt.
+<p>
 
-
-
-
-
-
-<br>
-<br><br>
-<div align="center"><img src="nosternmini.gif" width="45" height="45" border="0" alt="*"><br>
-<br>
 <a href="index.php">Zur&uuml;ck zur Startseite</a></div>
-<br><br>
-</td></tr></table>
+
+</p></div>
+<div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"><br>
+<br>
+
 </div>
 </body>
 </html>

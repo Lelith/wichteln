@@ -1,6 +1,7 @@
 
 body {
   background: #73001e;
+  background-image: url(./img/nobortemini.gif) top repeat-x;
   font-family: Verdana, serif;
   margin-right:0px;
   margin-left:0px;
@@ -54,7 +55,7 @@ a.main_link {
   color: #73001e;
   margin: 50px auto 10px;
   padding: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 55px;
   text-align: left;
   width:70%;
 }
