@@ -1,6 +1,5 @@
 <?php
 #Beginne Session
-
 session_start();
 $post=$_POST;
 date_default_timezone_set('Europe/Berlin');
@@ -74,7 +73,7 @@ if (!$db) {
 
 <html>
 <head>
-<meta name="author" content="Systemhexe">
+<meta name="author" content="Cpt.Kaylee">
 <meta name="debug" content="toxic_garden">
 <meta name="organization" content="N&auml;hkromanten">
 <meta charset="UTF-8">
