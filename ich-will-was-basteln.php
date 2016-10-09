@@ -212,7 +212,7 @@ EINTRAG;
       }
 
       #hole geschenk ids ausser current user geschenke
-      $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$user_wichtel_id'";
+      $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$cu_wichtel_id'";
 
       #if ($text) { $sql = $sql." AND MATCH (beschreibung) AGAINST ('$text' IN BOOLEAN MODE)"; }
       if ($suchstat == 1) {
@@ -356,7 +356,6 @@ function detail()
   } else {
     mysql_select_db($dbname);
     $query = "SELECT wichtel_id, beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
-    echo $query;
 
     $result = mysql_query($query);
     if (!$result) {
@@ -374,10 +373,9 @@ function detail()
 
     $query = "SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'";
 
-    echo $query;
-    exit();
+
       while ($erg =@ mysql_fetch_array($query)) {
-              $notizen = $erg["notizen"];
+        $notizen = $erg["notizen"];
       } //while ($erg =@ mysql_fetch_array($query))
       mysql_close();
     }
@@ -435,7 +433,7 @@ EINTRAG;
 function senden() {
   $datenanf = $_SESSION["datenanf"];
   global $user;
-  include('lanq.php');
+  include("lanq.php");
   include("cfg.php");
 
   #Infoseite anzeigen
