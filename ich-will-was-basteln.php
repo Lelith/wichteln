@@ -28,26 +28,34 @@ $user_posts = $user->data['user_posts'];
 
 
 $un=$user->data['username'];
-if ($un=="Anonymous")
-  $user_id=0;
+if ($un=="Anonymous") $user_id=0;
 
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
   die("Datebank verbindung schlug fehl: ". mysql_error());
 } else {
+  mysql_select_db($dbname);
   $query = mysql_query("SELECT buerge_id FROM wi_buerge WHERE wichtel_id = '$user_id'");
 
   while ($erg =@ mysql_fetch_array($query)) {
     $buerge = $erg["buerge_id"];
   }
-  $query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
+  $query = mysql_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
   while ($erg =@ mysql_fetch_array($query)) {
-     $blacklist = $erg["blacklist_id"];
+     $blacklist = $erg["id_blacklist"];
    }
-  $query = mysql_query("SELECT wi_geschenk.geschenk_id FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.partner_id = wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id =  '$user_id' AND wi_geschenk.gesendet='0'");
 
-  while ($erg =@ mysql_fetch_array($query)) {
-    $geschenk = $erg["geschenk_id"];
+  $query = "SELECT wi_geschenk.geschenk_id FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.partner_id = wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id' AND wi_geschenk.gesendet IS NULL";
+
+  $result = mysql_query($query);
+  if (!$result) {
+    $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+    $message .= 'Gesamte Abfrage: ' . $query;
+    die($message);
+  } else {
+    while ($row =@ mysql_fetch_array($result)) {
+      $geschenk = $row["geschenk_id"];
+    }
   }
   mysql_close();
 }
@@ -57,9 +65,7 @@ if ( !$user->data['is_registered'] ) { header("Location: was-ist-denn-hier-los.p
 elseif ( ($user_posts < $user_min_posts) && ($buerge == NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=zu_wenig_posts"); }
 elseif ( (($today < $anfragen_start)) || (($today > $anfragen_ende)) ) { header("Location: was-ist-denn-hier-los.php?Grund=zeit_anfragen"); }
 elseif ( ($blacklist != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=blacklist"); }
-elseif ( ($geschenk != NULL) ) { $geschenksperre=1; }
-
-baumstatus();
+elseif ( ($geschenk != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=geschenksperre"); }
 ?>
 
 <html>
@@ -110,22 +116,15 @@ function info ()
 
   #Bestaetigungsformular anzeigen
   echo <<<FORMULAR
-  <form action="$PHP_SELF" method="post">
-          <p><input type="checkbox" name="suche" value="select">&nbsp;&nbsp;Ich habe alles gelesen und bin einverstanden&nbsp;&nbsp;<input type="submit" name="natronisttoll" value="OK"></p>
+    <form action="$PHP_SELF" method="post">
+      <p>
+      <input id="aussuchen" type="checkbox" name="suche" value="select"><label for="aussuchen">Ich habe alles gelesen und bin einverstanden</label>
+      <input type="submit" name="suchen" value="OK">
+      </p>
   </form>
 FORMULAR;
 
 } //function info()
-
-function infosperre () {
-  global $user;
-  include('lanq.php');
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du hast bereits ein Geschenk ausgew&auml;hlt. Bevor du ein weiteres aussuchen kannst musst du das andere erst verschickt und das auch best&auml;tigt haben. Hier siehst du so lange die aktuelle Quote der Geschenkvergabe:</p><br>";
-
-} //function infosperre()
-
 
 function suche($suchstat) {
   $datenanf = $_SESSION["datenanf"];
@@ -156,6 +155,7 @@ function suche($suchstat) {
              <option id="4">Anspruchsvoll</option>
          </select>
         </li>
+        <li>
           <label>Kategorie: </label>
           <select name="datenanf[2]" size="1">
               <option id="1">Egal</option>
@@ -173,18 +173,20 @@ function suche($suchstat) {
             </select>
           </li>
           </ul>
-          <input type="submit" name="suchedb" value="Suchen"></form>
 
-          <form action="$PHP_SELF" method="post" name="Suche2"><input type="submit" name="sucherand" value="Auf gut Gl&uuml;ck!"></form>
+          <input type="submit" name="suchedb" value="Suchen">
+          </form>
+          </fieldset>
+          <p> ODER </p>
+          <form action="$PHP_SELF" method="post" name="Suche2"><input type="submit" name="sucherand" value="Alle Wünsche anzeigen"></form>
 EINTRAG;
 
   #Suche durchfuehren und Ergebnisse und anzeigen
   if ($suchstat) {
     #Hole ID's aus Datenbank
     echo "<h2>Ergebnisse</h2>";
-    echo "<table width=\"100%\" cellpadding=\"5\" border=\"0\">";
-    $wichtel_id = $user->data['user_id'];
-    $forum_id = $user->data['user_id'];
+    $cu_forum_id = $user->data['user_id'];
+    $cu_wichtel_id = 0;
     $text = $search[0];
     $level =  $search[1];
     $art =  $search[2];
@@ -196,29 +198,57 @@ EINTRAG;
     } else {
       mysql_select_db($dbname);
 
-      $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
-      while ($erg =@ mysql_fetch_array($query)) { $user_wichtel_id = $erg["wichtel_id"]; }
+      #hole wichtel id von current user, wenn user bereits wichtel
+      $result = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$cu_forum_id'");
+
+      if(!$result){
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
+      }
+
+      while ($row =@ mysql_fetch_array($result)) {
+        $cu_wichtel_id = $row["wichtel_id"];
+      }
+
+      #hole geschenk ids ausser current user geschenke
       $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$user_wichtel_id'";
 
       #if ($text) { $sql = $sql." AND MATCH (beschreibung) AGAINST ('$text' IN BOOLEAN MODE)"; }
       if ($suchstat == 1) {
-        if ($text) { $sql = $sql." AND beschreibung LIKE CONCAT('%' , '$text', '%')"; }
-        if ($level != "Egal") { $sql = $sql." AND level='$level'"; }
-        if ($art != "Egal") { $sql = $sql." AND art='$art'"; }
+        if ($text) {
+          $sql = $sql." AND beschreibung LIKE CONCAT('%' , '$text', '%')";
+        }
+        if ($level != "Egal") {
+          $sql = $sql." AND level='$level'";
+        }
+        if (
+        $art != "Egal") { $sql = $sql." AND art='$art'";
+        }
       } //if ($suchstat == 1)
 
-      $query = mysql_query($sql);
+      $wunschquery = mysql_query($sql);
 
-      while ($erg =@ mysql_fetch_array($query)) {
-        $liste[] = $erg["geschenk_id"];
+      if(!$wunschquery){
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
       }
-      if (count($liste) > 0){
-        foreach($liste as $geschenk) {
-          $geschenk_id = $liste[$liste2[$i]];
 
-          $query = mysql_query("SELECT beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'");
+      while ($row =@ mysql_fetch_array($wunschquery)) {
+        $wunschliste[] = $row["geschenk_id"];
+      }
+      if (count($wunschliste) > 0){
+        foreach($wunschliste as $i => $geschenk) {
+          $query = "SELECT beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk'";
+          $result = mysql_query($query);
 
-          while ($erg =@ mysql_fetch_array($query)) {
+          if(!$result){
+            $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+            $message .= 'Gesamte Abfrage: ' . $query;
+            die($message);
+          }
+          while ($erg =@ mysql_fetch_array($result)) {
             $beschreibung = $erg["beschreibung"];
             $level = $erg["level"];
             $art = $erg["art"];
@@ -229,8 +259,8 @@ EINTRAG;
                 <p>$beschreibung2</p>
                 <p><i>Schwierigkeitsgrad: $level</i></p>
                 <p><i>Kategorie: $art</i></p>
-                <form action="$PHP_SELF" method="post" name="Detail$i">
-                <input type="hidden" name="datenanf[3]" value="$geschenk_id">
+                <form action="$PHP_SELF" method="post" name="Detail-$i">
+                <input type="hidden" name="datenanf[3]" value="$geschenk">
                 <input type="submit" name="detail" value="mehr Infos"></form>
               </div>
 AUSGABE;
@@ -309,7 +339,7 @@ function baumstatus(){
 
 function detail()
 {
-  include('lanq.php');
+  include("lanq.php");
   include("cfg.php");
   $datenanf = $_SESSION["datenanf"];
   global $user;
@@ -325,14 +355,27 @@ function detail()
     die("Datebank verbindung schlug fehl: ". mysql_error());
   } else {
     mysql_select_db($dbname);
-    $query = mysql_query("SELECT wichtel_id, beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'");
-    while ($erg =@ mysql_fetch_array($query)) {
+    $query = "SELECT wichtel_id, beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
+    echo $query;
+
+    $result = mysql_query($query);
+    if (!$result) {
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
+    }
+
+    while ($erg =@ mysql_fetch_array($result)) {
       $wichtel_id = $erg["wichtel_id"];
       $beschreibung = $erg["beschreibung"];
       $level = $erg["level"];
       $art = $erg["art"];
     } //while ($erg =@ mysql_fetch_array($query))
-    $query = mysql_query("SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'");
+
+    $query = "SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'";
+
+    echo $query;
+    exit();
       while ($erg =@ mysql_fetch_array($query)) {
               $notizen = $erg["notizen"];
       } //while ($erg =@ mysql_fetch_array($query))
