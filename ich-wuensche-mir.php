@@ -38,14 +38,14 @@ if (!$db) {
   die("Datebank verbindung schlug fehl: ". mysql_error());
 } else {
     mysql_select_db($dbname);
-    $query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
+    $query = mysql_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
     while ($erg =@ mysql_fetch_array($query)) {
-      $blacklist = $erg["blacklist_id"];
+      $blacklist = $erg["id_blacklist"];
     }
 
-    $query = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
+    $wuensche = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
     while ($erg =@ mysql_fetch_array($query)) {
-      $wunsch = $erg["wichtel"];
+      $wunsch = $wuensche["wichtel"];
     }
     mysql_close();
 }
@@ -528,7 +528,21 @@ function senden() {
   #Daten in DB-Schreiben
   if ($wichtel_id == 0) {
     #Schreibe User-Daten fuer neuen Wichtel
-    $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '$name', '$adresse', '$adrzusatz', '$plz', '$ort', '$land', '$notizen')");
+    $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '%s', '%s', '%s', '$plz', '$ort', '$land', '$notizen')",
+      mysql_real_escape_string($name),
+      mysql_real_escape_string($adresse),
+      mysql_real_escape_string($adrzusatz),
+    );
+
+    $result = mysql_query($query);
+    if (!$result) {
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
+    }
+    else {
+      echo "neuer wichtel eingetragen";
+    }
 
     #Hole neue User-ID
     $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
@@ -537,8 +551,19 @@ function senden() {
     }
   } //if (!$wichtel_id)
   else {
-          #Schreibe User-Daten fuer bekannten Wichtel
-          $query = mysql_query("UPDATE wi_wichtel SET name = '$name', adresse = '$adresse', adrzusatz = '$adrzusatz', plz = '$plz', ort = '$ort', land = '$land', notizen = '$notizen' WHERE wichtel_id = '$wichtel_id'");
+    #Schreibe User-Daten fuer bekannten Wichtel
+    $query = sprintf("UPDATE wi_wichtel SET name = '$name', adresse = '$adresse', adrzusatz = '$adrzusatz', plz = '$plz', ort = '$ort', land = '$land', notizen = '$notizen' WHERE wichtel_id = '$wichtel_id'");
+
+    $result = mysql_query($query);
+    if (!$result) {
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
+    }
+    else {
+      echo "neuer wichtel eingetragen";
+    }
+
   } //else
   // Bloddy Workaround gegen anonyme Wichtel
 
@@ -553,10 +578,11 @@ function senden() {
 
       foreach ($wuensche as $wunsch ){
         // Führe Abfrage aus
-        $query = sprintf("INSERT INTO wi_geschenk (wichtel_id, beschreibung, level, art) VALUES (\"$wichtel_id\", '%s','%s', '%s');", mysql_real_escape_string($wunsch['wish']),
-        mysql_real_escape_string($wunsch['lvl']),
-        mysql_real_escape_string($wunsch['art'])
-      );
+        $query = sprintf("INSERT INTO wi_geschenk (wichtel_id, beschreibung,  level, art) VALUES (\"$wichtel_id\", '%s','%s', '%s');",
+          mysql_real_escape_string($wunsch['wish']),
+          mysql_real_escape_string($wunsch['lvl']),
+          mysql_real_escape_string($wunsch['art'])
+          );
         $result = mysql_query($query);
 
         // Prüfe Ergebnis
@@ -567,7 +593,10 @@ function senden() {
             $message .= 'Gesamte Abfrage: ' . $query;
             die($message);
         }
-      }
+        else {
+          echo "alles eingetragen";
+        }
+      } // foreach eintragen
 
       mysql_close();
 
