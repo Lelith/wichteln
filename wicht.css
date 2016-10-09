@@ -34,8 +34,7 @@ a:active {
   text-decoration: underline;
 }
 
-.page-heading,
-a.main_link {
+.page-heading {
   color: #fff;
 }
 
@@ -70,6 +69,10 @@ a.main_link {
   margin-right: 10px;
 }
 
+fieldset {
+  margin-top: 20px;
+}
+
 .flex-outer,
 .flex-inner {
   list-style-type: none;
@@ -78,8 +81,9 @@ a.main_link {
 
 .flex-outer {
   margin: 0 auto;
+  margin-top: 20px;
+  padding-bottom: 10px;
 }
-
 .flex-outer li,
 .flex-inner {
   display: flex;
@@ -105,6 +109,7 @@ a.main_link {
 .flex-outer li p {
   flex: 1 0 120px;
   max-width: 300px;
+  align-self: flex-start;
 }
 
 .flex-outer > li > label + *,
@@ -134,4 +139,9 @@ a.main_link {
 
 .flex-inner li {
   width: 100px;
+}
+
+.dividing-line {
+  border-top: dashed 2px #ccc;
+  padding-top: 10px;
 }

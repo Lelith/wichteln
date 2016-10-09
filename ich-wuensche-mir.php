@@ -43,9 +43,9 @@ if (!$db) {
       $blacklist = $erg["id_blacklist"];
     }
 
-    $wuensche = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
+    $query = mysql_query("SELECT wi_wichtel.wichtel_id AS wichtel FROM wi_geschenk LEFT JOIN wi_wichtel ON (wi_geschenk.wichtel_id=wi_wichtel.wichtel_id) WHERE wi_wichtel.forum_id = '$user_id'");
     while ($erg =@ mysql_fetch_array($query)) {
-      $wunsch = $wuensche["wichtel"];
+      $wunsch = $erg["wichtel"];
     }
     mysql_close();
 }
@@ -159,16 +159,16 @@ function chkFormular () {
 </head>
 
 <body>
-  <div class="container">
+  <article class="container">
+    <header class="head">
     <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
-    <?php
-    include("static.php");
-    include("nav.php");
-    include("lanq.php");
-    ?>
-    <div class="main">
+
+    <section class="main">
 
 <?php
+include("static.php");
+include("nav.php");
+include("lanq.php");
 
 #Ziehe Variablen aus HTTP_VARS
 if(isset($post['datenein'])) $_SESSION["datenein"] = $post['datenein'];
@@ -287,9 +287,6 @@ function eintrag()
             <label for="wish1"> Dein Wichtelwunsch Nummer 1</label>
             <textarea name="datenein[]" id="wish1" rows="10" cols="35">$datenein[8]</textarea>
           </li>
-        </ul>
-        <p>Und zwei optionale Zusatzinfos:</p>
-        <ul class="flex-outer">
           <li>
             <label>* Schwierigkeitsgrad:</label>
             <select name="datenein[]" size="1">
@@ -319,14 +316,12 @@ function eintrag()
               </select>
             </li>
           </ul>
-          <ul class="flex-outer">
+
+          <ul class="flex-outer dividing-line">
             <li>
               <label>Dein Wichtelwunsch Nummer 2</label>
               <textarea id="wish2" name="datenein[]" rows="10" cols="35">$datenein[11]</textarea>
             </li>
-          </ul>
-          <p>Und zwei optionale Zusatzinfos:</p>
-          <ul class="flex-outer">
             <li>
               <label>* Schwierigkeitsgrad:</label>
               <select name="datenein[]" size="1">
@@ -356,13 +351,11 @@ function eintrag()
               </select>
             </li>
           </ul>
-          <ul class="flex-outer">
+          <ul class="flex-outer dividing-line">
             <li>
               <label>Dein Wichtelwunsch Nummer 3</label>
               <textarea id="wish3" name="datenein[]" rows="10" cols="35">$datenein[14]</textarea>
             </li>
-          </ul>
-          <ul class="flex-outer">
             <li>
               <label>* Schwierigkeitsgrad:&nbsp;</label>
               <select name="datenein[]" size="1">
@@ -515,68 +508,61 @@ function senden() {
   if (!$db) {
     die("Datebank verbindung schlug fehl: ". mysql_error());
     exit();
-  }
+  } else {
+    mysql_select_db($dbname);
 
-  mysql_select_db($dbname);
 
-  $query = mysql_query("SELECT wichtel_id, plz FROM wi_wichtel WHERE forum_id = '$forum_id'");
-  while ($erg =@ mysql_fetch_array($query)) {
-    $wichtel_id = $erg["wichtel_id"];
-    $test = $erg["plz"];
-  } //while ($erg =@ mysql_fetch_array($query))
-
-  #Daten in DB-Schreiben
-  if ($wichtel_id == 0) {
-    #Schreibe User-Daten fuer neuen Wichtel
-    $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '%s', '%s', '%s', '$plz', '$ort', '$land', '$notizen')",
-      mysql_real_escape_string($name),
-      mysql_real_escape_string($adresse),
-      mysql_real_escape_string($adrzusatz),
-    );
-
-    $result = mysql_query($query);
-    if (!$result) {
-        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
-        $message .= 'Gesamte Abfrage: ' . $query;
-        die($message);
-    }
-    else {
-      echo "neuer wichtel eingetragen";
-    }
-
-    #Hole neue User-ID
-    $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
+    $query = mysql_query("SELECT wichtel_id, plz FROM wi_wichtel WHERE forum_id = '$forum_id'");
     while ($erg =@ mysql_fetch_array($query)) {
       $wichtel_id = $erg["wichtel_id"];
-    }
-  } //if (!$wichtel_id)
-  else {
-    #Schreibe User-Daten fuer bekannten Wichtel
-    $query = sprintf("UPDATE wi_wichtel SET name = '$name', adresse = '$adresse', adrzusatz = '$adrzusatz', plz = '$plz', ort = '$ort', land = '$land', notizen = '$notizen' WHERE wichtel_id = '$wichtel_id'");
+      $test = $erg["plz"];
+    } //while ($erg =@ mysql_fetch_array($query))
 
-    $result = mysql_query($query);
-    if (!$result) {
-        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
-        $message .= 'Gesamte Abfrage: ' . $query;
-        die($message);
-    }
+    #Daten in DB-Schreiben
+    if ($wichtel_id == 0) {
+      #Schreibe User-Daten fuer neuen Wichtel
+      $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '%s', '%s', '%s', '$plz', '$ort', '$land', '$notizen')",
+        mysql_real_escape_string($name),
+        mysql_real_escape_string($adresse),
+        mysql_real_escape_string($adrzusatz)
+      );
+
+      $result = mysql_query($query);
+      if (!$result) {
+          $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+          $message .= 'Gesamte Abfrage: ' . $query;
+          die($message);
+      }
+      else {
+        echo "neuer wichtel eingetragen";
+      }
+      #Hole neue User-ID
+      $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
+      while ($erg =@ mysql_fetch_array($query)) {
+        $wichtel_id = $erg["wichtel_id"];
+      }
+    } //if (!$wichtel_id)
     else {
-      echo "neuer wichtel eingetragen";
-    }
+      #Schreibe User-Daten fuer bekannten Wichtel
+      $query = sprintf("UPDATE wi_wichtel SET name = '$name', adresse = '$adresse', adrzusatz = '$adrzusatz', plz = '$plz', ort = '$ort', land = '$land', notizen = '$notizen' WHERE wichtel_id = '$wichtel_id'");
 
-  } //else
-  // Bloddy Workaround gegen anonyme Wichtel
+      $result = mysql_query($query);
+      if (!$result) {
+          $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+          $message .= 'Gesamte Abfrage: ' . $query;
+          die($message);
+      }
+    } //else wichtel mit oder ohne wunsch
 
-  if ($wichtel_id != 0) {
-      #Schreibe alle 3 Geschenke
-      echo "trying to insert wishes ".$wichtel_id;
+    // Bloddy Workaround gegen anonyme Wichtel
+    if ($wichtel_id != 0) {
       $wuensche = array (
                 1 => array('id' => $wichtel_id, 'wish' => $wunsch1, 'lvl' => $level1, 'art' => $art1),
                 2 => array('id' => $wichtel_id, 'wish' => $wunsch2, 'lvl' => $level2, 'art' => $art2),
                 3 => array('id' => $wichtel_id, 'wish' => $wunsch3, 'lvl' => $level3, 'art' => $art3)
               );
 
-      foreach ($wuensche as $wunsch ){
+      foreach ($wuensche as $wunsch ) {
         // Führe Abfrage aus
         $query = sprintf("INSERT INTO wi_geschenk (wichtel_id, beschreibung,  level, art) VALUES (\"$wichtel_id\", '%s','%s', '%s');",
           mysql_real_escape_string($wunsch['wish']),
@@ -593,28 +579,24 @@ function senden() {
             $message .= 'Gesamte Abfrage: ' . $query;
             die($message);
         }
-        else {
-          echo "alles eingetragen";
-        }
       } // foreach eintragen
+    } // nicht anonyme wichtel
 
-      mysql_close();
+    mysql_close(); // aktive verbindung schließen
 
-      #User-Mail senden
-      $mailto = $mail;
-      $subject = "Hallo Wichtel".$mail;
-      $mail2="captain@naehkromanten.net";
-      $header = "From: Weihnachtshexe <captain@naehkromanten.net>";
-      $eintragen_mail = str_replace ("_USERNAME_", $user->data['username'], $eintragen_mail);
-      mail($mailto,$subject,$eintragen_mail,$header);
-      mail($mail2,$subject,$eintragen_mail,$header);
-      #Infotext anzeigen
-      echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-      echo $eintragen_ende;
-    }
-    else {
-      echo $fehler_eintragen;
-    }
+    #User-Mail senden
+    $mailto = $mail;
+    $subject = "Hallo Wichtel".$mail;
+    $mail2="captain@naehkromanten.net";
+    $header = "From: Weihnachtshexe <captain@naehkromanten.net>";
+    $eintragen_mail = str_replace ("_USERNAME_", $user->data['username'], $eintragen_mail);
+    mail($mailto,$subject,$eintragen_mail,$header);
+    mail($mail2,$subject,$eintragen_mail,$header);
+    #Infotext anzeigen
+    include('lanq.php');
+    echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
+    echo $eintragen_ende;
+  }
 
 } //function senden()
 
