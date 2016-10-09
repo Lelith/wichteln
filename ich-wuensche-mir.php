@@ -29,8 +29,7 @@ $user_posts = $user->data['user_posts'];
 
 
 $un=$user->data['username'];
-if ($un=="Anonymous")
-  $user_id=0;
+if ($un=="Anonymous") $user_id=0;
 
 #Pruefe auf Blacklist
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
@@ -521,10 +520,14 @@ function senden() {
     #Daten in DB-Schreiben
     if ($wichtel_id == 0) {
       #Schreibe User-Daten fuer neuen Wichtel
-      $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '%s', '%s', '%s', '$plz', '$ort', '$land', '$notizen')",
+      $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
         mysql_real_escape_string($name),
         mysql_real_escape_string($adresse),
-        mysql_real_escape_string($adrzusatz)
+        mysql_real_escape_string($adrzusatz),
+        mysql_real_escape_string($plz),
+        mysql_real_escape_string($ort),
+        mysql_real_escape_string($land),
+        mysql_real_escape_string($notizen)
       );
 
       $result = mysql_query($query);
