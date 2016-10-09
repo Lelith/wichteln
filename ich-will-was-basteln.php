@@ -484,7 +484,8 @@ function senden() {
       if (!$user_wichtel_id) {
         $usermail = $user->data['user_email'];
         $usernick = $user->data['username'];
-        $query = mysql_query("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email) VALUES ('$forum_id', '$forum_id', '$usernick', '$usermail')");
+        $query = mysql_query("INSERT INTO wi_wichtel ( forum_id, nick, email) VALUES ('$forum_id', '$usernick', '$usermail')");
+
         $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
         while ($erg =@ mysql_fetch_array($query)) {
           $user_wichtel_id = $erg["wichtel_id"];

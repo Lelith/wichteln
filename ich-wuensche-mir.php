@@ -10,7 +10,7 @@ $today=date(YmdHi); //$today="201611081200";
 
 
 include("cfg.php");
-include('static.php');
+include("static.php");
 // Benoetigte Dateien und Variablen von phpBB3
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../forum/';
