@@ -505,7 +505,7 @@ function senden() {
   include("cfg.php");
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebank verbindung schlug ^fehl: ". mysql_error());
     exit();
   } else {
     mysql_select_db($dbname);
@@ -520,7 +520,7 @@ function senden() {
     #Daten in DB-Schreiben
     if ($wichtel_id == 0) {
       #Schreibe User-Daten fuer neuen Wichtel
-      $query = sprintf("INSERT INTO wi_wichtel (wichtel_id, forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$forum_id', '$nick', '$mail', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+      $query = sprintf("INSERT INTO wi_wichtel (forum_id, nick, email, name, adresse, adrzusatz, plz, ort, land, notizen) VALUES ('$forum_id', '$nick', '$mail', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
         mysql_real_escape_string($name),
         mysql_real_escape_string($adresse),
         mysql_real_escape_string($adrzusatz),
@@ -535,9 +535,6 @@ function senden() {
           $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
           $message .= 'Gesamte Abfrage: ' . $query;
           die($message);
-      }
-      else {
-        echo "neuer wichtel eingetragen";
       }
       #Hole neue User-ID
       $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");

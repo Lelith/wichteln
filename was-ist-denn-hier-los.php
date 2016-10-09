@@ -74,6 +74,9 @@ switch($Grund) {
   case 'zeit_buergen':
     echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 29.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
+  case 'geschenksperre':
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du hast bereits ein Geschenk ausgew&auml;hlt. Bevor du ein weiteres aussuchen kannst musst du das andere erst verschickt und das auch best&auml;tigt haben.</p><br>";
+  break;
 
   case 'blacklist':
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
