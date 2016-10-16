@@ -510,7 +510,6 @@ function senden() {
   } else {
     mysql_select_db($dbname);
 
-
     $query = mysql_query("SELECT wichtel_id, plz FROM wi_wichtel WHERE forum_id = '$forum_id'");
     while ($erg =@ mysql_fetch_array($query)) {
       $wichtel_id = $erg["wichtel_id"];
