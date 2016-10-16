@@ -2,15 +2,10 @@
 #Beginne Session
 session_start();
 $post=$_POST;
-date_default_timezone_set('Europe/Berlin');
-
-$today=date(YmdHi); //$today="201611081200";
-
-//$today="201511081200";
 
 
-include("cfg.php");
-include("static.php");
+include('cfg.php');
+include('static.php');
 // Benoetigte Dateien und Variablen von phpBB3
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../forum/';
@@ -75,7 +70,8 @@ function chkFormular () {
     <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
 
     <section class="main">
-      <h2>Mein Geschenk ist verschickt!</h2>
+    <?php  include("nav.php");?>
+      <h2>Geschenk als versandt markieren!</h2>
 
 <?php
 #Ziehe Variablen aus HTTP_VARS
@@ -113,7 +109,7 @@ function eintrag() {
         </ul>
         <div>
           <input type="submit" name="senden" value="abschicken">
-          <input type="reset" value=" l&ouml;schen ">
+          <input type="reset" value="löschen">
         </div>
       </fieldset>
     </form>
@@ -127,6 +123,10 @@ function senden()
   global $user;
   include('lanq.php');
   include('cfg.php');
+  include('static.php');
+  date_default_timezone_set('Europe/Berlin');
+
+  $today=date(YmdHi); //$today="201611081200";
 
   #Eingabedaten aus Array ziehen
   $user_id = $user->data['user_id'];
@@ -141,8 +141,19 @@ function senden()
   if (!$db) {
     die("Datebank verbindung schlug fehl: ". mysql_error());
   } else {
+    mysql_select_db($dbname);
     $cu_forum_id = $user_id;
 
+    $res = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$cu_forum_id'");
+    if (!$res) {
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
+    }
+
+    while ($erg =@ mysql_fetch_array($res)){
+      $db_cu_id = $erg["wichtel_id"];
+    }
     $result = mysql_query("SELECT * FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'");
 
     if (!$result) {
@@ -161,22 +172,44 @@ function senden()
   }
 
   #ueberpruefe Daten auf Richtigkeit
-  if ( ($db_geschenk_id == NULL) || ($db_status != 1) || ($db_partner_id != $cu_forum_id) || ($db_gesendet != '0') ) {
-    echo "Deine Daten konnten nicht in der Datenbank gefunden werden!<br><br>";
+  if ( ($db_geschenk_id == NULL) || ($db_status != 1) || ($db_partner_id != $db_cu_id) || ($db_gesendet != NULL) ) {
+    echo "Deine Anfrage konnte nicht ausgeführt werden<br>";
 
-    echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
+    echo "Geschenk das du als verschickt markieren möchtest: ".$geschenk_id."<br>";
+    if ($db_geschenk_id==NULL) {
+      echo "es konnte kein Geschenk mit der von dir eingegebenen ID gefunden werden<br>";
+    }else if($db_status != 1) {
+      echo "Status des Geschenks: ".$geschenk_status[$db_status]."<br>";
+    }else if ($db_partner_id != $db_cu_id) {
+      echo "Das ist nicht die ID von deinem ausgewählten Geschenk<br>";
+    }else if($db_gesendet != NULL) {
+      echo "Das Geschenk wurde bereits als versandt makriert<br>";
+    }
+
+    echo "Wenn du nicht weißt warum du diesen Fehler bekommen hast, melde dich bitte beim Weihnachtswichtel. ";
+    echo "Oder Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zurückckzukehren und die Fehler zu beheben.";
   } //if ( ($db_geschenk_id == NULL) || ($db_partner_id != $user->data['user_id']) || ($db_status != '1') || ($db_gesendet != NULL) )
+
   #Daten speichern
   else {
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
       die("Datebank verbindung schlug fehl: ". mysql_error());
     } else {
-      $cu_forum_id = $user_id;
-      $query = mysql_query("UPDATE wi_geschenk SET gesendet = NOW(), post_art = '$post_art', post_id = '$post_id' WHERE geschenk_id = '$geschenk_id'");
+      mysql_select_db($dbname);
+      $cu_forum_id = $user->data['user_id'];
+      $cu_forum_nick = $user->data['username'];
 
-      if($today > $senden_ende){
-        $query = "INSER INTO wi_blacklist (forum_id, nick, grund ) VALUES ('$cu_forum_id', )"
+      $query = mysql_query("UPDATE wi_geschenk SET gesendet = NOW(), post_art = '$post_art', post_id = '$post_id', status ='3' WHERE geschenk_id = '$geschenk_id'");
+
+      if($today > $senden_ende) {
+        $query = "INSERT INTO wi_blacklist (id_forum, nick, grund ) VALUES ('$cu_forum_id', '$cu_forum_nick', 'nach ablauf der versand deadline verschickt')";
+        $result = mysql_query($query);
+        if (!$result) {
+            $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+            $message .= 'Gesamte Abfrage: ' . $query;
+            die($message);
+        }
       }
       mysql_close();
     }
