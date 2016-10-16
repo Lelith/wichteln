@@ -587,7 +587,7 @@ function senden() {
     $mailto = $mail;
     $subject = "Hallo Wichtel".$mail;
     $mail2="captain@naehkromanten.net";
-    $header = "From: Weihnachtshexe <captain@naehkromanten.net>";
+    $header = "From: Weihnachtswichtel <captain@naehkromanten.net>";
     $eintragen_mail = str_replace ("_USERNAME_", $user->data['username'], $eintragen_mail);
     mail($mailto,$subject,$eintragen_mail,$header);
     mail($mail2,$subject,$eintragen_mail,$header);
@@ -602,6 +602,7 @@ function senden() {
 ?>
 
 <p><a href="index.php" class="main_link">Zur&uuml;ck zur Startseite</a></p>
-</div>
+</section>
+</article>
 </body>
 </html>

@@ -67,7 +67,8 @@ function chkFormular () {
 
   <article class="container">
     <header class="head">
-    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+      <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    </header>
 
     <section class="main">
     <?php  include("nav.php");?>
@@ -200,7 +201,7 @@ function senden()
       $cu_forum_id = $user->data['user_id'];
       $cu_forum_nick = $user->data['username'];
 
-      $query = mysql_query("UPDATE wi_geschenk SET gesendet = NOW(), post_art = '$post_art', post_id = '$post_id', status ='3' WHERE geschenk_id = '$geschenk_id'");
+      $query = mysql_query("UPDATE wi_geschenk SET gesendet = NOW(), post_art = '$post_art', post_id = '$post_id', status = '3' WHERE geschenk_id = '$geschenk_id'");
 
       if($today > $senden_ende) {
         $query = "INSERT INTO wi_blacklist (id_forum, nick, grund ) VALUES ('$cu_forum_id', '$cu_forum_nick', 'nach ablauf der versand deadline verschickt')";

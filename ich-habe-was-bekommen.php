@@ -15,47 +15,30 @@ $user->session_begin();  // Session auslesen
 $auth->acl($user->data); // Benutzer-Informationen laden
 $user->setup();
 
-
-$td=getdate();
-if ($td["mday"]<10)
-	$td["mday"]="0".$td["mday"];
-if ($td["mon"]<10)
-	$td["mon"]="0".$td["mon"];
-if ($td["hours"]<10)
-	$td["hours"]="0".$td["hours"];
-if ($td["minutes"]<10)
-	$td["minutes"]="0".$td["minutes"];
-
-$today=$td["year"].$td["mon"].$td["mday"].$td["hours"].$td["minutes"];
 #�berpr�fe Rechte
 include('static.php');
   if ( !$user->data['is_registered'] ) {
     header("Location: was-ist-denn-hier-los.php?Grund=nicht_eingeloggt");
   }
-  elseif ( (($today < $empfangen_start)) || (($today > $empfangen_ende)) ) {
-    header("Location: was-ist-denn-hier-los.php?Grund=zeit_empfangen");
-  }
 ?>
 
 <html>
 <head>
-<meta name="author" content="Systemhexe">
+<meta name="author" content="Cpt.Kaylee">
+<meta name="debug" content="toxic_garden">
 <meta name="organization" content="N&auml;hkromanten">
-<title>Das N&auml;hkromanten Weihnachtswichteln</title>
-<base target=_self>
 <meta charset="UTF-8">
-<link href="wicht.css" rel="stylesheet" type="text/css">
+<title>Das Nähkromanten Weihnachtswichteln</title>
+<base target=_self>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="./wicht.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+  <article class="container">
+    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
 
-<div style="width:100%; background: #fff; border-radius: 18px;"><br><br>
-<div align="center">
-<br>
-<img src="nostern.gif" width="261" height="261" border="0" alt="*">
-<h2>Ich habe Post bekommen!</h2>
-<br><br>
-<table width="60%" ><tr><td>
+    <section class="main">
 
 <?php
 #Ziehe Variablen aus HTTP_VARS
@@ -64,117 +47,114 @@ if(isset($post['daten'])) $_SESSION["daten"] = $post['daten'];
 if(isset($post['senden'])) senden();
 else eintrag();
 
-#Funktionen ausf�hren
-function eintrag()
-{
-global $user;
-include('lanq.php');
+#Funktionen ausfuehren
+function eintrag() {
+  include('lanq.php');
+  global $user;
 
-#Infotext anzeigen
-echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-echo $empfangen_hinweis;
+  #Infotext anzeigen
+  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
+  echo $empfangen_hinweis;
 
-#Datenformular anzeigen
-echo <<<EINTRAG
-<form action="$PHP_SELF" method="post">
-<table border="0">
-<tr>
-<td>
-        Geschenk-ID:
-</td>
-<td>
-        <input type="text" name="daten[]" size="45" maxlength="100" VALUE="$geschenk_id">
-</td>
-</tr>
-<tr>
-<td>
-        &nbsp;
-</td>
-<td>
-        <div align="center"><br><input type="submit" name="senden" value="abschicken">&nbsp;&nbsp;&nbsp;<input type="reset" value=" l&ouml;schen "></div>
-</td>
-</tr>
-</table>
-</form>
+  #Datenformular anzeigen
+  echo <<<EINTRAG
+    <form action="$PHP_SELF" method="post">
+      <fieldset>
+        <ul class="flex-outer">
+          <li>
+            <label for="geschenk_id">Geschenk-ID:</li>
+            <input id="geschenk_id" type="text" name="daten[]" size="45" maxlength="100" VALUE="$geschenk_id">
+          </li>
+          <li>
+            <input type="submit" name="senden" value="abschicken">
+            <input type="reset" value=" löschen ">
+          </li>
+        </ul>
+      </fieldset>
+    </form>
 EINTRAG;
 
 } //function eintrag()
 
-function senden()
-{
+function senden() {
   $daten = $_SESSION["daten"];
   global $user;
   include('lanq.php');
+  include('cfg.php');
 
-  $td=getdate();
-  if ($td["mday"]<10)
-  $td["mday"]="0".$td["mday"];
-  if ($td["mon"]<10)
-  $td["mon"]="0".$td["mon"];
-  if ($td["hours"]<10)
-  $td["hours"]="0".$td["hours"];
-  if ($td["minutes"]<10)
-  $td["minutes"]="0".$td["minutes"];
-
-  $today=$td["year"].$td["mon"].$td["mday"].$td["hours"].$td["minutes"];
   #Eingabedaten aus Array ziehen
   $user_id = $user->data['user_id'];
   $geschenk_id = $daten[0];
-  $empfangen = $today;
 
   #Daten aus Datenbank abrufen
 
-  include("cfg.php");
-  mysql_connect("localhost",$dbuser,$dbpasswd);
-  mysql_select_db($dbname);
-  $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$user_id'");
-  while ($erg =@ mysql_fetch_array($query))
-  {
-  $db_wichtel_id = $erg["wichtel_id"];
-  }
-  $query = mysql_query("SELECT * FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'");
-  while ($erg =@ mysql_fetch_array($query))
-  {
-  $db_geschenk_id = $erg["geschenk_id"];
-  $db_wichtel_id2 = $erg["wichtel_id"];
-  $db_status = $erg["status"];
-  $db_empfangen = $erg["empfangen"];
-  }
-  mysql_close();
+  $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+  if (!$db) {
+    die("Datebank verbindung schlug fehl: ". mysql_error());
+  } else {
+    mysql_select_db($dbname);
+    $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$user_id'");
 
+    while ($erg =@ mysql_fetch_array($query)) {
+      $db_wichtel_id = $erg["wichtel_id"];
+    }
+
+    $query = mysql_query("SELECT * FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'");
+
+    while ($erg =@ mysql_fetch_array($query)) {
+      $db_geschenk_id = $erg["geschenk_id"];
+      $db_wichtel_id2 = $erg["wichtel_id"];
+      $db_status = $erg["status"];
+      $db_empfangen = $erg["empfangen"];
+    }
+
+    mysql_close();
+  }
   #ueberpruefe Daten auf Richtigkeit
-  if ( ($db_empfangen) && ($db_empfangen!= '0') ) {
+  if ( $db_status == 4 ) {
     echo "Der Empfang dieses Geschenkes wurde bereits best&auml;tigt.!<br><br>";
     echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
   } //if ( ($db_empfangten != '0') )
-  elseif ( ($db_geschenk_id == NULL) || ($db_wichtel_id != $db_wichtel_id2) || ($db_status != 1) ) {
+  elseif ( ($db_geschenk_id == NULL) || ($db_wichtel_id != $db_wichtel_id2) || ($db_status == 2) ) {
+    echo "Geschenk das du als empfangen bestätigen willst: ".$geschenk_id."<br>";
+
     echo "Deine Daten konnten nicht in der Datenbank gefunden werden!<br><br>";
     echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
   } //if ( ($db_geschenk_id == NULL) || ($db_wichtel_id != $db_wichtel_id2) || ($db_status != 1) )
   #Daten speichern
+
   else {
     #Daten in DB-Schreiben
-
-    include("cfg.php");
-    mysql_connect("localhost",$dbuser,$dbpasswd);
-    mysql_select_db($dbname);
-    $query = mysql_query("UPDATE wi_geschenk SET empfangen = '$empfangen' WHERE geschenk_id = '$geschenk_id'");
-    mysql_close();
-
-      #Infotext anzeigen
-      echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-      echo $empfangen_ende;
+    $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+    if (!$db) {
+      die("Datebank verbindung schlug fehl: ". mysql_error());
+    } else {
+      mysql_select_db($dbname);
+      $query = mysql_query("UPDATE wi_geschenk SET empfangen = NOW(), status = '4' WHERE geschenk_id = '$geschenk_id'");
+      mysql_close();
+    }
+    #Infotext anzeigen
+    echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
+    echo $empfangen_ende;
 
     #Mail an Wichtel schicken
-    mysql_connect("localhost",$dbuser,$dbpasswd);
-    mysql_select_db($dbname);
-    $query = mysql_query("SELECT email, nick FROM wi_wichtel LEFT JOIN wi_geschenk ON (wi_geschenk.partner_id = wi_wichtel.wichtel_id) WHERE wi_geschenk.geschenk_id = '$geschenk_id'");
-    while ($erg =@ mysql_fetch_array($query)) {
-      $mailto = $erg["email"]; $partner = $erg["nick"];
+    $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+    if (!$db) {
+      die("Datebank verbindung schlug fehl: ". mysql_error());
+    } else {
+      mysql_select_db($dbname);
+      $query = mysql_query("SELECT email, nick FROM wi_wichtel LEFT JOIN wi_geschenk ON (wi_geschenk.partner_id = wi_wichtel.wichtel_id) WHERE wi_geschenk.geschenk_id = '$geschenk_id'");
+
+      while ($erg =@ mysql_fetch_array($query)) {
+        $mailto = $erg["email"]; $partner = $erg["nick"];
+      }
+      mysql_close();
     }
-    mysql_close();
-    $subject = "Hallo Wichtel";
-    $header = "From: Weihnachtshexe <dieverschleierte@web.de>";
+
+    $mailto = $mail;
+    $subject = "Hallo Wichtel".$mail;
+    $mail2="captain@naehkromanten.net";
+    $header = "From: Weihnachtswichtel <captain@naehkromanten.net>";
     $bekommen_mail = str_replace ("_PARTNER_", $user->data['username'], $bekommen_mail);
     $bekommen_mail = str_replace ("_USERNAME_", $partner, $bekommen_mail);
     mail($mailto,$subject,$bekommen_mail,$header);
@@ -182,11 +162,9 @@ function senden()
 } //function senden()
 
 ?>
-<br>
-<p><a href="index.php">Zur&uuml;ck zur Startseite</a></p>
+<p><a href="index.php">Zurück zur Startseite</a></p>
 
-</td></tr></table><br><br>
-</div>
-</div>
+</section>
+</article>
 </body>
 </html>
