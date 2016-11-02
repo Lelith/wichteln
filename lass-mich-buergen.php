@@ -107,7 +107,7 @@ function eintrag()
         #Datenformular anzeigen
         echo <<<EINTRAG
         <form action="$PHP_SELF" method="post">
-                <p>Name desjenigen f&uuml;r den Du b&uuml;rgen m&ouml;chtest: <input type="text" name="daten[]" size="50" maxlength="50" VALUE="$wichtel_nick"><br><br>
+                <p>Nick: <input type="text" name="daten[]" size="50" maxlength="50" VALUE="$wichtel_nick"><br><br>
                 <input type="submit" name="senden" value="eintragen">&nbsp;<input type="reset" value=" l&ouml;schen "></p>
         </form>
 EINTRAG;
@@ -140,7 +140,7 @@ function senden()
         #�berpr�fe User-ID ob User angemeldet
         if ($wichtel_id == NULL) {
                 echo "Der Nick <b>".$wichtel_nick."</b> konnte im Forum nicht gefunden werden!<br><br>";
-                echo "Klicken Sie <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
+                echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und den Fehler zu beheben.";
         } //if ($wichtel_id == NULL)
 
         #Daten speichern
@@ -157,7 +157,7 @@ function senden()
                 #User-Mail senden
                 $mailto = $wichtel_mail.",".$user->data['user_email'];
                 $subject = "Buerge bestaetigt";
-                $header = "From: Weihnachtshexe <dieverschleierte@web.de>";
+                $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
                 $buergen_mail = str_replace ("_BURGE_", $buerge_nick, $buergen_mail);
                 $buergen_mail = str_replace ("_WICHT_", $wichtel_nick, $buergen_mail);
                 mail($mailto,$subject,$buergen_mail,$header);

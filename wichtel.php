@@ -33,7 +33,7 @@ $wichtel_id = $get['wichtel_id'];
 
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysql_error());
+  die("Datebankverbindung schlug fehl: ". mysql_error());
 } else {
   mysql_select_db($dbname);
   $query = "select * from wi_wichtel where wichtel_id = $wichtel_id";

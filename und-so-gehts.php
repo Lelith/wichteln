@@ -55,7 +55,7 @@ Wer im Forum im Suche&Biete oder Aktivit&auml;ten-Bereich gesperrt ist kann auch
 <div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
 
 <a name="burgen"><h2>B&uuml;rgen</h2></a>
-User mit weniger als 100 Posts k&ouml;nnen als Wichtel teilnehmen wenn sie einen B&uuml;rgen haben. Sie k&ouml;nnen dann selber immer noch keine W&uuml;nsche &auml;u&szlig;ern, aber sie k&ouml;nnen W&uuml;nsche von anderen erf&uuml;llen. Der B&uuml;rge ist dabei daf&uuml;r verantwortlich dass der Wichtel sein Geschenk rechtzeitig verschickt und sich an die Regeln h&auml;lt. Wenn etwas schief geht wird der B&uuml;rge zur Verantwortung gezogen. B&uuml;rgen m&uuml;ssen mindestens 500 Posts haben. In Einzelf&auml;llen ist es auch m&ouml;glich Personen die nicht im Forum registriert sind durch einen B&uuml;rgen teilnehmen zu lassen, wenn zB jemand eine Schwester oder einen Freund hat der gerne einen Wunsch erf&uuml;llen m&ouml;chte, ohne im Forum registriert zu sein dann kann dieser User sich als B&uuml;rge bereit erkl&auml;ren, vorausgesetzt er hat mindestens 500 Posts. In so einem Fall kontaktiert bitte die Weihnachtshexe, da das technisch nicht vorgesehen ist.<br>
+User mit weniger als 100 Posts k&ouml;nnen als Wichtel teilnehmen wenn sie einen B&uuml;rgen haben. Sie k&ouml;nnen dann selber immer noch keine W&uuml;nsche &auml;u&szlig;ern, aber sie k&ouml;nnen W&uuml;nsche von anderen erf&uuml;llen. Der B&uuml;rge ist dabei daf&uuml;r verantwortlich dass der Wichtel sein Geschenk rechtzeitig verschickt und sich an die Regeln h&auml;lt. Wenn etwas schief geht wird der B&uuml;rge zur Verantwortung gezogen. B&uuml;rgen m&uuml;ssen mindestens 500 Posts haben. In Einzelf&auml;llen ist es auch m&ouml;glich Personen die nicht im Forum registriert sind durch einen B&uuml;rgen teilnehmen zu lassen, wenn zB jemand eine Schwester oder einen Freund hat der gerne einen Wunsch erf&uuml;llen m&ouml;chte, ohne im Forum registriert zu sein dann kann dieser User sich als B&uuml;rge bereit erkl&auml;ren, vorausgesetzt er hat mindestens 500 Posts. In so einem Fall kontaktiert bitte die Weihnachtswichtel, da das technisch nicht vorgesehen ist.<br>
 B&uuml;rgen funktioniert so, dass der B&uuml;rge sich &uuml;ber das Skript meldet und den Namen des Users angibt f&uuml;r den er b&uuml;rgen m&ouml;chte. Dadurch wird dieser User quasi "freigeschaltet" und kann am Wichteln teilnehmen.<br>
 <br>
 
@@ -92,7 +92,7 @@ Und weil wir aus Fehlern lernen gibt es hier noch eine kleine Liste mit weiteren
 <li>W&uuml;nscht euch am besten Dinge in der Gr&ouml;&szlig;enordnung in der ihr auch f&uuml;r andere etwas machen w&uuml;rdet.</li>
 <li>Beim Grad der Angemessenheit denkt an Geschenke f&uuml;r eine B&uuml;rokollegin, nicht f&uuml;r eure Busenfreundin.</li>
 </ul>
-Alle W&uuml;nsche werden von der Weihnachtshexe durchgelesen. Wenn sie etwas f&uuml;r unangemessen h&auml;lt wird sie euch kontaktieren und euch den Wunsch zur &Uuml;berarbeitung zur&uuml;ckgeben.<br>
+Alle W&uuml;nsche werden von der Weihnachtswichtel durchgelesen. Wenn sie etwas f&uuml;r unangemessen h&auml;lt wird sie euch kontaktieren und euch den Wunsch zur &Uuml;berarbeitung zur&uuml;ckgeben.<br>
 <br>
 
 <div align="center"><img src="./img/nosternmini.gif" width="45" height="45" border="0" alt="*"></div>
@@ -100,7 +100,7 @@ Alle W&uuml;nsche werden von der Weihnachtshexe durchgelesen. Wenn sie etwas f&u
 <a name="wunschanfragen"><h2>Wunschanfragen</h2></a>
 Wenn ihr einen Wunsch erf&uuml;llen wollt startet ihr eine Wunschanfrage. Ihr braucht keine W&uuml;nsche eingetragen haben um eine Wunschanfrage zu stellen.<br>
 Ihr habt die M&ouml;glichkeit einen Wunsch nach <b>Stichwort</b> auszuw&auml;hlen. Wenn ihr also zB einen Schal stricken wollt, k&ouml;nnt ihr in der entsprechenden Suchmaske das Stichwort "Schal" eingeben. Das System schl&auml;gt euch daraufhin ein paar W&uuml;nsche vor die es in der Richtung gefunden hat. Es zeigt euch nicht alle passenden W&uuml;nsche sondern nur eine zuf&auml;llige Auswahl, aber diese W&uuml;nsche sind alle noch frei. Das ist wichtig: Ihr werdet immer nur W&uuml;nsche angezeigt bekommen die noch nicht vergeben sind.<br>
-Ihr k&ouml;nnt W&uuml;nsche auch anzeigen lassen nach vorgegebenen Kriterien wie <b>Schwierigkeitsgrad/Aufwand</b> und grobem <b>Bereich</b> (das ist sowas wie "K&uuml;chenutensilien" oder "Kleidung"). Diese Kriterien k&ouml;nnt ihr mit Stichworten kombinieren und so eine ziemlich genaue Anfrage an die Weihnachtshexe und ihr gro&szlig;es Wunschbuch stellen. Au&szlig;erdem gibt es noch die M&ouml;glichkeit, sich <b>zuf&auml;llig ausgew&auml;hlte</b> W&uuml;nsche anzeigen zu lassen. Daf&uuml;r ist der Button "Auf gut Gl&uuml;ck!"<br>
+Ihr k&ouml;nnt W&uuml;nsche auch anzeigen lassen nach vorgegebenen Kriterien wie <b>Schwierigkeitsgrad/Aufwand</b> und grobem <b>Bereich</b> (das ist sowas wie "K&uuml;chenutensilien" oder "Kleidung"). Diese Kriterien k&ouml;nnt ihr mit Stichworten kombinieren und so eine ziemlich genaue Anfrage an die Weihnachtswichtel und ihr gro&szlig;es Wunschbuch stellen. Au&szlig;erdem gibt es noch die M&ouml;glichkeit, sich <b>zuf&auml;llig ausgew&auml;hlte</b> W&uuml;nsche anzeigen zu lassen. Daf&uuml;r ist der Button "Auf gut Gl&uuml;ck!"<br>
 <br>
 Aus den angezeigten W&uuml;nschen k&ouml;nnt euch einen w&auml;hlen und ihn anklicken, dann bekommt ihr weitere Details angezeigt. Den Nick/Namen desjenigen der den Wunsch eingetragen hat erhaltet ihr erst wenn ihr euch entscheidet den Wunsch zu erf&uuml;llen, zusammen mit den Kontaktdaten. Es geht hier schlie&szlig;lich nicht darum, einem besonderen Freund eine Freude zu machen sondern einen Wunsch nach eigenen Vorlieben und F&auml;higkeiten zu erf&uuml;llen, egal an wen das Geschenk dann geht.<br>
 Zusammen mit den Daten erhaltet ihr auch eine <b>Geschenk-ID</b> die ihr bitte unbedingt eurem Partner angebt wenn ihr das Geschenk verschickt. Das ist sehr wichtig, denn sonst kann das Geschenk nicht best&auml;tigt werden wenn es angekommen ist!<br>
@@ -158,8 +158,8 @@ Wenn du jemandem einen Wunsch erf&uuml;llen m&ouml;chtest:
 <li>Wenn ihr gleichzeitig auch eure eigenen W&uuml;nsche gepostet habt: Wenn ich ein Geschenk mit viel Liebe und M&uuml;he gemacht habe, kann ich dann mit der Entt&auml;uschung umgehen selber keins zu bekommen? Ist mir das "Geben" im Vergleich zum "Bekommen" wichtiger? M&ouml;chte ich mitmachen selbst mit dem Risiko leer auszugehen?</li>
 </ul>
 
-<h3>Es l&auml;uft etwas schief, ich habe eine Frage, wann soll ich mich bei der Weihnachtshexe melden?</h3>
-Im Zweifel solltest du immer mit deinen Fragen zur Weihnachtshexe kommen. Wenn du eine Ausnahme geregelt haben m&ouml;chtest, wenn du ein Problem mit dem Skript hast, wenn etwas nicht geklappt hat, wenn du &uuml;berpr&uuml;fen m&ouml;chstest ob deine W&uuml;nsche oder Geschenkreservierungen trotzdem in der Datenbank angekommen sind, wenn du ein Geschenk ohne ID bekommen hast, wenn du die Daten deines Partners verschusselt hast und bei allen anderen Eventualit&auml;ten ist die Weihnachtshexe dein kompetenter Ansprechpartner. <a target="_blank" href="http://natronundsoda.net/forum/memberlist.php?mode=viewprofile&u=3193">Schick ihr eine PN</a>, dann k&uuml;mmert er sich um deinen Fall.
+<h3>Es l&auml;uft etwas schief, ich habe eine Frage, wann soll ich mich bei der Weihnachtswichtel melden?</h3>
+Im Zweifel solltest du immer mit deinen Fragen zur Weihnachtswichtel kommen. Wenn du eine Ausnahme geregelt haben m&ouml;chtest, wenn du ein Problem mit dem Skript hast, wenn etwas nicht geklappt hat, wenn du &uuml;berpr&uuml;fen m&ouml;chstest ob deine W&uuml;nsche oder Geschenkreservierungen trotzdem in der Datenbank angekommen sind, wenn du ein Geschenk ohne ID bekommen hast, wenn du die Daten deines Partners verschusselt hast und bei allen anderen Eventualit&auml;ten ist die Weihnachtswichtel dein kompetenter Ansprechpartner. <a target="_blank" href="http://natronundsoda.net/forum/memberlist.php?mode=viewprofile&u=3193">Schick ihr eine PN</a>, dann k&uuml;mmert er sich um deinen Fall.
 
 <h3>Ich m&ouml;chte meinen Nick &auml;ndern... soll ich das jetzt, vorher oder nachher machen?</h3>
 Solange du es nicht in der Wichtelzeit machst ist uns das ganz egal. Wenn du dich umbennenst w&auml;hrend das Wichteln noch l&auml;uft dann bringt uns das hier ganz sch&ouml;n durcheinander. Es w&auml;re also toll wenn du das zeitlich etwas abpasst.
@@ -178,19 +178,19 @@ Nochmal zur Info: Wer &uuml;ber Landesgrenzen hinweg verschickt (und auch NUR de
 Wenn du in der N&auml;he deines Wichtel-Partners wohnst ist das nat&uuml;rlich kein Problem. Dann gib in der Versandbest&auml;titgung bitte einfach das Stichwort PERS&Ouml;NLICH an.
 
 <h3>Was mache ich wenn mein Partner sein Geschenk nicht erh&auml;lt?</h3>
-Wenn du in der Sendungsverfolgung per Trackingnummer siehst, dass das Geschenk nicht ausgeliefert werden konnte, auf Abholung wartet oder &auml;hnliches und der Empf&auml;nger es nicht holt, dann kontaktiere ihn bitte pers&ouml;nlich oder bitte die Weihnachtshexe dies zu tun. Damit geht unter Umst&auml;nden zwar etwas die &Uuml;berraschung verloren, aber am Ende z&auml;hlt, dass die Geschenke auch ankommen.
+Wenn du in der Sendungsverfolgung per Trackingnummer siehst, dass das Geschenk nicht ausgeliefert werden konnte, auf Abholung wartet oder &auml;hnliches und der Empf&auml;nger es nicht holt, dann kontaktiere ihn bitte pers&ouml;nlich oder bitte die Weihnachtswichtel dies zu tun. Damit geht unter Umst&auml;nden zwar etwas die &Uuml;berraschung verloren, aber am Ende z&auml;hlt, dass die Geschenke auch ankommen.
 
 <h3>Wann soll ich mein Paket &ouml;ffnen?</h3>
 Das bleibt dir selbst &uuml;berlassen. Wenn du es erhalten hast, best&auml;tige dies bitte unbedingt im Skript. Aber ob du das Geschenk zu Weihnachten oder sofort &ouml;ffnest oder irgendwann dazwischen, das ist ganz deine Entscheidung. &Uuml;brigens: Dein Wichtel w&uuml;rde sich vielleicht freuen &uuml;ber eine Nachricht wenn du das Geschenk ausgepackt hast :)
 
 <h3>Ich habe vergessen die Geschenk-ID draufzuschreiben</h3>
-Aaaargh! Wie oft habe ich das erw&auml;hnt? Die Weihnachtshexe wird nicht froh dar&uuml;ber sein. Du kannst jetzt nicht mehr tun als dieses Vers&auml;umnis bei ihr zu beichten, so dass er Bescheid wei&szlig; wenn dein Partner ein Geschenk ohne ID erh&auml;lt.
+Aaaargh! Wie oft habe ich das erw&auml;hnt? Die Weihnachtswichtel wird nicht froh dar&uuml;ber sein. Du kannst jetzt nicht mehr tun als dieses Vers&auml;umnis bei ihr zu beichten, so dass er Bescheid wei&szlig; wenn dein Partner ein Geschenk ohne ID erh&auml;lt.
 
 <h3>Ich habe ein Geschenk ohne ID erhalten</h3>
-Dann melde dich auf jeden Fall bei der Weihnachtshexe! Sie wird dir eine ID nennen mit der du das Geschenk best&auml;tigen kannst.
+Dann melde dich auf jeden Fall bei der Weihnachtswichtel! Sie wird dir eine ID nennen mit der du das Geschenk best&auml;tigen kannst.
 
 <h3>Ich wei&szlig; nicht von wem mein Geschenk kommt, es ist auch keine Karte dabei</h3>
-Dann m&ouml;chte dein Wichtel vielleicht anonym bleiben. Wenn du die Weihnachtshexe fragst dann kann sie deinem Wichtel einen Schubs geben sich bei dir zu melden, vielleicht hat er ja auch nur vergessen sich namentlich zu erw&auml;hnen.
+Dann m&ouml;chte dein Wichtel vielleicht anonym bleiben. Wenn du die Weihnachtswichtel fragst dann kann sie deinem Wichtel einen Schubs geben sich bei dir zu melden, vielleicht hat er ja auch nur vergessen sich namentlich zu erw&auml;hnen.
 
 <h3>Woher wei&szlig; ich ob mein Paket amgekommen ist?</h3>
 Mit der Trackingnummer kannst du in der Regel online pr&uuml;fen wo sich das Paket in der Zustellung befindet. Wenn dein Partner den Empfang best&auml;tigt, erh&auml;ltst du au&szlig;erdem eine Mail und kannst sicher sein, dass alles geklappt hat.
@@ -207,7 +207,7 @@ Dein Wichtel erh&auml;lt die Adresse die du in den Kontaktdaten eintr&auml;gst u
 Nein, das ist nicht m&ouml;glich. Du kannst dir aber vom System Vorschl&auml;ge holen oder Anfrage nach bestimmten Kriterien stellen.<br>
 
 <h3>Wie kann ich sehen ob meine W&uuml;nsche noch frei sind? Warum werden meine W&uuml;nsche nicht angezeigt wenn ich danach suche?</h3>
-Die eigenen W&uuml;nsche werden prinzipiell nie angezeigt wenn man eine Wunschanfrage stellt. Du kannst also auch nicht herausfinden ob sie noch frei sind oder schon vergeben. Das ist nicht der Sinn der Sache und wurde von der Weihnachtshexe verboten.
+Die eigenen W&uuml;nsche werden prinzipiell nie angezeigt wenn man eine Wunschanfrage stellt. Du kannst also auch nicht herausfinden ob sie noch frei sind oder schon vergeben. Das ist nicht der Sinn der Sache und wurde von der Weihnachtswichtel verboten.
 
 <h3>Kann ich mehrere W&uuml;nsche erf&uuml;llen?</h3>
 Nat&uuml;rlich. Wenn du Zeit und Lust genug hast mehreren Leuten eine Freude zu machen dann kannst du das gerne tun. Aber: &Uuml;bernimm dich nicht. Im Zweifel ist es sicher besser viel Liebe und Aufmerksamkeit in ein Geschenk zu stecken als in letzter Minute ein zweites fertig machen zu "m&uuml;ssen".<br>
@@ -226,7 +226,7 @@ Nein. Jeder bekommt maximal einen seiner drei W&uuml;nsche erf&uuml;llt. Selbst 
 Zu den W&uuml;nschen k&ouml;nnt ihr eine Einsch&auml;tzung abgeben wie aufw&auml;ndig der Wunsch ist. Ob der Wichtel sind daran h&auml;lt oder aus einer Kleinigkeit doch ein aufw&auml;ndiges Projekt macht kann man damit nat&uuml;rlich nicht beeinflussen. Wenn jemand zus&auml;tzlich Zeit und M&uuml;he investieren m&ouml;chte, dann ist das in Ordnung, das werden wir sicher nicht verbieten. Trotzdem sind kleine Geschenke genau so viel wert. Es m&uuml;ssen nicht mehrere Teile sein, man muss nichts extra dazu geben, es reicht v&ouml;llig wenn man einen Wunsch nach bestem Wissen und Gewissen erf&uuml;llt. Orientiert euch nicht daran was andere machen und setzt euch nicht unter Druck etwas perfektes riesengro&szlig;es abzuliefern. Jeder sollte das tun was er kann und m&ouml;chte, schlie&szlig;lich ist das hier kein Geschenke-Wettbewerb sondern daf&uuml;r da Spa&szlig; am Schenken und Basteln zu haben.
 
 <h3>Was ist wenn ich das Geschenk nicht fertig schaffe?</h3>
-Wenn etwas dazwischen kommt wie zB Krankheit und du es nicht schaffst das Geschenk zum angegebenen Termin fertig zu bekommen, dann sei so fair und melde dich m&ouml;glichst rechtzeitig(!) bei der Weihnachtshexe. Wenn die Wunschanfrage-Phase noch nicht abgeschlossen ist kann die Weihnachtshexe den Wunsch dann vielleicht jemand anderem vermitteln. Ansonsten kann in Einzelf&auml;llen (Einzelf&auml;lle!! ;)) ein Aufschub der Deadline verhandelt werden.
+Wenn etwas dazwischen kommt wie zB Krankheit und du es nicht schaffst das Geschenk zum angegebenen Termin fertig zu bekommen, dann sei so fair und melde dich m&ouml;glichst rechtzeitig(!) bei der Weihnachtswichtel. Wenn die Wunschanfrage-Phase noch nicht abgeschlossen ist kann die Weihnachtswichtel den Wunsch dann vielleicht jemand anderem vermitteln. Ansonsten kann in Einzelf&auml;llen (Einzelf&auml;lle!! ;)) ein Aufschub der Deadline verhandelt werden.
 
 <h3>Ich hab ein tolles Geschenk erhalten, soll ich gleich mit den Fotos davon ins Forum gehen?</h3>
 Wir verstehen dass du den anderen zeigen m&ouml;chtest &uuml;ber was du dich so freust. Aber im Interesse aller ist es fairer mit Fotos zu warten bis die Deadline vor&uuml;ber ist. Im Regelfall gibt es dann auch einen Fotothread in dem jeder der mag seine Geschenke vorzeigen kann.
@@ -238,7 +238,7 @@ Wir verstehen dass du den anderen zeigen m&ouml;chtest &uuml;ber was du dich so 
 <h3>Was passiert wenn ich die Deadline nicht einhalte? Oder wenn ich mein Geschenk gar nicht verschicke?</h3>
 Im vergangenen Jahr haben wir das so geregelt, dass die Leute die die Deadline verpasst haben (also keine Versandbest&auml;tigung abgegeben haben) f&uuml;r das n&auml;chste Wichteln gesperrt wurden. Nicht f&uuml;r die Aktivit&auml;ten- und Flohmarktbereiche des Forums und auch nicht auf Dauer, sondern nur f&uuml;r ein Jahr Wichteln.<br>
 Wer sein Geschenk gar nicht verschickt (das sehen wir an den ebenfalls nicht erfolgten Empfangsbest&auml;tigungen) wird auf Dauer f&uuml;r das Wichteln gesperrt, m&ouml;glicherweise auch f&uuml;r den Aktivit&auml;tenbereich, das werden wir dann im Einzelfall entscheiden.<br>
-Im Zweifel ist es immer sinnvoller auf Weihnachtshexe-PNs zu antworten als den Kopf in den Sand zu stecken. Wer ehrlich erkl&auml;rt was passiert ist hat gr&ouml;&szlig;ere Chancen auf eine Ausnahme als jemand der Ausreden vorschiebt oder gleich ganz tot spielt.
+Im Zweifel ist es immer sinnvoller auf Weihnachtswichtel-PNs zu antworten als den Kopf in den Sand zu stecken. Wer ehrlich erkl&auml;rt was passiert ist hat gr&ouml;&szlig;ere Chancen auf eine Ausnahme als jemand der Ausreden vorschiebt oder gleich ganz tot spielt.
 
 <h3>Wann ist der beste Zeitpunkt zum Verschicken?</h3>
 Wenn du schon fr&uuml;h fertig bist mit dem Geschenk dann verschicke es auch. Dein Partner kann immer noch entscheiden, das Paket noch nicht zu &ouml;ffnen. Du kannst keine weiteren W&uuml;nsche erf&uuml;llen, solange du das erste Geschenk nicht verschickt hast. Es ist also wenig sinnvoll noch zu warten.<br>

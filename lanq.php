@@ -26,34 +26,34 @@ Denk daran, dass keine Links in den Beschreibungen vorkommen d&uuml;rfen. Au&szl
 
 $eintragen_check = "<p>Bitte &uuml;berpr&uuml;fe deine Angaben nochmal genau bevor sie eingetragen werden. Du kannst sie sp&auml;ter nicht mehr &auml;ndern.</p>";
 
-$eintragen_mail = "Hallo _USERNAME_! \n\nDeine Wuensche wurden in unsere Wunschdatenbank eingetragen. Ab dem 15.11.2015 kannst Du Dir die Wuesche der anderen anzeigen lassen und mit dem Wichteln loslegen. \n\nViel Spass wuenscht Deine Weihnachtshexe";
+$eintragen_mail = "Hallo _USERNAME_! \n\nDeine Wuensche wurden in unsere Wunschdatenbank eingetragen. Ab dem 15.11.2015 kannst Du Dir die Wuesche der anderen anzeigen lassen und mit dem Wichteln loslegen. \n\nViel Spass wuenscht Deine Weihnachtswichtel";
 
 $eintragen_ende = "<p>Deine Daten wurden eingetragen. Vielen Dank f&uuml;r deine Teilnahme und viel Spa&szlig; beim Wichteln!</p>";
 
-$eintragen_vorhanden = "<p>Es sind bereits W&uuml;nsche von dir in der Datenbank vorhanden. Wenn du meinst, dass es sich hier um einen Fehler handelt, dann kontaktiere bitte den <a target=\"_blank\" href=\"http://natronundsoda.net/forum/memberlist.php?mode=viewprofile&u=3193\">Weihnachtshexe</a>.</p>";
+$eintragen_vorhanden = "<p>Es sind bereits W&uuml;nsche von dir in der Datenbank vorhanden. Wenn du meinst, dass es sich hier um einen Fehler handelt, dann kontaktiere bitte den <a target=\"_blank\" href=\"http://natronundsoda.net/forum/memberlist.php?mode=viewprofile&u=3193\">Weihnachtswichtel</a>.</p>";
 
 $gesendet_hinweis = "<p>Wenn du dein Geschenk verschickst hast, so trage hier bitte die Geschenk-ID ein die du zusammen mit den Daten deines Partners erhalten hast. Au&szlig;erdem den Anbieter mit dem du versendet hast (DHL, Hermes, etc) und die entsprechende Trackingnummer des Paketes.\nBei Paketen die &uuml;ber L&auml;ndergrenzen verschickt werden wird ein versicherter Versand zu teuer, da steht es dir offen, welche Versandart du w&auml;hlst. Trage dann statt einer Trackingnummer das Stichwort INTERNATIONAL in das Feld ein. (Das gilt NUR f&uuml;r internationalen Versand! Bei Versand innerhalb eines Landes wird bitte nur mit Trackingnummer verschickt!) \nWenn du das Paket pers&ouml;nlich &uuml;berbracht hast, trage bitte statt einer Trackingnummer das Stichwort PERS&Ouml;NLICH ein.</p>";
 
 $gesendet_ende = "<p>Deine Best&auml;tigung wurde empfangen. Vielen Dank f&uuml;r deine Teilnahme am Wichteln!</p>";
 
-$empfangen_hinweis = "<p>Wenn du ein Geschenk erhalten hast, so trage hier bitte die von deinem Wichtel auf/in dem Paket angegebene Geschenk-ID ein. Wenn keine Geschenk-ID angegeben wurde, dann wende dich bitte an den <a target=\"_blank\" href=\"http://natronundsoda.net/forum/memberlist.php?mode=viewprofile&u=3193\">Weihnachtshexe</a>. </p>";
+$empfangen_hinweis = "<p>Wenn du ein Geschenk erhalten hast, so trage hier bitte die von deinem Wichtel auf/in dem Paket angegebene Geschenk-ID ein. Wenn keine Geschenk-ID angegeben wurde, dann wende dich bitte an den <a target=\"_blank\" href=\"http://natronundsoda.net/forum/memberlist.php?mode=viewprofile&u=3193\">Weihnachtswichtel</a>. </p>";
 
 $empfangen_ende = "<p>Deine Best&auml;tigung wurde empfangen. Vielen Dank f&uuml;r deine Teilnahme am Wichteln!</p>";
 
 $buergen_info = "<p>User mit weniger als _MINPOST_ Posts k&ouml;nnen als Wichtel teilnehmen wenn sie einen B&uuml;rgen haben. Sie k&ouml;nnen dann selber immer noch keine W&uuml;nsche &auml;u&szlig;ern, aber sie k&ouml;nnen W&uuml;nsche von anderen erf&uuml;llen. Der B&uuml;rge ist dabei daf&uuml;r verantwortlich, dass der Wichtel sein Geschenk rechtzeitig verschickt und sich an die Regeln h&auml;lt. <br>
 Bitte sei dir dar&uuml;ber im Klaren, dass du f&uuml;r Fehlverhalten deines Users gerade stehen musst wenn du f&uuml;r ihn b&uuml;rgst. Im Zweifel wirst du in Zukunft vom Wichteln ausgeschlossen. B&uuml;rge also nur wenn du dir sicher bist, was du tust.<br><br>
-Wenn du f&uuml;r jemanden B&uuml;rgen m&ouml;chstest, der nicht im Forum angemeldet ist, dann wende dich bitte an die <a target=\"_blank\" href=\"https://www.naehkromanten.net/forum/memberlist.php?mode=viewprofile&u=10714\">Weihnachtshexe</a>.</p>";
+Wenn du f&uuml;r jemanden B&uuml;rgen m&ouml;chstest, der nicht im Forum angemeldet ist, dann wende dich bitte an die <a target=\"_blank\" href=\"https://www.naehkromanten.net/forum/memberlist.php?mode=viewprofile&u=10714\">Weihnachtswichtel</a>.</p>";
 
-$buergen_hinweis = "<p>Wenn du f&uuml;r jemanden B&uuml;rgen m&ouml;chstes, so trage hier den exakten Nick desjenigen ein. Dadurch wird dieser User quasi \"freigeschaltet\" und kann am Wichteln teilnehmen.<br></p>";
+$buergen_hinweis = "<p>Wenn du f&uuml;r jemanden b&uuml;rgen m&ouml;chstes, trage hier den exakten Nick der/desjenigen ein. Dadurch wird dieser User freigeschaltet und kann am Wichteln teilnehmen.<br></p>";
 
-$buergen_mail = "Hallo _BURGE_, Hallo _WICHT_! \n\nDie Buergschaft von _BURGE_ fuer _WICHT_ ist in der Datenbank eingetragen worden. _WICHT_ kann nun unter der Verantwortung von _BURGE_ am Wichteln teilnehmen. \n\nViel Spass wuenscht die Weihnachtshexe";
+$buergen_mail = "Hallo _BURGE_, Hallo _WICHT_! \n\nDie Buergschaft von _BURGE_ fuer _WICHT_ ist in der Datenbank eingetragen worden. _WICHT_ kann nun unter der Verantwortung von _BURGE_ am Wichteln teilnehmen. \n\nViel Spass wuenscht der Weihnachtswichtel!";
 
 $buergen_ende = "<p>Deine B&uuml;rgschaft wurde eingetragen. Vielen Dank f&uuml;r deine Hilfsbereitschaft!</p>";
 
-$anfragen_info = "<p>Wenn Du einen Wunsch erf&uuml;llen m&ouml;chtest startest du eine Wunschanfrage. Dann schaut der Weihnachtshexe quasi in seinem gro&szlig;en Wunschbuch nach und liest dir ein paar W&uuml;nsche vor, die zu deiner Anfrage passen. Du brauchst dabei selber keine W&uuml;nsche eingetragen haben um eine Wunschanfrage zu stellen.<br>
+$anfragen_info = "<p>Wenn Du einen Wunsch erf&uuml;llen m&ouml;chtest startest du eine Wunschanfrage. Dann schaut der Weihnachtswichtel quasi in seinem gro&szlig;en Wunschbuch nach und liest dir ein paar W&uuml;nsche vor, die zu deiner Anfrage passen. Du brauchst dabei selber keine W&uuml;nsche eingetragen haben um eine Wunschanfrage zu stellen.<br>
 Wunschanfragen sind erstmal v&ouml;llig unverbindlich. Erst wenn du dich f&uuml;r einen Wunsch entscheidest, verpflichtest du dich dazu, das Geschenk auch regel- und termingerecht abzusenden.</p>";
 
-$anfragen_hinweis = "<p>Hier bist du auf der Wunschanfragen-Seite. Du kannst W&uuml;nsche nach Stichwort, Schwierigkeitsgrad und Bereich oder einer beliebigen Kombination daraus ausw&auml;hlen. Der Weihnachtshexe zeigt dir dann, sofern vorhanden, drei W&uuml;nsche die zu deiner Anfrage passen. Au&szlig;erdem kannst du dir vom Weihnachtshexe drei ganz zuf&auml;llige W&uuml;nsche anzeigen lassen ('Auf gut Gl&uuml;ck').<br>
+$anfragen_hinweis = "<p>Hier bist du auf der Wunschanfragen-Seite. Du kannst W&uuml;nsche nach Stichwort, Schwierigkeitsgrad und Bereich oder einer beliebigen Kombination daraus ausw&auml;hlen. Der Weihnachtswichtel zeigt dir dann, sofern vorhanden, drei W&uuml;nsche die zu deiner Anfrage passen. Au&szlig;erdem kannst du dir vom Weihnachtswichtel drei ganz zuf&auml;llige W&uuml;nsche anzeigen lassen ('Auf gut Gl&uuml;ck').<br>
 Zu jedem Wunsch gibt es eine Detailanzeige mit allen Infos und der M&ouml;glichkeit diesen Wunsch f&uuml;r dich auszuw&auml;hlen.</p>";
 
 $anfragen_detail = "<p>Wenn du diesen Wunsch erf&uuml;llen m&ouml;chstest, dann klicke auf den entsprechenden Link unten. Dann bekommst du auch den Namen und die Kontaktdaten und der Wunsch wird f&uuml;r dich reserviert.</p>";
@@ -75,15 +75,15 @@ Und nun viel Spa&szlig; beim Basteln!</p>";
 
 $anfragen_geschenk_weg = "<p>So wie es aussieht wurde der Wunsch zwischenzeitlich anders vergeben. Bitte &uuml;berpr&uuml;fe deinen eMail-Eingang oder schau nach ob du einen anderen Wunsch findest.</p>";
 
-$anfragen_mail = "Hallo _USERNAME_! \n\nDu hast dich verpflichtet folgenden Wunsch zu erfuellen. Hier erhaeltst du noch mal alle Daten die du benoetigst. Denk daran, dass du das Geschenk spaetestens am 13.12.2015 verschickt haben musst. \n_WUNSCHINFO_ \n\nViel Spass beim Basteln wuenscht Deine Weihnachtshexe \n PS: Wenn in dieser Email nur leere Felder stehen, statt den Informationen zu deinem Wunsch, dann ist etwas schief gelaufen. Der Wunsch ist dann nicht fuer dich reserviert! Bitte waehle ihn erneut aus und/oder wende dich an die Weihnachtshexe. Das ist leider ein Fehler, den wir bisher noch nicht beheben konnten.";
+$anfragen_mail = "Hallo _USERNAME_! \n\nDu hast dich verpflichtet folgenden Wunsch zu erfuellen. Hier erhaeltst du noch mal alle Daten die du benoetigst. Denk daran, dass du das Geschenk spaetestens am 13.12.2015 verschickt haben musst. \n_WUNSCHINFO_ \n\nViel Spass beim Basteln wuenscht Deine Weihnachtswichtel \n PS: Wenn in dieser Email nur leere Felder stehen, statt den Informationen zu deinem Wunsch, dann ist etwas schief gelaufen. Der Wunsch ist dann nicht fuer dich reserviert! Bitte waehle ihn erneut aus und/oder wende dich an die Weihnachtswichtel. Das ist leider ein Fehler, den wir bisher noch nicht beheben konnten.";
 
-$bekommen_mail = "Hallo _USERNAME_! \n\n_PARTNER_ hat gerade bestaetigt, dass dein Geschenk angekommen ist. Vielen Dank fuer deine Teilnahme am Wichteln! \n\nViele Gruesse von der Weihnachtshexe";
+$bekommen_mail = "Hallo _USERNAME_! \n\n_PARTNER_ hat gerade bestaetigt, dass dein Geschenk angekommen ist. Vielen Dank fuer deine Teilnahme am Wichteln! \n\nViele Gruesse von der Weihnachtswichtel";
 
-$aendern_info = "Du bist hier weil die Weihnachtshexe dich hergeschickt hat um deine W&uuml;nsche zu &uuml;berarbeiten? Dann wollen wir doch mal sehen was wir da finden.<br>Der Weihnachtshexe hat dir in der Benachrichtigung ein paar Anmerkungen gemacht, warum du deine W&uuml;nsche bearbeiten sollst und wo das Problem liegt. Das und auch die Regeln solltest du dir noch mal intensiv zu Gem&uuml;te f&uuml;hren bevor du deine Texte &auml;nderst.<br>Wenn du fertig bist und deine &uuml;berarbeiteten Texte abgeschickt hast wird der Weihnachtshexe sie noch mal ansehen und dann hoffentlich freischalten. ";
+$aendern_info = "Du bist hier weil die Weihnachtswichtel dich hergeschickt hat um deine W&uuml;nsche zu &uuml;berarbeiten? Dann wollen wir doch mal sehen was wir da finden.<br>Der Weihnachtswichtel hat dir in der Benachrichtigung ein paar Anmerkungen gemacht, warum du deine W&uuml;nsche bearbeiten sollst und wo das Problem liegt. Das und auch die Regeln solltest du dir noch mal intensiv zu Gem&uuml;te f&uuml;hren bevor du deine Texte &auml;nderst.<br>Wenn du fertig bist und deine &uuml;berarbeiteten Texte abgeschickt hast wird der Weihnachtswichtel sie noch mal ansehen und dann hoffentlich freischalten. ";
 
 $aendern_check = "<p>Bitte &uuml;berpr&uuml;fe deine Angaben nochmal genau bevor sie eingetragen werden.</p>";
 
-$aendern_ende = "<p>Deine ge&auml;nderten W&uuml;nsche wurden eingetragen. Der Weihnachtshexe wird sie jetzt erneut pr&uuml;fen. Vielen Dank f&uuml;r deine Teilnahme und noch viel Spa&szlig; am Wichteln!</p>";
+$aendern_ende = "<p>Deine ge&auml;nderten W&uuml;nsche wurden eingetragen. Der Weihnachtswichtel wird sie jetzt erneut pr&uuml;fen. Vielen Dank f&uuml;r deine Teilnahme und noch viel Spa&szlig; am Wichteln!</p>";
 
 $fehler_eintragen = "<p><b>Oh Nein!</b> Hier ist gerade etwas furchtbar schief gelaufen. Die Datenbank hat Deine W&uuml;nsche verschluckt! Das Problem ist dieses Jahr zum ersten Mal aufgetreten und wir suchen noch, wo der Fehler liegt. Bis dahin musst Du Deine W&uuml;nsche leider noch einmal eintragen.<br><br>Bitte schlie&szlig;e vorher unbedingt alle Tabs/Instanzen Deines Browsers, damit das Script sauber neu starten kann.<br><br>Sollte der Fehler wiederholt auftreten versuche einen anderen Browser zu nutzen. Und bitte informiere in jedem Fall die Systemhexe unter <a href=\"mailto:dieverschleierte@web.de;subject=Kann keine W&uuml;nsche eintragen\"><font color=\"#FFFFFF\">dieverschleierte@web.de</font></a> &Uuml;ber dieses Problem. Der wird sich dann bei Dir melden um das Problem zu beheben.</p>";
 ?>

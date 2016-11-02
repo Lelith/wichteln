@@ -81,7 +81,7 @@ switch($Grund) {
   case 'blacklist':
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
-      die("Datebank verbindung schlug fehl: ". mysql_error());
+      die("Datebankverbindung schlug fehl: ". mysql_error());
     } else {
       mysql_select_db($dbname);
       #Hole Grund aus DB
@@ -95,22 +95,22 @@ switch($Grund) {
       mysql_close();
     }
     if ($grund == "AKTIVSPERRE") {
-      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Da Du im Forum vom Suche&Biete- und Aktivit&auml;tenbereich dauerhaft gebannt bist, kannst Du auch nicht am Wichteln teilnehmen. Wenn Du der Meinung bist, zu Unrecht gebannt worden zu sein, wende dich bitte an die Weihnachtshexe.</p>";
+      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Da Du im Forum vom Suche&Biete- und Aktivit&auml;tenbereich dauerhaft gebannt bist, kannst Du auch nicht am Wichteln teilnehmen. Wenn Du der Meinung bist, zu Unrecht gebannt worden zu sein, wende dich bitte an die Weihnachtswichtel.</p>";
     }
 
     elseif ($grund == "WICHTELN") {
-      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du hast beim letztj&auml;hrigen Wichteln die Deadline zum Verschicken nicht eingehalten und bist daher f&uuml;r das diesj&auml;hrige Wichteln gesperrt. Danach erlischt die Sperre automatisch. Wenn Du der Meinung bist, zu Unrecht gesperrt worden zu sein, wende dich bitte an die Weihnachtshexe.</p>";
+      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du hast beim letztj&auml;hrigen Wichteln die Deadline zum Verschicken nicht eingehalten und bist daher f&uuml;r das diesj&auml;hrige Wichteln gesperrt. Danach erlischt die Sperre automatisch. Wenn Du der Meinung bist, zu Unrecht gesperrt worden zu sein, wende dich bitte an die Weihnachtswichtel.</p>";
     }
     elseif ($grund == "TEMP") {
-      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist im Forum im Aktivit&auml;tenbereich vorr&uuml;bergehend gesperrt und solange diese Sperre gilt bist du auch vom Wichteln ausgeschlossen. Wenn Du der Meinung bist, zu Unrecht gesperrt worden zu sein, wende dich bitte an die Weihnachtshexe.</p>";
+      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist im Forum im Aktivit&auml;tenbereich vorr&uuml;bergehend gesperrt und solange diese Sperre gilt bist du auch vom Wichteln ausgeschlossen. Wenn Du der Meinung bist, zu Unrecht gesperrt worden zu sein, wende dich bitte an die Weihnachtswichtel.</p>";
     }
     else {
-      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist f&uuml;r das Wichteln gesperrt, aber wir k&ouml;nnen dir leider momentan nicht sagen warum. Um den Grund zu erfahren oder wenn du denkst die Sperre ist nicht berechtigt wende dich bitte an die Weihnachtshexe.</p>";
+      echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist f&uuml;r das Wichteln gesperrt, aber wir k&ouml;nnen dir leider momentan nicht sagen warum. Um den Grund zu erfahren oder wenn du denkst die Sperre ist nicht berechtigt wende dich bitte an die Weihnachtswichtel.</p>";
     }
   break;
 
   case 'schon_wunsche':
-    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Es sind bereits W&uuml;nsche von Dir in der Datenbank vorhanden. Wenn Du meinst, dass es sich hier um einen Fehler handelt, dann kontaktiere bitte die Weihnachtshexe.</p>";
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Es sind bereits W&uuml;nsche von Dir in der Datenbank vorhanden. Wenn Du meinst, dass es sich hier um einen Fehler handelt, dann kontaktiere bitte die Weihnachtswichtel.</p>";
   break;
 
   case 'nur_ein_geschenk':
@@ -118,7 +118,7 @@ switch($Grund) {
   break;
 
   case 'kein_admin':
-    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist leider weder der Admin, noch der Weihnachtshexe. Daher hast Du hier leider keinen Zutritt.</p>";
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du bist leider weder der Admin, noch der Weihnachtswichtel. Daher hast Du hier leider keinen Zutritt.</p>";
   break;
 
   default:

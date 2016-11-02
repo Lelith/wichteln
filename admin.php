@@ -35,7 +35,7 @@ if ($un=="Anonymous") $user_id=0;
 
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysql_error());
+  die("Datebankverbindung schlug fehl: ". mysql_error());
 } else {
   mysql_select_db($dbname);
   $query1= "SELECT wichtel.wichtel_id, wichtel.nick from wi_wichtel as wichtel, wi_geschenk as geschenk where wichtel.wichtel_id = geschenk.wichtel_id group by wichtel.wichtel_id";

@@ -32,7 +32,7 @@ if ($un=="Anonymous") $user_id=0;
 
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysql_error());
+  die("Datebankverbindung schlug fehl: ". mysql_error());
 } else {
   mysql_select_db($dbname);
   $query = mysql_query("SELECT buerge_id FROM wi_buerge WHERE wichtel_id = '$user_id'");
@@ -194,7 +194,7 @@ EINTRAG;
     include("cfg.php");
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
-      die("Datebank verbindung schlug fehl: ". mysql_error());
+      die("Datebankverbindung schlug fehl: ". mysql_error());
     } else {
       mysql_select_db($dbname);
 
@@ -280,7 +280,7 @@ function baumstatus(){
   #Baum berechnen und anzeigen
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
   } else{
   mysql_select_db($dbname);
 
@@ -352,7 +352,7 @@ function detail()
   $geschenk_id = $datenanf[3];
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
   } else {
     mysql_select_db($dbname);
     $query = "SELECT wichtel_id, beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
@@ -446,7 +446,7 @@ function senden() {
 
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
   } else {
     mysql_select_db($dbname);
 
@@ -522,7 +522,7 @@ EINTRAG;
           $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n";
           $mailto = $usermail;
           $subject = "Hallo Wichtel";
-          $header = "From: Weihnachtshexe <dieverschleierte@web.de>";
+          $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
           $anfragen_mail = str_replace ("_USERNAME_", $user->data['username'], $anfragen_mail);
           $anfragen_mail = str_replace ("_WUNSCHINFO_", $wunschinfo, $anfragen_mail);
           mail($mailto,$subject,$anfragen_mail,$header);
