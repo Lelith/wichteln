@@ -28,6 +28,9 @@ $user_id = $user->data['user_id'];
 $user_posts = $user->data['user_posts'];
 
 # sortiere nicht admins aus
+if($user_id != $admin && $user_id != $orgawichtel){
+   header("Location: was-ist-denn-hier-los.php?Grund=admin");
+}
 
 $un=$user->data['username'];
 if ($un=="Anonymous") $user_id=0;

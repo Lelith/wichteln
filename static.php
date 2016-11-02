@@ -3,6 +3,7 @@
 $user_min_posts=100;
 $buerge_min_posts=500;
 $orgawichtel = 10714;
+$admin = 109;
 
 /* test */
 $eintragen_start=201511080000;
