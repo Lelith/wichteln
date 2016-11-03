@@ -72,7 +72,7 @@ function chkFormular () {
 
     <section class="main">
     <?php  include("nav.php");?>
-      <h2>Geschenk als versandt markieren!</h2>
+      <h2>Geschenk als versendet markieren</h2>
 
 <?php
 #Ziehe Variablen aus HTTP_VARS
@@ -178,13 +178,13 @@ function senden()
 
     echo "Geschenk, das du als verschickt markieren möchtest: ".$geschenk_id."<br>";
     if ($db_geschenk_id==NULL) {
-      echo "Es konnte kein Geschenk mit der von dir eingegebenen ID gefunden werden<br>";
+      echo "Es konnte kein Geschenk mit der von dir eingegebenen ID gefunden werden.<br>";
     }else if($db_status != 1) {
       echo "Status des Geschenks: ".$geschenk_status[$db_status]."<br>";
     }else if ($db_partner_id != $db_cu_id) {
-      echo "Das ist nicht die ID von deinem ausgewählten Geschenk<br>";
+      echo "Das ist nicht die ID von deinem ausgewählten Geschenk.<br>";
     }else if($db_gesendet != NULL) {
-      echo "Das Geschenk wurde bereits als versendet markiert<br>";
+      echo "Das Geschenk wurde bereits als versendet markiert.<br>";
     }
 
     echo "Wenn du nicht weißt, warum du diesen Fehler bekommen hast, melde dich bitte beim Weihnachtswichtel. ";

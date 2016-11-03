@@ -15,7 +15,9 @@
       ?>
       <div class="main">
         <p>
-        Wir begr&uuml;&szlig;en euch auch dieses Jahr zum Weihnachtswunschwichteln! Um herauszufinden, was das Wichteln ist, wie es abl&auml;uft und wie ihr mitmachen k&ouml;nnt, schaut bitte in die <a href="und-so-gehts.html" target="_blank">Regeln</a>. Um auf dem neusten Stand zu sein, schaut bitte auch hinein, wenn ihr bereits mitgemacht habt, danke!<br>
+        Wir begr&uuml;&szlig;en euch auch dieses Jahr zum Weihnachtswunschwichteln!<br>
+        Um herauszufinden, was das Wichteln ist, wie es abl&auml;uft und wie ihr mitmachen k&ouml;nnt, schaut bitte in die <a href="und-so-gehts.html" target="_blank">Regeln</a>.<br> 
+        Um auf dem neusten Stand zu sein, schaut bitte auch hinein, wenn ihr bereits mitgemacht habt, danke!<br>
       </p>
       <p>
         Wenn die Links unten nicht funktionieren, liegt das daran, dass diese Funktionen nur zu bestimmten Zeiten aktiv sind. Den Zeitplan findet ihr in den Regeln.
