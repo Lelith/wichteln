@@ -60,7 +60,7 @@ switch($Grund) {
   break;
 
   case 'zeit_anfragen':
-    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 15.11.2015 bis zum 29.11.2015 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom ".$anfragen_start." bis zum ".$anfragen_ende." zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
 
   case 'zeit_senden':

@@ -144,7 +144,7 @@ EINTRAG;
           $beschreibung = $wunsch["beschreibung"];
           $status = $geschenk_status[$wunsch["status"]];
           echo <<<WUNSCH
-          <p><a href="./wunsch.php?id=$i">$beschreibung</a> Status: $status </p>
+          <p><a href="./wunsch.php?wunsch_id=$i">$beschreibung</a> Status: $status </p>
 WUNSCH;
         }
         ?>

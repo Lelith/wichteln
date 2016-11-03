@@ -25,22 +25,4 @@ $buergen_ende=   202011290000;
 //status mapping
 $geschenk_status = array("noch offen", "ausgewählt", "wird bereits bewichtelt", "verschickt", "erhalten");
 
-
-/* prooduktiv
-
-$eintragen_start=201511081000; //08.11.2015
-$eintragen_ende=201511220000; //22.11.2015
-
-$anfragen_start=201511150000; //18.11.2015
-$anfragen_ende=201511290000; //29.11.2015
-
-$senden_start=201511150000; //15.11.2015
-$senden_ende=201512130000; //13.12.2015
-
-$empfangen_start=201511150000; //15.11.2015
-$empfangen_ende=201512200000; //22.12.2015
-
-$buergen_start=201511150000; //15.11.2015
-$buergen_ende=201511290000; //29.11.2015
-*/
 ?>
