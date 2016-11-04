@@ -121,7 +121,7 @@ if (!$db) {
           </div>
 EINTRAG;
 
-      if(§status == 0) {
+      if($status == 0) {
 
         echo <<<SUBMIT
           <form action="./wunsch_aussuchen.php" method="post" name="Eintrag">

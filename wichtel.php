@@ -38,7 +38,20 @@ if (!$db) {
   mysql_select_db($dbname);
 
   # zeige nur für admin und für partner
-  $partnerquery = "select geschenk_id from wi_geschenk where partner_id = '$user_id'";
+  $partnerquery1 = "select wichtel_id from wi_wichtel where forum_id = '$user_id'";
+  $partnerid_result = mysql_query($partnerquery1);
+
+  if(!$partnerid_result){
+    $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+    $message .= 'Gesamte Abfrage: ' . $partnerquery;
+    die($message);
+  }
+
+  while ($row =@ mysql_fetch_array($partnerid_result)) {
+    $partner_id = $row[wichtel_id];
+  }
+
+  $partnerquery = "select geschenk_id from wi_geschenk, wi_wichtel where wi_geschenk.partner_id = '$partner_id'";
   $partner_result = mysql_query($partnerquery);
 
   if(!$partner_result){
@@ -66,7 +79,7 @@ if (!$db) {
       $wichteldata = array('username' => $row['nick'], 'name' => $row['name'], 'adresse' => $row['adresse'], 'adrzusatz' => $row['adrzusatz'], 'plz' => $row['plz'], 'ort' => $row['ort'], 'land' => $row['land'], 'notizen' => $row['notizen'] );
     }
 
-    if(geschenk_id > 0){
+    if($geschenk_id > 0){
       $get_geschenk ="select geschenk_id, status, beschreibung from wi_geschenk where geschenk_id ='$geschenk_id'";
     } else {
       $get_geschenk = "select geschenk_id, status, beschreibung from wi_geschenk where wichtel_id ='$wichtel_id'";
@@ -144,7 +157,7 @@ EINTRAG;
           $beschreibung = $wunsch["beschreibung"];
           $status = $geschenk_status[$wunsch["status"]];
           echo <<<WUNSCH
-          <p><a href="./wunsch.php?wunsch_id=$i">$beschreibung</a> Status: $status </p>
+          <p><a href="./wunsch.php?geschenk_id=$i">$beschreibung</a> Status: $status </p>
 WUNSCH;
         }
         ?>
