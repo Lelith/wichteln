@@ -172,6 +172,9 @@ function suche($suchstat) {
               <option id="12">Kosmetik/Badezimmer</option>
             </select>
           </li>
+          <li>
+          <input id="deutschland" type="checkbox" name="datenanf[3]" value="deutschland"><label for="deutschland">Nur Wünsche die nach Deutschland verschickt werden anzeigen</label>
+          </li>
           </ul>
 
           <input type="submit" name="suchedb" value="Suchen">
@@ -190,6 +193,7 @@ EINTRAG;
     $text = $search[0];
     $level =  $search[1];
     $art =  $search[2];
+    $deutschland = $search[3];
 
     include("cfg.php");
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
@@ -212,7 +216,11 @@ EINTRAG;
       }
 
       #hole geschenk ids ausser current user geschenke
-      $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$cu_wichtel_id'";
+      if($deutschland == 'deutschland') {
+        $sql = "SELECT geschenk.geschenk_id, wichtel.wichtel_id FROM wi_geschenk as geschenk, wi_wichtel as wichtel WHERE wichtel.wichtel_id=geschenk.wichtel_id AND status=0 AND wichtel.wichtel_id!='$cu_wichtel_id' AND (wichtel.land ='deutschland' OR wichtel.land = 'germany')";
+      } else {
+        $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$cu_wichtel_id'";
+      }
 
       #if ($text) { $sql = $sql." AND MATCH (beschreibung) AGAINST ('$text' IN BOOLEAN MODE)"; }
       if ($suchstat == 1) {
@@ -222,9 +230,10 @@ EINTRAG;
         if ($level != "Egal") {
           $sql = $sql." AND level='$level'";
         }
-        if (
-        $art != "Egal") { $sql = $sql." AND art='$art'";
+        if ($art != "Egal") {
+          $sql = $sql." AND art='$art'";
         }
+
       } //if ($suchstat == 1)
 
       $wunschquery = mysql_query($sql);
@@ -238,6 +247,9 @@ EINTRAG;
       while ($row =@ mysql_fetch_array($wunschquery)) {
         $wunschliste[] = $row["geschenk_id"];
       }
+
+
+
       if (count($wunschliste) > 0){
         foreach($wunschliste as $i => $geschenk) {
           $query = "SELECT beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk'";
@@ -255,13 +267,11 @@ EINTRAG;
             $beschreibung2 = substr($beschreibung, 0, 200);
             if (strlen($beschreibung)>200) $beschreibung2=$beschreibung2."...";
             echo <<<AUSGABE
-              <div>
+              <div class="wunschbox">
                 <p>$beschreibung2</p>
                 <p><i>Schwierigkeitsgrad: $level</i></p>
                 <p><i>Kategorie: $art</i></p>
-                <form action="$PHP_SELF" method="post" name="Detail-$i">
-                <input type="hidden" name="datenanf[3]" value="$geschenk">
-                <input type="submit" name="detail" value="mehr Infos"></form>
+                <p><a href="./wunsch.php?geschenk_id=$geschenk" target="_blank">alle details anzeigen</a></p>
               </div>
 AUSGABE;
           } //while ($erg =@ mysql_fetch_array($query))
