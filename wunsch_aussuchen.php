@@ -16,7 +16,6 @@
     <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
 
     <section class="main">
-      <p><a href="index.php">Zurück zur Startseite</a></p>
       <h2>Wunsch auswählen</h2>
 <?php
 #Beginne Session
@@ -49,7 +48,6 @@ $un=$user->data['username'];
 if ($un=="Anonymous") $user_id=0;
 $geschenk_id = 0;
 $geschenk_id = $post['wunsch_id'];
-print($geschenk_id);
 
 senden($geschenk_id);
 
@@ -73,7 +71,6 @@ function senden($geschenk_id) {
     mysql_select_db($dbname);
 
     $query ="SELECT wichtel_id, beschreibung, level, art, status FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
-    print($query);
     $result = mysql_query($query);
 
     while ($erg =@ mysql_fetch_array($result)) {
@@ -150,7 +147,6 @@ EINTRAG;
           $anfragen_mail = str_replace ("_USERNAME_", $user->data['username'], $anfragen_mail);
           $anfragen_mail = str_replace ("_WUNSCHINFO_", $wunschinfo, $anfragen_mail);
           mail($mailto,$subject,$anfragen_mail,$header);
-          echo($anfragen_mail);
           echo "<p>Diese Informationen wurden gerade auch per Mail an die Adresse <i>".$usermail."</i> verschickt.</p>";
         } //( (!$status) && ($wichtel_id != $user_wichtel_id) )
         else {
@@ -161,6 +157,7 @@ EINTRAG;
 } //function senden()
 ?>
 </div>
+<p><a href="index.php">Zurück zur Startseite</a></p>
 </section>
 </article>
 </body>
