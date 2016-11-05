@@ -268,7 +268,7 @@ EINTRAG;
             if (strlen($beschreibung)>200) $beschreibung2=$beschreibung2."...";
             echo <<<AUSGABE
               <div class="wunschbox">
-                <p>$beschreibung2</p>
+                <p class="description">$beschreibung2</p>
                 <p><i>Schwierigkeitsgrad: $level</i></p>
                 <p><i>Kategorie: $art</i></p>
                 <p><a href="./wunsch.php?geschenk_id=$geschenk" target="_blank">alle details anzeigen</a></p>
