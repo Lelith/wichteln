@@ -33,9 +33,10 @@ $user_id = $user->data['user_id'];
 <article class="container">
   <header class="head">
     <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
-  <h2 class="page-heading">Hier hat was nicht funktioniert!</h2>
   </header>
+  <?php  include("nav.php");?>
 <section class="main">
+  <h2 class="page-heading">Hier hat was nicht funktioniert!</h2>
 
 <?php
 // Besorge Fehlermeldung und Daten
