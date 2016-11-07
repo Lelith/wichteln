@@ -24,22 +24,91 @@ $user->setup();
 $user_id = $user->data['user_id'];
 $user_posts = $user->data['user_posts'];
 
-# zeige nur für admin und für partner
-
 $un=$user->data['username'];
 if ($un=="Anonymous") $user_id=0;
 
 $wichtel_id = $get['wichtel_id'];
+$geschenk_id = 0;
+$allowed = false;
 
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
   die("Datebankverbindung schlug fehl: ". mysql_error());
 } else {
   mysql_select_db($dbname);
-  $query = "select * from wi_wichtel where wichtel_id = $wichtel_id";
-  $result = mysql_query($query);
+
+  # zeige nur für admin und für partner
+  $partnerquery1 = "select wichtel_id from wi_wichtel where forum_id = '$user_id'";
+  $partnerid_result = mysql_query($partnerquery1);
+
+  if(!$partnerid_result){
+    $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+    $message .= 'Gesamte Abfrage: ' . $partnerquery;
+    die($message);
+  }
+
+  while ($row =@ mysql_fetch_array($partnerid_result)) {
+    $partner_id = $row[wichtel_id];
+  }
+
+  $partnerquery = "select geschenk_id from wi_geschenk, wi_wichtel where wi_geschenk.partner_id = '$partner_id'";
+  $partner_result = mysql_query($partnerquery);
+
+  if(!$partner_result){
+    $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+    $message .= 'Gesamte Abfrage: ' . $partnerquery;
+    die($message);
+  }
+
+  while ($row =@ mysql_fetch_array($partner_result)) {
+    $geschenk_id = $row[geschenk_id];
+  }
+
+  if ($user_id == $admin || $user_id == $orgawichtel || $geschenk_id > 0) {
+    //fetch all the data
+    $query = "select * from wi_wichtel where wichtel_id = $wichtel_id";
+    $result = mysql_query($query);
+
+    if(!$result){
+      $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+      $message .= 'Gesamte Abfrage: ' . $query;
+      die($message);
+    }
+
+    while ($row =@ mysql_fetch_array($result)) {
+      $wichteldata = array('username' => $row['nick'], 'name' => $row['name'], 'adresse' => $row['adresse'], 'adrzusatz' => $row['adrzusatz'], 'plz' => $row['plz'], 'ort' => $row['ort'], 'land' => $row['land'], 'notizen' => $row['notizen'] );
+    }
+
+    if($geschenk_id > 0){
+      $get_geschenk ="select geschenk_id, status, beschreibung from wi_geschenk where geschenk_id ='$geschenk_id'";
+    } else {
+      $get_geschenk = "select geschenk_id, status, beschreibung from wi_geschenk where wichtel_id ='$wichtel_id'";
+    }
+    $wuensche = mysql_query($get_geschenk);
+
+    if(!$wuensche){
+      $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+      $message .= 'Gesamte Abfrage: ' . $get_geschenk;
+      die($message);
+    }
+
+    while ($row =@ mysql_fetch_array($wuensche)) {
+      $beschreibung = $row['beschreibung'];
+      $beschreibung2 = substr($beschreibung, 0, 200);
+      if (strlen($beschreibung)>200) $beschreibung2=$beschreibung2."...";
+      $status = $geschenk_status[$row['status']];
+      $wunschliste[$row['geschenk_id']] = array("beschreibung" => $row['beschreibung'], "status" => $row['status']);
+    }
+  } else {
+    header("Location: was-ist-denn-hier-los.php?Grund=admin");
+  }
+
+
+  //suche wichtelwunsche und linke alle fuer admin oder einer fuer wichtelpartner
+
 
   mysql_close();
+
 }
 ?>
 
@@ -53,7 +122,6 @@ if (!$db) {
 <base target=_self>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <link href="./wicht.css" rel="stylesheet" type="text/css">
-<p><a href="index.php">Zurück zur Startseite</a></p>
 </head>
 
 <body>
@@ -62,8 +130,38 @@ if (!$db) {
     <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
 
     <section class="main">
-      <h2>wichtel</h2>
+      <p><a href="index.php">Zurück zur Startseite</a></p>
+      <h2>Wichtelinformationen</h2>
+      <div class="infobox">
 
+      <?php
+      echo <<<EINTRAG
+        <p><b>Usernickname:</b> $wichteldata[username]</p>
+        <p><b>Adresse:</b><br>
+        $wichteldata[name]<br>
+        $wichteldata[adresse]</br>
+        $wichteldata[adrzusatz]</br>
+        $wichteldata[plz] $wichteldata[ort]</br>
+        $wichteldata[land]</br>
+        </p>
+        <p> <b>Weitere Informationen</b> <br>
+        $wichteldata[notizen]</br>
+        </p>
+EINTRAG;
+      ?>
+      </div>
+      <div class="infobox">
+        <h2>Wichtelwunsch</h2>
+        <?php
+        foreach($wunschliste as $i => $wunsch) {
+          $beschreibung = $wunsch["beschreibung"];
+          $status = $geschenk_status[$wunsch["status"]];
+          echo <<<WUNSCH
+          <p><a href="./wunsch.php?geschenk_id=$i">$beschreibung</a> Status: $status </p>
+WUNSCH;
+        }
+        ?>
+      </div>
     </section>
     </article>
 </body>

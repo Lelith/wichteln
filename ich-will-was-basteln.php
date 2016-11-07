@@ -172,6 +172,9 @@ function suche($suchstat) {
               <option id="12">Kosmetik/Badezimmer</option>
             </select>
           </li>
+          <li>
+          <input id="deutschland" type="checkbox" name="datenanf[3]" value="deutschland"><label for="deutschland">Nur Wünsche die nach Deutschland verschickt werden anzeigen</label>
+          </li>
           </ul>
 
           <input type="submit" name="suchedb" value="Suchen">
@@ -190,6 +193,7 @@ EINTRAG;
     $text = $search[0];
     $level =  $search[1];
     $art =  $search[2];
+    $deutschland = $search[3];
 
     include("cfg.php");
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
@@ -212,7 +216,11 @@ EINTRAG;
       }
 
       #hole geschenk ids ausser current user geschenke
-      $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$cu_wichtel_id'";
+      if($deutschland == 'deutschland') {
+        $sql = "SELECT geschenk.geschenk_id, wichtel.wichtel_id FROM wi_geschenk as geschenk, wi_wichtel as wichtel WHERE wichtel.wichtel_id=geschenk.wichtel_id AND status=0 AND wichtel.wichtel_id!='$cu_wichtel_id' AND (wichtel.land ='deutschland' OR wichtel.land = 'germany')";
+      } else {
+        $sql = "SELECT geschenk_id FROM wi_geschenk WHERE status=0 AND wichtel_id!='$cu_wichtel_id'";
+      }
 
       #if ($text) { $sql = $sql." AND MATCH (beschreibung) AGAINST ('$text' IN BOOLEAN MODE)"; }
       if ($suchstat == 1) {
@@ -222,9 +230,10 @@ EINTRAG;
         if ($level != "Egal") {
           $sql = $sql." AND level='$level'";
         }
-        if (
-        $art != "Egal") { $sql = $sql." AND art='$art'";
+        if ($art != "Egal") {
+          $sql = $sql." AND art='$art'";
         }
+
       } //if ($suchstat == 1)
 
       $wunschquery = mysql_query($sql);
@@ -238,6 +247,9 @@ EINTRAG;
       while ($row =@ mysql_fetch_array($wunschquery)) {
         $wunschliste[] = $row["geschenk_id"];
       }
+
+
+
       if (count($wunschliste) > 0){
         foreach($wunschliste as $i => $geschenk) {
           $query = "SELECT beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk'";
@@ -255,13 +267,11 @@ EINTRAG;
             $beschreibung2 = substr($beschreibung, 0, 200);
             if (strlen($beschreibung)>200) $beschreibung2=$beschreibung2."...";
             echo <<<AUSGABE
-              <div>
-                <p>$beschreibung2</p>
+              <div class="wunschbox">
+                <p class="description">$beschreibung2</p>
                 <p><i>Schwierigkeitsgrad: $level</i></p>
                 <p><i>Kategorie: $art</i></p>
-                <form action="$PHP_SELF" method="post" name="Detail-$i">
-                <input type="hidden" name="datenanf[3]" value="$geschenk">
-                <input type="submit" name="detail" value="mehr Infos"></form>
+                <p><a href="./wunsch.php?geschenk_id=$geschenk" target="_blank">alle details anzeigen</a></p>
               </div>
 AUSGABE;
           } //while ($erg =@ mysql_fetch_array($query))
@@ -336,205 +346,6 @@ function baumstatus(){
                 echo "<img src=\"./statusschleife/schleifeaa0f34.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
         } //switch ($baumstatus)
 }
-
-function detail()
-{
-  include("lanq.php");
-  include("cfg.php");
-  $datenanf = $_SESSION["datenanf"];
-  global $user;
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_detail;
-
-  #Geschenkdaten abrufen
-  $geschenk_id = $datenanf[3];
-  $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
-  if (!$db) {
-    die("Datebankverbindung schlug fehl: ". mysql_error());
-  } else {
-    mysql_select_db($dbname);
-    $query = "SELECT wichtel_id, beschreibung, level, art FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
-
-    $result = mysql_query($query);
-    if (!$result) {
-        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
-        $message .= 'Gesamte Abfrage: ' . $query;
-        die($message);
-    }
-
-    while ($erg =@ mysql_fetch_array($result)) {
-      $wichtel_id = $erg["wichtel_id"];
-      $beschreibung = $erg["beschreibung"];
-      $level = $erg["level"];
-      $art = $erg["art"];
-    } //while ($erg =@ mysql_fetch_array($query))
-
-    $query = "SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'";
-
-
-      while ($erg =@ mysql_fetch_array($query)) {
-        $notizen = $erg["notizen"];
-      } //while ($erg =@ mysql_fetch_array($query))
-      mysql_close();
-    }
-
-    $beschreibung = str_replace("\r\n","<br>",$beschreibung);
-    $notizen = str_replace("\r\n","<br>",$notizen);
-
-    #Geschenkdaten anzeigen
-    echo <<<EINTRAG
-    <div>
-      <p>
-        <h3>Beschreibung:</h3>
-        $beschreibung
-        </p>
-      <p>
-      <h3>Schwierigkeit: </h3>
-        $level
-      </p>
-      <p>
-        <h3>Kategorie:</h3>
-        $art
-      </p>
-      <p>
-        <h3>Notizen:</h3>
-        $notizen
-      </p>
-      </div>
-      <form action="$PHP_SELF" method="post" name="Eintrag">
-        <div>
-        <input type="submit" name="verifize" value="Best&auml;tigen">
-        <input type="submit" name="suche" value=" Zur&uuml;ck ">
-        </div>
-      </form>
-EINTRAG;
-} //detail()
-
-function verifize()
-{
-  global $user;
-  include('lanq.php');
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_verifizieren;
-
-  #Verifizierung einholen
-  echo <<<EINTRAG
-  <form action="$PHP_SELF" method="post">
-  <input id="accept" type="checkbox" name="senden" value="select"><label for="accept">Ich habe alles gelesen und bin einverstanden</label>
-  <input type="submit" name="verifize" value="OK">
-  </form>
-EINTRAG;
-} //verifize()
-
-function senden() {
-  $datenanf = $_SESSION["datenanf"];
-  global $user;
-  include("lanq.php");
-  include("cfg.php");
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_ende;
-
-  #Geschenk- und Wichteldaten abrufen
-  $geschenk_id = $datenanf[3];
-  $forum_id = $user->data['user_id'];
-
-  $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
-  if (!$db) {
-    die("Datebankverbindung schlug fehl: ". mysql_error());
-  } else {
-    mysql_select_db($dbname);
-
-    $query = mysql_query("SELECT wichtel_id, beschreibung, level, art, status FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'");
-
-    while ($erg =@ mysql_fetch_array($query)) {
-      $wichtel_id = $erg["wichtel_id"];
-      $beschreibung = $erg["beschreibung"];
-      $level = $erg["level"];
-      $art = $erg["art"];
-      $status = $erg["status"];
-    } //while ($erg =@ mysql_fetch_array($query))
-
-      $query = mysql_query("SELECT nick, name, adresse, plz, ort, land, notizen, adrzusatz FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'");
-
-      while ($erg =@ mysql_fetch_array($query)) {
-        $nick = $erg["nick"];
-        $name = $erg["name"];
-        $adresse = $erg["adresse"];
-        $adrzusatz = $erg["adrzusatz"];
-        $plz = $erg["plz"];
-        $ort = $erg["ort"];
-        $land = $erg["land"];
-        $notizen = $erg["notizen"];
-      } //while ($erg =@ mysql_fetch_array($query))
-
-      #ueberpruefe ob Wichtel vorhanden, sonst nachtragen
-      $query = mysql_query("SELECT wichtel_id, email FROM wi_wichtel WHERE forum_id = '$forum_id'");
-
-      while ($erg =@ mysql_fetch_array($query)) {
-        $user_wichtel_id = $erg["wichtel_id"];
-        $usermail = $erg["email"];
-      } //while ($erg =@ mysql_fetch_array($query))
-
-      if (!$user_wichtel_id) {
-        $usermail = $user->data['user_email'];
-        $usernick = $user->data['username'];
-        $query = mysql_query("INSERT INTO wi_wichtel ( forum_id, nick, email) VALUES ('$forum_id', '$usernick', '$usermail')");
-
-        $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$forum_id'");
-        while ($erg =@ mysql_fetch_array($query)) {
-          $user_wichtel_id = $erg["wichtel_id"];
-        }
-      }// if (!$user_wichtel_id)
-
-      #ueberprruefe ob Geschenk noch frei und kein eigenes ist
-      if ( ($status==0 || $status==4) && ($wichtel_id != $user_wichtel_id) ) {
-        #Geschenk-Status anpassen
-        $query = mysql_query("UPDATE wi_geschenk SET status = 2 WHERE wichtel_id = '$wichtel_id' AND status != 5;");
-
-        $query = mysql_query("UPDATE wi_geschenk SET status = 1 WHERE geschenk_id = '$geschenk_id'");
-
-        $query = mysql_query("UPDATE wi_geschenk SET partner_id = '$user_wichtel_id' WHERE geschenk_id = '$geschenk_id'");
-
-        mysql_close();
-
-        #Geschenk- und Wichteldaten anzeigen
-        echo <<<EINTRAG
-          <div>
-            <h2>Geschenk-ID: $geschenk_id </h2>
-            &nbsp;(Bitte bewahre die Geschenk-ID gut auf, du musst sie sp&auml;ter auf ds Paket schreiben!)
-            <p><b>Nick:</b> $nick</p>
-            <p><b>Name:</b> $name</p>
-            <p><b>Adresse:</b> $adrzusatz $adresse, $plz $ort, $land</p>
-            <p><b>Beschreibung:</b><br>$beschreibung</p>
-            <p><b>Schwierigkeit:</b> $level</p>
-            <p><b>Kategorie:</b> $art</p>
-            <p><b>Notizen:</b><br>$notizen</p>
-          </div>
-EINTRAG;
-
-          #User-Mail senden
-          $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n";
-          $mailto = $usermail;
-          $subject = "Hallo Wichtel";
-          $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
-          $anfragen_mail = str_replace ("_USERNAME_", $user->data['username'], $anfragen_mail);
-          $anfragen_mail = str_replace ("_WUNSCHINFO_", $wunschinfo, $anfragen_mail);
-          mail($mailto,$subject,$anfragen_mail,$header);
-          echo "<p>Diese Informationen wurden gerade auch per Mail an die Adresse <i>".$usermail."</i> verschickt.</p>";
-        } //( (!$status) && ($wichtel_id != $user_wichtel_id) )
-        else {
-          #Infotext anzeigen
-          echo $anfragen_geschenk_weg;
-        } //else
-      }
-} //function senden()
-
 ?>
 
 <p><a href="index.php">Zur&uuml;ck zur Startseite</a></p>
