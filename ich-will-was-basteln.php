@@ -153,11 +153,11 @@ function suche($suchstat) {
           </li>
           </ul>
 
-          <input type="submit" name="suchedb" value="Suchen">
+          <input type="submit" class="btn" name="suchedb" value="Suchen">
           </form>
           </fieldset>
           <p> ODER </p>
-          <form action="$PHP_SELF" method="post" name="Suche2"><input type="submit" name="sucherand" value="Alle Wünsche anzeigen"></form>
+          <form action="$PHP_SELF" method="post" name="Suche2"><input type="submit" class="btn" name="sucherand" value="Alle Wünsche anzeigen"></form>
 EINTRAG;
 
   #Suche durchfuehren und Ergebnisse und anzeigen

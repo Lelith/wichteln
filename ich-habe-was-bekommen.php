@@ -69,8 +69,8 @@ function eintrag() {
             <input id="geschenk_id" type="text" name="daten[]" size="45" maxlength="100" VALUE="$geschenk_id">
           </li>
           <li>
-            <input type="submit" name="senden" value="abschicken">
-            <input type="reset" value=" löschen ">
+            <input type="submit" class="btn" name="senden" value="abschicken">
+            <input type="reset" class="btn" value=" löschen ">
           </li>
         </ul>
       </fieldset>

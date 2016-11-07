@@ -109,7 +109,7 @@ function eintrag()
     echo <<<EINTRAG
     <form action="$PHP_SELF" method="post">
             <p>Name desjenigen f&uuml;r den Du b&uuml;rgen m&ouml;chtest: <input type="text" name="daten[]" size="50" maxlength="50" VALUE="$wichtel_nick"><br><br>
-            <input type="submit" name="senden" value="eintragen"> <input type="reset" value=" l&ouml;schen "></p>
+            <input type="submit" class="btn" name="senden" value="eintragen"> <input class="btn" type="reset" value=" l&ouml;schen "></p>
     </form>
 EINTRAG;
 

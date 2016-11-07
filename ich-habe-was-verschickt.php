@@ -109,8 +109,8 @@ function eintrag() {
           </li>
         </ul>
         <div>
-          <input type="submit" name="senden" value="abschicken">
-          <input type="reset" value="löschen">
+          <input type="submit" class="btn" name="senden" value="abschicken">
+          <input type="reset" class="btn" value="löschen">
         </div>
       </fieldset>
     </form>
