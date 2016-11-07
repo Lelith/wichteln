@@ -102,29 +102,7 @@ elseif(isset($post['sucherand'])) { $suchstat = 2; suche($suchstat); }
 elseif(isset($post['detail'])) detail();
 elseif(isset($post['senden'])) senden();
 elseif(isset($post['verifize'])) verifize();
-else info();
-
-#Funktionen ausfuehren
-function info ()
-{
-  global $user;
-  include('lanq.php');
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_info;
-
-  #Bestaetigungsformular anzeigen
-  echo <<<FORMULAR
-    <form action="$PHP_SELF" method="post">
-      <p>
-      <input id="aussuchen" type="checkbox" name="suche" value="select"><label for="aussuchen">Ich habe alles gelesen und bin einverstanden</label>
-      <input type="submit" name="suchen" value="OK">
-      </p>
-  </form>
-FORMULAR;
-
-} //function info()
+else{ $suchstat = 0; suche($suchstat); }
 
 function suche($suchstat) {
   $datenanf = $_SESSION["datenanf"];
@@ -134,8 +112,6 @@ function suche($suchstat) {
 
   #Infotext anzeigen
   echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_hinweis;
-
   #Suchformular anzeigen
   echo <<<EINTRAG
     <form action="$PHP_SELF" method="post" name="Suche">

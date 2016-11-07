@@ -160,13 +160,13 @@ function chkFormular () {
 <body>
   <article class="container">
     <header class="head">
-    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
-
+      <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    </header>
+    <?php include("nav.php");?>
     <section class="main">
 
 <?php
 include("static.php");
-include("nav.php");
 include("lanq.php");
 
 #Ziehe Variablen aus HTTP_VARS
@@ -175,29 +175,8 @@ if(isset($post['datenein'])) $_SESSION["datenein"] = $post['datenein'];
 if(isset($post['eintrag'])) eintrag();
 elseif(isset($post['check'])) check();
 elseif(isset($post['senden'])) senden();
-else info();
+else {eintrag();}
 
-#Funktionen ausfuehren
-function info ()
-{
-  global $user;
-
-  include('lanq.php');
-
-  #Infoseite anzeigen
-  echo "<div><p><h3>Hallo ".$user->data['username']."!</h3></p>";
-  echo $eintragen_info;
-
-  #Bestaetigungsformular anzeigen
-  echo <<<FORMULAR
-    <form action="$PHP_SELF" method="post">
-      <p><input type="checkbox" name="eintrag" value="select" id="gewissen">
-      <label for="gewissen">Ich habe alles gelesen und bin einverstanden</label>
-      <input type="submit" name="absenden" value="OK"></p>
-    </form>
-FORMULAR;
-
-} //function info()
 
 
 function eintrag()
@@ -216,7 +195,6 @@ function eintrag()
 
   #Infotext anzeigen
   echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $eintragen_hinweis;
 
     #dateneinformular anzeigen
     echo <<<EINTRAG
@@ -388,8 +366,8 @@ function eintrag()
       <fieldset>
         <legend>Teil 3: Hinweise</legend>
         <p>
-          Diese werden zu allen deinen W&uml;nschen angezeigt.<br>
-          Hier kannst du erw&auml;hnen, was deine generellen Stilvorlieben sind, alles, was deinem Wichtel helfen k&ouml;nnte, deine W&uml;nsche besser einzusch&auml;tzen. Außerdem deine Maße, Kleidergr&ouml;ße, Schuhgr&ouml;ße, Kopfumfang (sofern nicht bereits bei den W&uml;nschen angegeben), Allergien gegen Zutaten/Materialen/Haustiere, besondere Hinweise zu Adressierung/Versand, etc.<br>
+          Diese werden zu allen deinen Wünschen angezeigt.<br>
+          Hier kannst du erw&auml;hnen, was deine generellen Stilvorlieben sind, alles, was deinem Wichtel helfen k&ouml;nnte, deine Wünsche besser einzusch&auml;tzen. Außerdem deine Maße, Kleidergr&ouml;ße, Schuhgr&ouml;ße, Kopfumfang (sofern nicht bereits bei den Wünschen angegeben), Allergien gegen Zutaten/Materialen/Haustiere, besondere Hinweise zu Adressierung/Versand, etc.<br>
           Schreib bitte nicht deinen Nick oder Namen in dieses Feld, da er sonst dem potentiellen Wichtel zu fr&uml;h verraten wird.<br>
           Wir k&ouml;nnen im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein, was wichtig ist.
         </p>
