@@ -83,8 +83,8 @@ if (!$db) {
 <body>
   <article class="container">
     <header class="head">
-    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
-
+      <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    </header>
     <?php  include("nav.php");?>
     <section class="main">
 

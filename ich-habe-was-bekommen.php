@@ -36,7 +36,10 @@ include('static.php');
 
 <body>
   <article class="container">
-    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    <header class="head">
+      <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    </header>
+    <?php  include("nav.php");?>
 
     <section class="main">
 

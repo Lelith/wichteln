@@ -70,8 +70,8 @@ function chkFormular () {
       <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
     </header>
 
+    <?php include("nav.php");?>
     <section class="main">
-    <?php  include("nav.php");?>
       <h2>Geschenk als versendet markieren</h2>
 
 <?php
