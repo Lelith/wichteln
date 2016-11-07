@@ -286,41 +286,8 @@ function baumstatus(){
   if ($werta == 0) { $baumstatus = 100; } else {
     $baumstatus = round(100 / $werta * $wertb);
   }
-        $baumstatus = floor($baumstatus/10);
-        switch ($baumstatus) {
-        case 10:
-                echo "<img src=\"./statusschleife/schleifeff1fed.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 9:
-                echo "<img src=\"./statusschleife/schleifefa90ae.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 8:
-                echo "<img src=\"./statusschleife/schleifeee85de.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 7:
-                echo "<img src=\"./statusschleife/schleifede7dfa.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 6:
-                echo "<img src=\"./statusschleife/schleifedb66f3.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 5:
-                echo "<img src=\"./statusschleife/schleifecf5f6c.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 4:
-                echo "<img src=\"./statusschleife/schleifece44bd.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 3:
-                echo "<img src=\"./statusschleife/schleifeca3210.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 2:
-                echo "<img src=\"./statusschleife/schleifebf25fc.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        case 1:
-                echo "<img src=\"./statusschleife/schleifeae172d.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-                break;
-        default:
-                echo "<img src=\"./statusschleife/schleifeaa0f34.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
-        } //switch ($baumstatus)
+  print("<div class='progress-bar'> Wunschstatus<br>");
+  print("<progress max='100' value='".$baumstatus."'></progress></div>");
 }
 ?>
 

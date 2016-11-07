@@ -31,14 +31,14 @@ $geschenk_id = 0;
 $geschenk_id = $get['geschenk_id'];
 
 
-$db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+$db = mysqli_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysql_error());
+  die("Datebank verbindung schlug fehl: ". mysqli_error());
 } else {
-  mysql_select_db($dbname);
+  mysqli_select_db($dbname);
 
-  $query = mysql_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
-  while ($erg =@ mysql_fetch_array($query)) {
+  $query = mysqli_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
+  while ($erg =@ mysqli_fetch_array($query)) {
      $blacklist = $erg["id_blacklist"];
    }
 
@@ -50,30 +50,30 @@ if (!$db) {
     //fetch all the data
     $query = "SELECT wichtel_id, beschreibung, level, art, status FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
 
-    $result = mysql_query($query);
+    $result = mysqli_query($query);
     if (!$result) {
-        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message  = 'Ungültige Abfrage: ' . mysqli_error() . "\n";
         $message .= 'Gesamte Abfrage: ' . $query;
         die($message);
     }
 
-    while ($erg =@ mysql_fetch_array($result)) {
+    while ($erg =@ mysqli_fetch_array($result)) {
       $wichtel_id = $erg["wichtel_id"];
       $beschreibung = $erg["beschreibung"];
       $level = $erg["level"];
       $art = $erg["art"];
       $status = $erg["status"];
-    } //while ($erg =@ mysql_fetch_array($query))
+    } //while ($erg =@ mysqli_fetch_array($query))
 
     $query = "SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'";
 
-    while ($erg =@ mysql_fetch_array($query)) {
+    while ($erg =@ mysqli_fetch_array($query)) {
       $notizen = $erg["notizen"];
-    } //while ($erg =@ mysql_fetch_array($query))
+    } //while ($erg =@ mysqli_fetch_array($query))
     $beschreibung = str_replace("\r\n","<br>",$beschreibung);
     $notizen = str_replace("\r\n","<br>",$notizen);
   }
-  mysql_close();
+  mysqli_close();
 }
 ?>
 
