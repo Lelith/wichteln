@@ -143,7 +143,7 @@ EINTRAG;
           $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n Du kannst dir die Wunschinformationen auch <a href='https://naehkromanten.net/wichteln/wunsch.php?geschenk_id=$geschenk_id'>hier  noch einmal ansehen und die Daten über deinen <a href='https://naehkromanten.net/wichteln/wichtel.php?wichtel_id=$wichtel_id'>Wichtel hier.</a>";
           $mailto = $usermail;
           $subject = "Hallo Wichtel";
-          $header = "From: Weihnachtswichtel <captain@naehkromanten.net>";
+          $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
           $anfragen_mail = str_replace ("_USERNAME_", $user->data['username'], $anfragen_mail);
           $anfragen_mail = str_replace ("_WUNSCHINFO_", $wunschinfo, $anfragen_mail);
           mail($mailto,$subject,$anfragen_mail,$header);

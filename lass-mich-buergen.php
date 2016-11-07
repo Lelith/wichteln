@@ -161,7 +161,7 @@ function senden()
           #User-Mail senden
           $mailto = $wichtel_mail.",".$user->data['user_email'];
           $subject = "Buerge bestaetigt";
-          $header = "From: Weihnachtswichtel <captain@naehkromanten.net>";
+          $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
           $buergen_mail = str_replace ("_BURGE_", $buerge_nick, $buergen_mail);
           $buergen_mail = str_replace ("_WICHT_", $wichtel_nick, $buergen_mail);
           mail($mailto,$subject,$buergen_mail,$header);

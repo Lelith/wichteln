@@ -153,8 +153,8 @@ function senden() {
 
     $mailto = $mail;
     $subject = "Hallo Wichtel".$mail;
-    $mail2="captain@naehkromanten.net";
-    $header = "From: Weihnachtswichtel <captain@naehkromanten.net>";
+    $mail2="kri_zilla@yahoo.de";
+    $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
     $bekommen_mail = str_replace ("_PARTNER_", $user->data['username'], $bekommen_mail);
     $bekommen_mail = str_replace ("_USERNAME_", $partner, $bekommen_mail);
     mail($mailto,$subject,$bekommen_mail,$header);
