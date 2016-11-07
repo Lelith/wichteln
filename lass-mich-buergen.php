@@ -94,29 +94,7 @@ if(isset($post['daten'])) $_SESSION["daten"] = $post['daten'];
 
 if(isset($post['select'])) eintrag();
 elseif(isset($post['senden'])) senden();
-else info();
-
-#Funktionen ausf�hren
-function info ()
-{
-  global $user;
-  include('lanq.php');
-  include('static.php');
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  $buergen_info = str_replace ("_MINPOST_", $user_min_posts, $buergen_info);
-  echo $buergen_info;
-
-  #Best�tigungsformular anzeigen
-  echo <<<FORMULAR
-  <form action="$PHP_SELF" method="post">
-          <p><input type="checkbox" name="select" id="buergeinfo" value="select"> <label for="buergeinfo">Ich habe alles gelesen und bin einverstanden</label><input type="submit" name="absenden" value="OK"></p>
-  </form>
-FORMULAR;
-
-} //function info()
-
+else { eintrag();}
 
 function eintrag()
 {

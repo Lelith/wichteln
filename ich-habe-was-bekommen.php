@@ -90,7 +90,7 @@ function senden() {
 
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
   } else {
     mysql_select_db($dbname);
     $query = mysql_query("SELECT wichtel_id FROM wi_wichtel WHERE forum_id = '$user_id'");
@@ -116,10 +116,10 @@ function senden() {
     echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
   } //if ( ($db_empfangten != '0') )
   elseif ( ($db_geschenk_id == NULL) || ($db_wichtel_id != $db_wichtel_id2) || ($db_status == 2) ) {
-    echo "Geschenk das du als empfangen bestätigen willst: ".$geschenk_id."<br>";
+    echo "Geschenk, dessen Empfang du best&auml;tigen willst: ".$geschenk_id."<br>";
 
     echo "Deine Daten konnten nicht in der Datenbank gefunden werden!<br><br>";
-    echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
+    echo "Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und den Fehler zu beheben.";
   } //if ( ($db_geschenk_id == NULL) || ($db_wichtel_id != $db_wichtel_id2) || ($db_status != 1) )
   #Daten speichern
 
@@ -127,7 +127,7 @@ function senden() {
     #Daten in DB-Schreiben
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
-      die("Datebank verbindung schlug fehl: ". mysql_error());
+      die("Datebankverbindung schlug fehl: ". mysql_error());
     } else {
       mysql_select_db($dbname);
       $query = mysql_query("UPDATE wi_geschenk SET empfangen = NOW(), status = '4' WHERE geschenk_id = '$geschenk_id'");
@@ -140,7 +140,7 @@ function senden() {
     #Mail an Wichtel schicken
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
-      die("Datebank verbindung schlug fehl: ". mysql_error());
+      die("Datebankverbindung schlug fehl: ". mysql_error());
     } else {
       mysql_select_db($dbname);
       $query = mysql_query("SELECT email, nick FROM wi_wichtel LEFT JOIN wi_geschenk ON (wi_geschenk.partner_id = wi_wichtel.wichtel_id) WHERE wi_geschenk.geschenk_id = '$geschenk_id'");

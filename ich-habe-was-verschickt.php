@@ -72,7 +72,7 @@ function chkFormular () {
 
     <section class="main">
     <?php  include("nav.php");?>
-      <h2>Geschenk als versandt markieren!</h2>
+      <h2>Geschenk als versendet markieren</h2>
 
 <?php
 #Ziehe Variablen aus HTTP_VARS
@@ -140,7 +140,7 @@ function senden()
   #Daten aus Datenbank abrufen
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
   } else {
     mysql_select_db($dbname);
     $cu_forum_id = $user_id;
@@ -176,26 +176,26 @@ function senden()
   if ( ($db_geschenk_id == NULL) || ($db_status != 1) || ($db_partner_id != $db_cu_id) || ($db_gesendet != NULL) ) {
     echo "Deine Anfrage konnte nicht ausgeführt werden<br>";
 
-    echo "Geschenk das du als verschickt markieren möchtest: ".$geschenk_id."<br>";
+    echo "Geschenk, das du als verschickt markieren möchtest: ".$geschenk_id."<br>";
     if ($db_geschenk_id==NULL) {
-      echo "es konnte kein Geschenk mit der von dir eingegebenen ID gefunden werden<br>";
+      echo "Es konnte kein Geschenk mit der von dir eingegebenen ID gefunden werden.<br>";
     }else if($db_status != 1) {
       echo "Status des Geschenks: ".$geschenk_status[$db_status]."<br>";
     }else if ($db_partner_id != $db_cu_id) {
-      echo "Das ist nicht die ID von deinem ausgewählten Geschenk<br>";
+      echo "Das ist nicht die ID von deinem ausgewählten Geschenk.<br>";
     }else if($db_gesendet != NULL) {
-      echo "Das Geschenk wurde bereits als versandt makriert<br>";
+      echo "Das Geschenk wurde bereits als versendet markiert.<br>";
     }
 
-    echo "Wenn du nicht weißt warum du diesen Fehler bekommen hast, melde dich bitte beim Weihnachtswichtel. ";
-    echo "Oder Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zurückckzukehren und die Fehler zu beheben.";
+    echo "Wenn du nicht weißt, warum du diesen Fehler bekommen hast, melde dich bitte beim Weihnachtswichtel. ";
+    echo "Oder Klicke <a href=\"javascript:history.back()\">hier</a>, um zum Formular zurückckzukehren und den Fehler zu beheben.";
   } //if ( ($db_geschenk_id == NULL) || ($db_partner_id != $user->data['user_id']) || ($db_status != '1') || ($db_gesendet != NULL) )
 
   #Daten speichern
   else {
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
-      die("Datebank verbindung schlug fehl: ". mysql_error());
+      die("Datebankverbindung schlug fehl: ". mysql_error());
     } else {
       mysql_select_db($dbname);
       $cu_forum_id = $user->data['user_id'];

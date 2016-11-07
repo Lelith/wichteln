@@ -34,7 +34,7 @@ if ($un=="Anonymous") $user_id=0;
 #Pruefe auf Blacklist
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysql_error());
+  die("Datebankverbindung schlug fehl: ". mysql_error());
 } else {
     mysql_select_db($dbname);
     $query = mysql_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
@@ -99,11 +99,11 @@ function chkFormular () {
 
 
   if (email == "") {
-    alert("Du hast leider keine eMail-Adresse eingegeben!");
+    alert("Du hast leider keine E-Mail-Adresse eingegeben!");
     $('#email').focus();
     return false;
   } else if (!emailReg.test(email)) {
-    alert("Du hast eine falsche eMail-Adresse eingegeben!");
+    alert("Du hast eine falsche E-Mail-Adresse eingegeben!");
     $('#email').focus();
     return false;
   }
@@ -116,7 +116,7 @@ function chkFormular () {
   }
 
   if (addr1 == "") {
-    alert("Du hast leider keine Strasse eingegeben!");
+    alert("Du hast leider keine Stra&szlig;e eingegeben!");
     $('#addr1').focus();
     return false;
   }
@@ -160,13 +160,13 @@ function chkFormular () {
 <body>
   <article class="container">
     <header class="head">
-    <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
-
+      <a href="./index.php"><img src="./img/nostern.gif" border="0" alt=""></a>
+    </header>
+    <?php include("nav.php");?>
     <section class="main">
 
 <?php
 include("static.php");
-include("nav.php");
 include("lanq.php");
 
 #Ziehe Variablen aus HTTP_VARS
@@ -175,29 +175,8 @@ if(isset($post['datenein'])) $_SESSION["datenein"] = $post['datenein'];
 if(isset($post['eintrag'])) eintrag();
 elseif(isset($post['check'])) check();
 elseif(isset($post['senden'])) senden();
-else info();
+else {eintrag();}
 
-#Funktionen ausfuehren
-function info ()
-{
-  global $user;
-
-  include('lanq.php');
-
-  #Infoseite anzeigen
-  echo "<div><p><h3>Hallo ".$user->data['username']."!</h3></p>";
-  echo $eintragen_info;
-
-  #Bestaetigungsformular anzeigen
-  echo <<<FORMULAR
-    <form action="$PHP_SELF" method="post">
-      <p><input type="checkbox" name="eintrag" value="select" id="gewissen">
-      <label for="gewissen">Ich habe alles gelesen und bin einverstanden</label>
-      <input type="submit" name="absenden" value="OK"></p>
-    </form>
-FORMULAR;
-
-} //function info()
 
 
 function eintrag()
@@ -216,74 +195,73 @@ function eintrag()
 
   #Infotext anzeigen
   echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $eintragen_hinweis;
 
     #dateneinformular anzeigen
     echo <<<EINTRAG
 
       <form action="$PHP_SELF" method="post" onsubmit="return chkFormular()" name="Eintrag">
       <fieldset>
-      <legend> Teil 1, deine persönlichen Daten </legend>
+      <legend> Teil 1: Persönliche Daten </legend>
         <ul class="flex-outer">
         <li>
           <label>
-            Dein Nickname im Forum:
+            Nickname im Forum:
           </label>
           <input id='nick' type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[0]" readonly>
         </li>
         <li>
           <label for="emailaddr">
-            Deine eMail-Adresse:
+            E-Mail-Adresse:
           </label>
           <input id="emailaddr" type="email" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[1]">
         </li>
         <li>
           <label for="name">
-            Dein echter Vor- und Nachname:
+            Vor- und Nachname:
           </label>
           <input id="name" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[2]">
         </li>
         <li>
           <label for="addr1">
-            Deine Stra&szlig;e und Hausnummer:
+            Stra&szlig;e und Hausnummer:
           </label>
           <input id="addr1" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[3]">
         </li>
         <li>
           <label for="addr2">
-            * Zus&auml;tzliches Adressfeld ("Bei Schulze" o&Auml;) :
+            * Zus&auml;tzliches Adressfeld:
           </label>
           <input type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[4]">
         </li>
         <li>
           <label for="plz">
-            Deine Postleitzahl:
+            Postleitzahl:
           </label>
           <input id="plz" type="number" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[5]">
         </li>
         <li>
           <label for="ort">
-            Dein Wohnort:
+            Wohnort:
           </label>
           <input id="ort" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[6]">
         </li>
         <li>
           <label for="country">
-            Das Land in dem Du wohnst (=Staat, nicht Bundesland):
+            Land:
           </label>
           <input id="country" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[7]">
         </li>
         </ul>
       </fieldset>
       <div>
-        Wenn du eine alternative Adresse angeben willst die dein Wichtel zB nach einem bestimmten Zeitpunkt verwenden soll, dann schreib die bitte <b>nicht</b> noch zus&auml;tzlich in die Adressfelder sondern in das Notizfeld (s.u.). Wenn du unsicher bist ob deine Adressangaben verst&auml;ndlich/machbar sind, kontaktiere bitte vor dem Eintragen die Weihnachtshexe.<br>
+        Wenn du eine alternative Adresse angeben willst, die dein Wichtel z.B. nach einem bestimmten Zeitpunkt verwenden soll, dann schreibe sie bitte in das Hinweisfeld unten. Wenn du unsicher bist, ob deine Adressangaben verst&auml;ndlich sind, kontaktiere bitte vor dem Eintragen den Weihnachtswichtel.<br>
       </div>
 
       <fieldset>
-        <legend>Teil 2: Deine 3 W&uuml;nsche</legend>
+        <legend>Teil 2: Deine drei W&uuml;nsche</legend>
         <ul class="flex-outer">
           <li>
-            <label for="wish1"> Dein Wichtelwunsch Nummer 1</label>
+            <label for="wish1"> Wichtelwunsch 1</label>
             <textarea name="datenein[]" id="wish1" rows="10" cols="35">$datenein[8]</textarea>
           </li>
           <li>
@@ -318,7 +296,7 @@ function eintrag()
 
           <ul class="flex-outer dividing-line">
             <li>
-              <label>Dein Wichtelwunsch Nummer 2</label>
+              <label>Wichtelwunsch 2</label>
               <textarea id="wish2" name="datenein[]" rows="10" cols="35">$datenein[11]</textarea>
             </li>
             <li>
@@ -352,7 +330,7 @@ function eintrag()
           </ul>
           <ul class="flex-outer dividing-line">
             <li>
-              <label>Dein Wichtelwunsch Nummer 3</label>
+              <label>Wichtelwunsch 3</label>
               <textarea id="wish3" name="datenein[]" rows="10" cols="35">$datenein[14]</textarea>
             </li>
             <li>
@@ -386,12 +364,12 @@ function eintrag()
         </ul>
       </fieldset>
       <fieldset>
-        <legend>Teil 3: Ein paar letzte Infos</legend>
+        <legend>Teil 3: Hinweise</legend>
         <p>
-          Hier ist noch ein Feld in dem du allgemeine Notizen für Deinen Wichtel hinterlassen kannst. Schreib bitte deinen Nick oder Namen nicht in dieses Feld, da er sonst dem potentiellen Wichtel zu fr&uuml;h verraten wird.<br>
-          Die Infos aus diesem Feld werden zu allen deinen W&uml;nschen angezeigt, schreib hier also nur Allgemeines &uuml;ber dich und deine Vorlieben rein. Spezielle Infos zu den einzelnen W&uuml;nschen geh&ouml;ren in die oberen Felder. Hier kannst du erw&auml;hnen was deine generellen Stilvorlieben sind, wie du eingerichtet bist, was du f&uuml;r Hobbies hast, welche Musik du magst, also alles was deinem Wichtel helfen k&ouml;nnte dich und deine W&uuml;nsche besser einzusch&auml;tzen. Au&szlig;erdem deine Ma&szlig;e, Kleidergr&ouml;&szlig;e, Schuhgr&ouml;&szlig;e, Kopfumfang (sofern nicht bereits oben angegeben). <br>
-          Wenn du Allergien hast gegen Materialien die dein Wichtel eventuell verwenden k&ouml;nnte oder gegen Haustiere oder &auml;hnliches, dann erw&auml;hne das hier bitte auf jeden Fall! Ebenso wenn es besondere Hinweise zu Adressierung oder Versand des Geschenkes gibt oder andere Dinge die dein Wichtel beachten sollte.<br>
-          Wir k&ouml;nnen im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein was wichtig ist.
+          Diese werden zu allen deinen Wünschen angezeigt.<br>
+          Hier kannst du erw&auml;hnen, was deine generellen Stilvorlieben sind, alles, was deinem Wichtel helfen k&ouml;nnte, deine Wünsche besser einzusch&auml;tzen. Außerdem deine Maße, Kleidergr&ouml;ße, Schuhgr&ouml;ße, Kopfumfang (sofern nicht bereits bei den Wünschen angegeben), Allergien gegen Zutaten/Materialen/Haustiere, besondere Hinweise zu Adressierung/Versand, etc.<br>
+          Schreib bitte nicht deinen Nick oder Namen in dieses Feld, da er sonst dem potentiellen Wichtel zu fr&uml;h verraten wird.<br>
+          Wir k&ouml;nnen im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein, was wichtig ist.
         </p>
         <ul class="flex-outer">
           <li>
@@ -401,7 +379,6 @@ function eintrag()
       </fieldset>
 
       <div>
-        <p><b>Und wenn Du mit allem fertig bist: Ab daf&uuml;r!</b></p>
         <ul class="flex-outer">
           <li>
             <input type="submit" name="check" value="Eintragen">
@@ -505,7 +482,7 @@ function senden() {
   include("cfg.php");
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug ^fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
     exit();
   } else {
     mysql_select_db($dbname);

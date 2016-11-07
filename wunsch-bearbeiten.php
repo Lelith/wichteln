@@ -127,7 +127,7 @@ function eintrag()
         $query = mysql_query("SELECT * FROM wi_geschenk WHERE status = '5' AND wichtel_id = '$wichtel_id'");
         $wunschanzahl=mysql_num_rows($query); //Anzahl der zu �ndernden W�nsche
 
-        if ($wunschanzahl==0) echo "<br><br><b>Es sind keine W&uuml;nsche von dir zur &Auml;nderung markiert, wenn du trotzdem eine Aufforderung von der Weihnachtshexe bekommen hast, dann kontaktiere sie bitte noch mal, denn es scheint ein Fehler vorzuliegen!</b>";
+        if ($wunschanzahl==0) echo "<br><br><b>Es sind keine W&uuml;nsche von dir zur &Auml;nderung markiert, wenn du trotzdem eine Aufforderung vom Weihnachtswichtel bekommen hast, dann kontaktiere ihn bitte noch einmal, denn es scheint ein Fehler vorzuliegen!</b>";
 
 
         #Variablen vorbereiten
@@ -292,7 +292,7 @@ EINTRAG;
         echo <<<EINTRAG
                 <tr>
                 <td>
-                Die Notizen musst du nicht &uuml;berarbeiten wenn dich die Weihnachtshexe nicht explizit dazu aufgefordert hat. Aber wir zeigen sie dir hier mit an, falls du sie deinen ge&auml;nderten Wunschbeschreibungen anpassen m&ouml;chtest.
+                Die Notizen musst du nicht &uuml;berarbeiten, wenn dich der Weihnachtswichtel nicht explizit dazu aufgefordert hat. Aber wir zeigen sie dir hier mit an, falls du sie deinen ge&auml;nderten Wunschbeschreibungen anpassen m&ouml;chtest.
                 </td>
                 <td>
                         <textarea name="datenaen[13]" rows="10" cols="35">$datenaen[13]</textarea>

@@ -32,7 +32,7 @@ if ($un=="Anonymous") $user_id=0;
 
 $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysql_error());
+  die("Datebankverbindung schlug fehl: ". mysql_error());
 } else {
   mysql_select_db($dbname);
   $query = mysql_query("SELECT buerge_id FROM wi_buerge WHERE wichtel_id = '$user_id'");
@@ -102,29 +102,7 @@ elseif(isset($post['sucherand'])) { $suchstat = 2; suche($suchstat); }
 elseif(isset($post['detail'])) detail();
 elseif(isset($post['senden'])) senden();
 elseif(isset($post['verifize'])) verifize();
-else info();
-
-#Funktionen ausfuehren
-function info ()
-{
-  global $user;
-  include('lanq.php');
-
-  #Infoseite anzeigen
-  echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_info;
-
-  #Bestaetigungsformular anzeigen
-  echo <<<FORMULAR
-    <form action="$PHP_SELF" method="post">
-      <p>
-      <input id="aussuchen" type="checkbox" name="suche" value="select"><label for="aussuchen">Ich habe alles gelesen und bin einverstanden</label>
-      <input type="submit" name="suchen" value="OK">
-      </p>
-  </form>
-FORMULAR;
-
-} //function info()
+else{ $suchstat = 0; suche($suchstat); }
 
 function suche($suchstat) {
   $datenanf = $_SESSION["datenanf"];
@@ -134,8 +112,6 @@ function suche($suchstat) {
 
   #Infotext anzeigen
   echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-  echo $anfragen_hinweis;
-
   #Suchformular anzeigen
   echo <<<EINTRAG
     <form action="$PHP_SELF" method="post" name="Suche">
@@ -198,7 +174,7 @@ EINTRAG;
     include("cfg.php");
     $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
     if (!$db) {
-      die("Datebank verbindung schlug fehl: ". mysql_error());
+      die("Datebankverbindung schlug fehl: ". mysql_error());
     } else {
       mysql_select_db($dbname);
 
@@ -290,7 +266,7 @@ function baumstatus(){
   #Baum berechnen und anzeigen
   $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
   if (!$db) {
-    die("Datebank verbindung schlug fehl: ". mysql_error());
+    die("Datebankverbindung schlug fehl: ". mysql_error());
   } else{
   mysql_select_db($dbname);
 
@@ -346,7 +322,6 @@ function baumstatus(){
                 echo "<img src=\"./statusschleife/schleifeaa0f34.gif\" width=\"600\" height=\"115\" border=\"0\" alt=\"Status\">";
         } //switch ($baumstatus)
 }
-
 ?>
 
 <p><a href="index.php">Zur&uuml;ck zur Startseite</a></p>
