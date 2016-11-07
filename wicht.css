@@ -80,6 +80,8 @@ button {
   padding: 5px 10px;
   text-decoration: none;
   cursor: pointer;
+  display: inline-block;
+  margin:10px;
 }
 
 input[type="submit"]:hover,
