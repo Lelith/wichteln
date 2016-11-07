@@ -97,7 +97,6 @@ Ja, daf&uuml;r gibt es keine Beschr&auml;nkung. Sei dir aber bitte der mehrfache
 <h3>Was passiert, wenn der, f&uuml;r den ich b&uuml;rge, seine Pflicht nicht erf&uuml;llt?</h3>
 Wenn das Geschenk nicht oder nicht rechtzeitig abgeschickt wird, dann &uuml;bertr&auml;gt sich die Strafe daf&uuml;r auf dich.
 <p>
-*/
 
 <a href="index.php">Zur&uuml;ck zur Startseite</a></div>
 
