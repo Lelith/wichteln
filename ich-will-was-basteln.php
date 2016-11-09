@@ -253,7 +253,8 @@ AUSGABE;
           } //while ($erg =@ mysql_fetch_array($query))
         } //foreach
       } else {
-        echo "<div>Keine passenden W&uuml;nsche gefunden. Versuch es bitte mit weniger Einschr&auml;nkungen erneut.</div>";
+        $search=array();
+        echo "<div>Keine passenden W&uuml;nsche gefunden. Versuch es bitte mit weniger Einschr&auml;nkungen <a href='./ich-will-was-basteln.php'>erneut.</a></div>";
       } //else
       mysql_close();
     }

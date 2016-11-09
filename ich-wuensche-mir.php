@@ -367,9 +367,9 @@ function eintrag()
         <legend>Teil 3: Hinweise</legend>
         <p>
           Diese werden zu allen deinen Wünschen angezeigt.<br>
-          Hier kannst du erw&auml;hnen, was deine generellen Stilvorlieben sind, alles, was deinem Wichtel helfen k&ouml;nnte, deine Wünsche besser einzusch&auml;tzen. Außerdem deine Maße, Kleidergr&ouml;ße, Schuhgr&ouml;ße, Kopfumfang (sofern nicht bereits bei den Wünschen angegeben), Allergien gegen Zutaten/Materialen/Haustiere, besondere Hinweise zu Adressierung/Versand, etc.<br>
-          Schreib bitte nicht deinen Nick oder Namen in dieses Feld, da er sonst dem potentiellen Wichtel zu fr&uml;h verraten wird.<br>
-          Wir k&ouml;nnen im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein, was wichtig ist.
+          Hier kannst du erwähnen, was deine generellen Stilvorlieben sind, alles, was deinem Wichtel helfen könnte, deine Wünsche besser einzuschätzen. Außerdem deine Maße, Kleidergröße, Schuhgröße, Kopfumfang (sofern nicht bereits bei den Wünschen angegeben), Allergien gegen Zutaten/Materialen/Haustiere, besondere Hinweise zu Adressierung/Versand, etc.<br>
+          Schreib bitte nicht deinen Nick oder Namen in dieses Feld, da er sonst dem potentiellen Wichtel zu frühh verraten wird.<br>
+          Wir können im Nachhinein keine Infos weiterleiten, also schreib hier bitte alles rein, was wichtig ist.
         </p>
         <ul class="flex-outer">
           <li>
@@ -573,7 +573,7 @@ function senden() {
     include('lanq.php');
     echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
     echo $eintragen_ende;
-  }
+  }^
 
 } //function senden()
 

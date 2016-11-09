@@ -140,13 +140,17 @@ function senden($geschenk_id) {
 EINTRAG;
 
           #User-Mail senden
-          $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n Du kannst dir die Wunschinformationen auch dir bei folgendem link ansehen: href='https://naehkromanten.net/wichteln/wunsch.php?geschenk_id=$geschenk_id  und die Daten über deinen Wichtel hier: href='https://naehkromanten.net/wichteln/wichtel.php?wichtel_id=$wichtel_id .";
+          $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n Du kannst dir die Wunschinformationen auch dir bei folgendem link ansehen: https://naehkromanten.net/wichteln/wunsch.php?geschenk_id=$geschenk_id  und die Daten über deinen Wichtel hier: https://naehkromanten.net/wichteln/wichtel.php?wichtel_id=$wichtel_id .";
           $mailto = $usermail;
           $subject = "Hallo Wichtel";
-          $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
+          $headerFields = array(
+              "From: Weihnachtswichtel <kri_zilla@yahoo.de>",
+              "MIME-Version: 1.0",
+              "Content-Type: text/html;charset=utf-8"
+          );
           $anfragen_mail = str_replace ("_USERNAME_", $user->data['username'], $anfragen_mail);
           $anfragen_mail = str_replace ("_WUNSCHINFO_", $wunschinfo, $anfragen_mail);
-          mail($mailto,$subject,$anfragen_mail,$header);
+          mail($mailto,$subject,$anfragen_mail, $headerFields);
           echo "<p>Diese Informationen wurden gerade auch per Mail an die Adresse <i>".$usermail."</i> verschickt.</p>";
         } //( (!$status) && ($wichtel_id != $user_wichtel_id) )
         else {
