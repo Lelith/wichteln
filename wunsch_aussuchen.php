@@ -140,7 +140,7 @@ function senden($geschenk_id) {
 EINTRAG;
 
           #User-Mail senden
-          $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n Du kannst dir die Wunschinformationen auch <a href='https://naehkromanten.net/wichteln/wunsch.php?geschenk_id=$geschenk_id'>hier  noch einmal ansehen und die Daten über deinen <a href='https://naehkromanten.net/wichteln/wichtel.php?wichtel_id=$wichtel_id'>Wichtel hier.</a>";
+          $wunschinfo="\n\nGeschenk-ID: $geschenk_id\nNick: $nick\nName: $name\nAdresse: $adrzusatz $adresse, $plz $ort, $land\n\nBeschreibung:\n$beschreibung\nSchwierigkeit: $level\nKategorie: $art\n\nNotizen:\n$notizen\n\n Du kannst dir die Wunschinformationen auch dir bei folgendem link ansehen: href='https://naehkromanten.net/wichteln/wunsch.php?geschenk_id=$geschenk_id  und die Daten über deinen Wichtel hier: href='https://naehkromanten.net/wichteln/wichtel.php?wichtel_id=$wichtel_id .";
           $mailto = $usermail;
           $subject = "Hallo Wichtel";
           $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";

@@ -16,7 +16,7 @@
       <div class="main">
         <p>
         Wir begr&uuml;&szlig;en euch auch dieses Jahr zum Weihnachtswunschwichteln!<br>
-        Um herauszufinden, was das Wichteln ist, wie es abl&auml;uft und wie ihr mitmachen k&ouml;nnt, schaut bitte in die <a href="und-so-gehts.html" target="_blank">Regeln</a>.<br>
+        Um herauszufinden, was das Wichteln ist, wie es abl&auml;uft und wie ihr mitmachen k&ouml;nnt, schaut bitte in die <a href="./und-so-gehts.php" target="_blank">Regeln</a>.<br>
         Um auf dem neusten Stand zu sein, schaut bitte auch hinein, wenn ihr bereits mitgemacht habt, danke!<br>
       </p>
       <p>
@@ -35,7 +35,7 @@
         mysql_select_db($dbname);
 
         $query = mysql_query("SELECT COUNT(*) FROM wi_geschenk");
-        while ($erg =@ mysqli_fetch_array($query)) {
+        while ($erg =@ mysql_fetch_array($query)) {
           $werta = $erg["COUNT(*)"];
         }
 

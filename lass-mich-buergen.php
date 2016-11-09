@@ -128,47 +128,57 @@ function senden()
   #Daten aus Datenbank abrufen
   $wichtel_id = $daten["user_id"];//0;
   include("cfg.php");
-  mysql_connect("localhost",$dbuser,$dbpasswd);
-  mysql_select_db($dbname);
-  $query = sprintf("SELECT user_id, user_email FROM phpbb_users WHERE username =%s",
-    mysql_real_escape_string($wichtel_nick));
+  $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+  if (!$db) {
+    die("Datebank verbindung schlug fehl: ". mysql_error());
+  } else {
+    mysql_select_db($dbname);
 
+    $query = sprintf("SELECT user_id, user_email FROM phpbb_users WHERE username ='%s'",
+      mysql_real_escape_string($wichtel_nick));
 
-  while ($erg =@ mysql_fetch_array($query))
-  {
-    $wichtel_id = $erg["user_id"];
-    $wichtel_mail = $erg["user_email"];
+    $result = mysql_query($query);
+
+    while ($erg =@ mysql_fetch_array($result))
+    {
+      $wichtel_id = $erg["user_id"];
+      $wichtel_mail = $erg["user_email"];
+    }
+    mysql_close();
   }
-  mysql_close();
-
-  #�berpr�fe User-ID ob User angemeldet
+  #ueberpruefe User-ID ob User angemeldet
   if ($wichtel_id == NULL) {
-          echo "Der Nick <b>".$wichtel_nick."</b> konnte im Forum nicht gefunden werden!<br><br>";
-          echo "Klicke  <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
+    echo "Der Nick <b>".$wichtel_nick."</b> konnte im Forum nicht gefunden werden!<br><br>";
+    echo "Klicke  <a href=\"javascript:history.back()\">hier</a>, um zum Formular zur&uuml;ckzukehren und die Fehler zu beheben.";
   } //if ($wichtel_id == NULL)
 
   #Daten speichern
   else {
-          #Daten in DB-Schreiben
-          $buerge_id = $user->data['user_id'];
-          $buerge_nick = $user->data['username'];
-          include("cfg.php");
-	mysql_connect("localhost",$dbuser,$dbpasswd);
-	mysql_select_db($dbname);
-        $query = mysql_query("INSERT INTO wi_buerge (buerge_forum_id, buerge_forum_nick, wichtel_id, wichtel_nick) VALUES ('$buerge_id', '$buerge_nick', '$wichtel_id', '$wichtel_nick')");
-          mysql_close();
+    #Daten in DB-Schreiben
+    $buerge_id = $user->data['user_id'];
+    $buerge_nick = $user->data['username'];
+    include("cfg.php");
+    $db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
+    if (!$db) {
+      die("Datebank verbindung schlug fehl: ". mysql_error());
+    } else {
+      mysql_select_db($dbname);
+      $query = "INSERT INTO wi_buerge (buerge_forum_id, buerge_forum_nick, wichtel_id, wichtel_nick) VALUES ('$buerge_id', '$buerge_nick', '$wichtel_id', '$wichtel_nick')";
+      mysql_query($query);
+      mysql_close();
+    }
 
-          #User-Mail senden
-          $mailto = $wichtel_mail.",".$user->data['user_email'];
-          $subject = "Buerge bestaetigt";
-          $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
-          $buergen_mail = str_replace ("_BURGE_", $buerge_nick, $buergen_mail);
-          $buergen_mail = str_replace ("_WICHT_", $wichtel_nick, $buergen_mail);
-          mail($mailto,$subject,$buergen_mail,$header);
+    #User-Mail senden
+    $mailto = $wichtel_mail.",".$user->data['user_email'];
+    $subject = "Buerge bestaetigt";
+    $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
+    $buergen_mail = str_replace ("_BURGE_", $buerge_nick, $buergen_mail);
+    $buergen_mail = str_replace ("_WICHT_", $wichtel_nick, $buergen_mail);
+    mail($mailto,$subject,$buergen_mail,$header);
 
-          #Infotext anzeigen
-          echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
-          echo $buergen_ende;
+    #Infotext anzeigen
+    echo "<p><b>Hallo ".$user->data['username']."!</b></p>";
+    echo $buergen_ende;
 
   } //else
 } //function senden()

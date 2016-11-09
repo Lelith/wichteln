@@ -31,14 +31,14 @@ $geschenk_id = 0;
 $geschenk_id = $get['geschenk_id'];
 
 
-$db = mysqli_connect($dbsrv,$dbuser,$dbpasswd);
+$db = mysql_connect($dbsrv,$dbuser,$dbpasswd);
 if (!$db) {
-  die("Datebank verbindung schlug fehl: ". mysqli_error());
+  die("Datebank verbindung schlug fehl: ". mysql_error());
 } else {
-  mysqli_select_db($dbname);
+  mysql_select_db($dbname);
 
-  $query = mysqli_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
-  while ($erg =@ mysqli_fetch_array($query)) {
+  $query = mysql_query("SELECT id_blacklist FROM wi_blacklist WHERE id_forum = '$user_id'");
+  while ($erg =@ mysql_fetch_array($query)) {
      $blacklist = $erg["id_blacklist"];
    }
 
@@ -50,30 +50,30 @@ if (!$db) {
     //fetch all the data
     $query = "SELECT wichtel_id, beschreibung, level, art, status FROM wi_geschenk WHERE geschenk_id = '$geschenk_id'";
 
-    $result = mysqli_query($query);
+    $result = mysql_query($query);
     if (!$result) {
-        $message  = 'Ungültige Abfrage: ' . mysqli_error() . "\n";
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
         $message .= 'Gesamte Abfrage: ' . $query;
         die($message);
     }
 
-    while ($erg =@ mysqli_fetch_array($result)) {
+    while ($erg =@ mysql_fetch_array($result)) {
       $wichtel_id = $erg["wichtel_id"];
       $beschreibung = $erg["beschreibung"];
       $level = $erg["level"];
       $art = $erg["art"];
       $status = $erg["status"];
-    } //while ($erg =@ mysqli_fetch_array($query))
+    } //while ($erg =@ mysql_fetch_array($query))
 
     $query = "SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'";
 
-    while ($erg =@ mysqli_fetch_array($query)) {
+    while ($erg =@ mysql_fetch_array($query)) {
       $notizen = $erg["notizen"];
-    } //while ($erg =@ mysqli_fetch_array($query))
+    } //while ($erg =@ mysql_fetch_array($query))
     $beschreibung = str_replace("\r\n","<br>",$beschreibung);
     $notizen = str_replace("\r\n","<br>",$notizen);
   }
-  mysqli_close();
+  mysql_close();
 }
 ?>
 
@@ -127,7 +127,7 @@ EINTRAG;
           <form action="./wunsch_aussuchen.php" method="post" name="Eintrag">
           <div>
           <input type="hidden" name="wunsch_id" value="$geschenk_id" />
-          <input type="submit" name="verifize" value="Wunsch jetzt aussuchen">
+          <input type="submit" name="verifize" value="Diesen Wunsch jetzt erfüllen">
           </div>
           </form>
 SUBMIT;

@@ -116,7 +116,7 @@ function chkFormular () {
   }
 
   if (addr1 == "") {
-    alert("Du hast leider keine Stra&szlig;e eingegeben!");
+    alert("Du hast leider keine Straße eingegeben!");
     $('#addr1').focus();
     return false;
   }
@@ -223,7 +223,7 @@ function eintrag()
         </li>
         <li>
           <label for="addr1">
-            Stra&szlig;e und Hausnummer:
+            Straße und Hausnummer:
           </label>
           <input id="addr1" type="text" name="datenein[]" size="45" maxlength="100" VALUE="$datenein[3]">
         </li>
@@ -418,7 +418,7 @@ function check()
         <tr><td width="100">Nick:</td><td>$datenein[0]</td></tr>
         <tr><td>Mail:</td><td>$datenein[1]</td></tr>
         <tr><td>Name:</td><td>$datenein[2]</td></tr>
-        <tr><td>Stra&Szlig;e:</td><td>$datenein[3]</td></tr>
+        <tr><td>Straße:</td><td>$datenein[3]</td></tr>
         <tr><td>Adresszusatz:</td><td>$datenein[4]</td></tr>
         <tr><td>PLZ:</td><td>$datenein[5]</td></tr>
         <tr><td>Ort:</td><td>$datenein[6]</td></tr>
@@ -449,6 +449,7 @@ EINTRAG;
 } //check()
 
 function senden() {
+  include("lanq.php");
   $datenein = $_SESSION["datenein"];
   global $user;
 
@@ -562,7 +563,7 @@ function senden() {
 
     #User-Mail senden
     $mailto = $mail;
-    $subject = "Hallo Wichtel".$mail;
+    $subject = "Hallo Wichtel ".$mail;
     $mail2="kri_zilla@yahoo.de";
     $header = "From: Weihnachtswichtel <kri_zilla@yahoo.de>";
     $eintragen_mail = str_replace ("_USERNAME_", $user->data['username'], $eintragen_mail);
