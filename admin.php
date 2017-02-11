@@ -127,8 +127,8 @@ if (!$db) {
             $partner_id =$wichtel_data["partner_id"];
             echo <<<EINTRAG
             <tr>
-              <td><a href="./wichtel?wichtel_id=$wichtel_id">$wichtel_name</a></td>
-              <td><a href="./wichtel?wichtel_id=$partner_id">$partner_name</a></td>
+              <td><a href="./wichtel.php?wichtel_id=$wichtel_id">$wichtel_name</a></td>
+              <td><a href="./wichtel.php?wichtel_id=$partner_id">$partner_name</a></td>
               <td>$status</td>
             </tr>
 EINTRAG;

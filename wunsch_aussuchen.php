@@ -150,7 +150,7 @@ EINTRAG;
           );
           $anfragen_mail = str_replace ("_USERNAME_", $user->data['username'], $anfragen_mail);
           $anfragen_mail = str_replace ("_WUNSCHINFO_", $wunschinfo, $anfragen_mail);
-          mail($mailto,$subject,$anfragen_mail, $headerFields);
+          mail($mailto,$subject,$anfragen_mail,implode("\r\n", $headerFields));
           echo "<p>Diese Informationen wurden gerade auch per Mail an die Adresse <i>".$usermail."</i> verschickt.</p>";
         } //( (!$status) && ($wichtel_id != $user_wichtel_id) )
         else {

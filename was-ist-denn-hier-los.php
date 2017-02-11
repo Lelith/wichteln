@@ -57,23 +57,23 @@ switch($Grund) {
   break;
 
   case 'zeit_eintragen':
-    echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht nur vom 07.11.2016 bis zum 20.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+    echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht nur vom 10.11.2016 bis zum 23.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
 
   case 'zeit_anfragen':
-    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom ".$anfragen_start." bis zum ".$anfragen_ende." zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht leider nur vom 16.11.2016  bis zum 7.12.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
 
   case 'zeit_senden':
-    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht ab dem 13.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht ab dem 16.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
 
   case 'zeit_empfangen':
-    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht ab dem 13.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+    echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht ab dem 16.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
 
   case 'zeit_buergen':
-    echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht nur vom 13.11.2016 bis zum 27.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
+    echo "<p ><b>Hallo ".$user->data['username']."!</b><br><br>Dieser Dienst steht nur vom 16.11.2016 bis zum 27.11.2016 zur Verf&uuml;gung. Und da heute der ".date("d.m.Y")." ist, ist dieser Dienst leider nicht verf&uuml;gbar.</p>";
   break;
   case 'geschenksperre':
     echo "<p><b>Hallo ".$user->data['username']."!</b><br><br>Du hast bereits ein Geschenk ausgew&auml;hlt. Bevor du ein weiteres aussuchen kannst, musst du den Versand des anderen best&auml;tigt haben.</p><br>";

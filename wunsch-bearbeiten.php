@@ -1,10 +1,17 @@
 <?php
 #Beginne Session
 session_start();
-
 $post=$_POST;
+date_default_timezone_set('Europe/Berlin');
+
+$today=date(YmdHi); //$today="201611081200";
+
+//$today="201511081200";
+
+
 include("cfg.php");
-// Ben�tigte Dateien und Variablen von phpBB3
+require_once("static.php");
+// Benoetigte Dateien und Variablen von phpBB3
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../forum/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -15,44 +22,25 @@ $user->session_begin();  // Session auslesen
 $auth->acl($user->data); // Benutzer-Informationen laden
 $user->setup();
 
+
 #Daten aus Datenbank abrufen
 $user_id = $user->data['user_id'];
 $user_posts = $user->data['user_posts'];
 
-#Pr�fe auf Blacklist
-mysql_connect("localhost",$dbuser,$dbpasswd);
-mysql_select_db($dbname);
-$query = mysql_query("SELECT blacklist_id FROM wi_blacklist WHERE user_id = '$user_id'");
-while ($erg =@ mysql_fetch_array($query)) { $blacklist = $erg["blacklist_id"]; }
-mysql_close();
+# sortiere nicht admins aus
+if($user_id != $admin && $user_id != $orgawichtel){
+   header("Location: was-ist-denn-hier-los.php?Grund=admin");
+}
 
-
-$td=getdate();
-if ($td["mday"]<10)
-	$td["mday"]="0".$td["mday"];
-if ($td["mon"]<10)
-	$td["mon"]="0".$td["mon"];
-if ($td["hours"]<10)
-	$td["hours"]="0".$td["hours"];
-if ($td["minutes"]<10)
-	$td["minutes"]="0".$td["minutes"];
-
-$today=$td["year"].$td["mon"].$td["mday"].$td["hours"].$td["minutes"];
-//$today="201511270000";
-//$user_posts=100;
-#�berpr�fe Rechte
-include('static.php');
-if ( !$user->data['is_registered'] ) { header("Location: was-ist-denn-hier-los.php?Grund=nicht_eingeloggt"); }
-elseif ( $user_posts < $user_min_posts ) { header("Location: was-ist-denn-hier-los.php?Grund=zu_wenig_posts"); }
-//elseif ( (($today < $eintragen_start)) || (($today > $eintragen_ende)) ) { header("Location: was-ist-denn-hier-los.php?Grund=zeit_eintragen"); }
-elseif ( ($blacklist != NULL) ) { header("Location: was-ist-denn-hier-los.php?Grund=blacklist"); }
+$un=$user->data['username'];
+if ($un=="Anonymous") $user_id=0;
 
 
 ?>
 
 <html>
 <head>
-<meta name="author" content="systemhexe">
+<meta name="author" content="kaylee">
 <meta name="debug" content="toxic_garden">
 <meta name="organization" content="n&auml;hkromanten">
 <meta charset="UTF-8">

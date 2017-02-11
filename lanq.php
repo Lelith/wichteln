@@ -10,7 +10,7 @@ $eintragen_info = "<p>
 
 $eintragen_check = "<p>Bitte überprüfe deine Angaben nochmal genau bevor sie eingetragen werden. Du kannst sie später nicht mehr ändern.</p>";
 
-$eintragen_mail = "Hallo _USERNAME_! \n\nDeine Wuensche wurden in unsere Wunschdatenbank eingetragen. Ab dem 13.11.2016 kannst Du Dir die Wünsche der anderen anzeigen lassen und mit dem Wichteln loslegen. \n\nViel Spass wünscht dein Weihnachtswichtel";
+$eintragen_mail = "Hallo _USERNAME_! \n\nDeine Wuensche wurden in unsere Wunschdatenbank eingetragen. Ab dem 16.11.2016 kannst Du Dir die Wünsche der anderen anzeigen lassen und mit dem Wichteln loslegen. \n\nViel Spass wünscht dein Weihnachtswichtel";
 
 $eintragen_ende = "<p>Deine Daten wurden eingetragen. Vielen Dank für deine Teilnahme und viel Spaß beim Wichteln!</p>";
 
@@ -41,7 +41,7 @@ $anfragen_ende = "<p>Der Wunsch wurde für dich reserviert. Hier erhältst du al
 
 $anfragen_geschenk_weg = "<p>So wie es aussieht, wurde der Wunsch zwischenzeitlich anders vergeben. Bitte überprüfe deinen E-Mail-Eingang oder suche dir einen anderen Wunsch aus.</p>";
 
-$anfragen_mail = "Hallo _USERNAME_! \n\nDu hast dich verpflichtet, folgenden Wunsch zu erfuellen. Hier erhaeltst du noch mal alle Daten, die du benoetigst. Denk daran, dass du das Geschenk spaetestens am 12.12.2016 verschickt haben musst. \n_WUNSCHINFO_ \n\nViel Spass beim Basteln wuenscht Dein Weihnachtswichtel \n PS: Wenn in dieser Email statt den Informationen zu deinem Wunsch nur leere Felder stehen, dann ist etwas schief gelaufen. Der Wunsch ist dann nicht fuer dich reserviert! Bitte waehle ihn erneut aus und/oder wende dich an den Weihnachtswichtel.";
+$anfragen_mail = "Hallo _USERNAME_! \n\nDu hast dich verpflichtet, folgenden Wunsch zu erfuellen. Hier erhaeltst du noch mal alle Daten, die du benoetigst. Denk daran, dass du das Geschenk spaetestens am 14.12.2016 verschickt haben musst. \n_WUNSCHINFO_ \n\nViel Spass beim Basteln wuenscht Dein Weihnachtswichtel \n PS: Wenn in dieser Email statt den Informationen zu deinem Wunsch nur leere Felder stehen, dann ist etwas schief gelaufen. Der Wunsch ist dann nicht fuer dich reserviert! Bitte waehle ihn erneut aus und/oder wende dich an den Weihnachtswichtel.";
 
 $bekommen_mail = "Hallo _USERNAME_! \n\n_PARTNER_ hat gerade bestaetigt, dass dein Geschenk angekommen ist. Vielen Dank fuer deine Teilnahme am Wichteln! \n\nViele Gruesse vom Weihnachtswichtel";
 

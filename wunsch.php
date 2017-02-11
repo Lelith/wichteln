@@ -66,9 +66,16 @@ if (!$db) {
     } //while ($erg =@ mysql_fetch_array($query))
 
     $query = "SELECT notizen FROM wi_wichtel WHERE wichtel_id = '$wichtel_id'";
+    $erg = mysql_query($query);
+    if (!$erg) {
+        $message  = 'Ungültige Abfrage: ' . mysql_error() . "\n";
+        $message .= 'Gesamte Abfrage: ' . $query;
+        die($message);
+    }
 
-    while ($erg =@ mysql_fetch_array($query)) {
+    while ($erg =@ mysql_fetch_array($erg)) {
       $notizen = $erg["notizen"];
+
     } //while ($erg =@ mysql_fetch_array($query))
     $beschreibung = str_replace("\r\n","<br>",$beschreibung);
     $notizen = str_replace("\r\n","<br>",$notizen);
